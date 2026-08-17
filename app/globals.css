@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="night"] {
   --obsidian: #0b0907;
   --charcoal: #14110e;
   --ink: #1c1814;
@@ -10,6 +11,30 @@
   --marble: #e7dfd0;
   --muted: #b8aea0;
   --paper: #faf7f1;
+}
+
+[data-theme="limestone"] {
+  --obsidian: #f3eee4;
+  --charcoal: #e8e0d2;
+  --ink: #1c1814;
+  --gold: #8f6b32;
+  --gold-soft: #6f5224;
+  --cream: #1c1814;
+  --marble: #ddd4c4;
+  --muted: #6a6256;
+  --paper: #fffdf8;
+}
+
+[data-theme="bronze"] {
+  --obsidian: #16100c;
+  --charcoal: #221811;
+  --ink: #1d1410;
+  --gold: #c47a3a;
+  --gold-soft: #e3b07a;
+  --cream: #f3e6d4;
+  --marble: #d8c4a8;
+  --muted: #c4b09a;
+  --paper: #f7efe4;
 }
 
 @theme inline {

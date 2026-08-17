@@ -2,22 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BUSINESS_NAME, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = scrolled || open;
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
+        solid
+          ? "border-b border-gold/15 bg-obsidian/88 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
             src="/assets/logo-mark.png"
             alt="סמל Goldrock"
             width={44}
             height={44}
-            className="h-11 w-11 object-contain"
+            className="h-10 w-10 object-contain sm:h-11 sm:w-11"
             priority
           />
           <span className="font-brand text-lg text-gold-soft sm:text-xl">
@@ -48,7 +64,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="lg:hidden text-cream"
+          className="text-cream lg:hidden"
           aria-expanded={open}
           aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
           onClick={() => setOpen((v) => !v)}

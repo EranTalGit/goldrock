@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import MobileCtaBar from "./components/MobileCtaBar";
+import ThemeScript from "./components/ThemeScript";
 import {
   BUSINESS_NAME,
   BUSINESS_NAME_HE,
@@ -149,6 +150,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${body.variable} ${brand.variable} h-full`}
     >
       <body className="flex min-h-full flex-col pb-20 md:pb-0">
+        <ThemeScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -12,7 +12,7 @@ export default function InnerHero({
   crumbs: Crumb[];
 }) {
   return (
-    <section className="relative overflow-hidden marble-veil grain pt-28 pb-16 sm:pt-32">
+    <section className="relative overflow-hidden marble-veil grain pt-32 pb-16 sm:pt-36">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <Breadcrumbs items={crumbs} />
         <p className="mt-6 text-xs tracking-[0.28em] text-gold">{eyebrow}</p>
