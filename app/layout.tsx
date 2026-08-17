@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Assistant, Cormorant_Garamond, Noto_Serif_Hebrew } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import FloatingWhatsApp from "./components/FloatingWhatsApp";
-import MobileCtaBar from "./components/MobileCtaBar";
 import ThemeScript from "./components/ThemeScript";
+import SiteChrome from "./components/SiteChrome";
 import {
   BUSINESS_NAME,
   BUSINESS_NAME_HE,
@@ -155,11 +152,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <FloatingWhatsApp />
-        <MobileCtaBar />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
