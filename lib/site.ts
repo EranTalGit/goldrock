@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://goldrock.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://goldrock-one.vercel.app";
 
 export const BUSINESS_NAME = "Goldrock";
 export const BUSINESS_NAME_HE = "גולדרוק";
