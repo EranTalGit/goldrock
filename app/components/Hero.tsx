@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  BUSINESS_NAME,
   DEFAULT_WA_MESSAGE,
   PHONE_DISPLAY,
   PHONE_HREF,
-  REGION_LABEL,
   whatsappLink,
 } from "@/lib/site";
 
@@ -20,30 +18,36 @@ export default function Hero() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-obsidian/35" />
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-4 pb-28 pt-36 sm:px-6 md:pb-20">
-        <p className="rise text-xs tracking-[0.32em] text-gold">
-          {BUSINESS_NAME} · {REGION_LABEL}
+      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/75 to-obsidian/30" />
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-4 pb-32 pt-40 sm:px-6 md:pb-24">
+        <p className="rise text-xs font-semibold tracking-[0.32em] text-gold-soft">
+          GOLDROCK | אומנות השחזור והליטוש
         </p>
-        <h1 className="rise mt-4 max-w-3xl font-display text-4xl leading-[1.15] text-cream sm:text-6xl" style={{ animationDelay: "80ms" }}>
-          פוליש לשיש שמחזיר לרצפה את הברק
+        <h1
+          className="rise mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.12] text-white sm:text-6xl lg:text-7xl"
+          style={{ animationDelay: "80ms" }}
+        >
+          מחזירים לרצפה את הברק, היוקרה והחיים
         </h1>
-        <p className="rise mt-5 max-w-xl text-lg leading-relaxed text-cream/80" style={{ animationDelay: "160ms" }}>
-          ליטוש, הברקה וחידוש מדרגות בגוש דן. עבודה נקייה, אחריות מלאה, והצעת מחיר לפי תמונה בוואטסאפ.
+        <p
+          className="rise mt-6 max-w-2xl text-lg leading-relaxed text-white/85"
+          style={{ animationDelay: "160ms" }}
+        >
+          פוליש, ליטוש וחידוש משטחי שיש, אבן ופורצלן בסטנדרט הבלתי מתפשר של גוש דן והמרכז. עבודה נקייה, יסודית ובאחריות מלאה.
         </p>
-        <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
+        <div className="rise mt-10 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
           <a
             href={whatsappLink(DEFAULT_WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold rounded-full px-6 py-3"
+            className="btn-gold rounded-2xl px-7 py-4 text-base"
           >
-            שיחה בוואטסאפ
+            לקבלת הצעת מחיר בוואטסאפ ←
           </a>
-          <a href={PHONE_HREF} className="btn-ghost rounded-full px-6 py-3" dir="ltr">
+          <a href={PHONE_HREF} className="btn-ghost rounded-2xl px-7 py-4" dir="ltr">
             {PHONE_DISPLAY}
           </a>
-          <Link href="/services" className="btn-ghost rounded-full px-6 py-3">
+          <Link href="/services" className="btn-ghost rounded-2xl px-7 py-4">
             לכל השירותים
           </Link>
         </div>

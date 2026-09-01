@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
-:root,
+/* Default: light luxury. Off-white paper, deep charcoal for drama, refined gold. */
+:root {
+  --obsidian: #121212;
+  --charcoal: #1a1a1a;
+  --ink: #191919;
+  --gold: #c5a059;
+  --gold-soft: #d4af37;
+  --cream: #ffffff;
+  --marble: #ece6da;
+  --muted: #a9a39b;
+  --paper: #fdfbf7;
+  --sand: #fbf9f5;
+  --shadow-soft: 0 1px 2px rgba(18, 18, 18, 0.04), 0 10px 30px rgba(18, 18, 18, 0.06);
+  --shadow-lift: 0 2px 4px rgba(18, 18, 18, 0.05), 0 18px 44px rgba(18, 18, 18, 0.1);
+}
+
 [data-theme="night"] {
   --obsidian: #0b0907;
   --charcoal: #14110e;
@@ -11,6 +26,7 @@
   --marble: #e7dfd0;
   --muted: #b8aea0;
   --paper: #faf7f1;
+  --sand: #f3eee4;
 }
 
 [data-theme="limestone"] {
@@ -23,6 +39,7 @@
   --marble: #ddd4c4;
   --muted: #6a6256;
   --paper: #fffdf8;
+  --sand: #f3eee4;
 }
 
 [data-theme="bronze"] {
@@ -35,6 +52,7 @@
   --marble: #d8c4a8;
   --muted: #c4b09a;
   --paper: #f7efe4;
+  --sand: #f3e6d4;
 }
 
 @theme inline {
@@ -47,6 +65,7 @@
   --color-marble: var(--marble);
   --color-muted: var(--muted);
   --color-paper: var(--paper);
+  --color-sand: var(--sand);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-brand: var(--font-brand);
@@ -57,8 +76,8 @@ html {
 }
 
 body {
-  background: var(--obsidian);
-  color: var(--cream);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-body), "Assistant", sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -67,7 +86,8 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: var(--font-display), "Noto Serif Hebrew", serif;
+  font-family: var(--font-display), "Heebo", sans-serif;
+  letter-spacing: -0.015em;
 }
 
 .font-brand {
@@ -75,20 +95,36 @@ h3,
   letter-spacing: 0.18em;
 }
 
+/* Small uppercase eyebrow above section headings. */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+}
+
 .gold-line {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--gold),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
   height: 1px;
+}
+
+/* Light cards: soft depth, no hard borders. */
+.card-soft {
+  background: var(--cream);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-soft:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-3px);
 }
 
 .marble-veil {
   background:
-    radial-gradient(1200px 600px at 80% 10%, rgba(201, 164, 106, 0.12), transparent 50%),
-    radial-gradient(900px 500px at 10% 90%, rgba(243, 238, 228, 0.06), transparent 45%),
+    radial-gradient(1200px 600px at 80% 10%, rgba(197, 160, 89, 0.12), transparent 50%),
+    radial-gradient(900px 500px at 10% 90%, rgba(255, 255, 255, 0.05), transparent 45%),
     var(--obsidian);
 }
 
@@ -118,22 +154,52 @@ h3,
 
 .btn-gold {
   background: var(--gold);
-  color: var(--obsidian);
+  color: #ffffff;
   font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.28);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-gold:hover {
   background: var(--gold-soft);
-  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(212, 175, 55, 0.34);
+  transform: translateY(-2px);
 }
 
+/* Ghost button for dark backgrounds (hero, CTA band, footer). */
 .btn-ghost {
-  border: 1px solid rgba(201, 164, 106, 0.55);
-  color: var(--gold-soft);
-  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .btn-ghost:hover {
-  background: rgba(201, 164, 106, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Outline button for light backgrounds. */
+.btn-outline {
+  border: 1px solid rgba(25, 25, 25, 0.18);
+  color: var(--ink);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(197, 160, 89, 0.08);
+  border-color: var(--gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise {
+    animation: none;
+  }
+
+  .card-soft:hover {
+    transform: none;
+  }
 }

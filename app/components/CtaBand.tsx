@@ -3,31 +3,33 @@ import { DEFAULT_WA_MESSAGE, PHONE_DISPLAY, PHONE_HREF, whatsappLink } from "@/l
 
 export default function CtaBand({
   title = "רוצים רצפה שמחזירה ברק?",
-  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר בלי התחייבות.",
+  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות.",
 }: {
   title?: string;
   text?: string;
 }) {
   return (
-    <section className="border-y border-gold/15 bg-charcoal">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+    <section className="bg-charcoal">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-4 py-20 sm:px-6 md:flex-row md:items-center">
         <div>
-          <h2 className="font-display text-3xl text-cream sm:text-4xl">{title}</h2>
-          <p className="mt-3 max-w-xl text-muted">{text}</p>
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+            {title}
+          </h2>
+          <p className="mt-4 max-w-xl text-lg text-white/60">{text}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <a
             href={whatsappLink(DEFAULT_WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold rounded-full px-6 py-3"
+            className="btn-gold rounded-2xl px-7 py-4"
           >
             שיחה בוואטסאפ
           </a>
-          <a href={PHONE_HREF} className="btn-ghost rounded-full px-6 py-3" dir="ltr">
+          <a href={PHONE_HREF} className="btn-ghost rounded-2xl px-7 py-4" dir="ltr">
             {PHONE_DISPLAY}
           </a>
-          <Link href="/contact" className="btn-ghost rounded-full px-6 py-3">
+          <Link href="/contact" className="btn-ghost rounded-2xl px-7 py-4">
             טופס קצר
           </Link>
         </div>

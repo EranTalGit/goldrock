@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Assistant, Cormorant_Garamond, Noto_Serif_Hebrew } from "next/font/google";
+import { Assistant, Cormorant_Garamond, Heebo } from "next/font/google";
 import "./globals.css";
 import ThemeScript from "./components/ThemeScript";
 import SiteChrome from "./components/SiteChrome";
@@ -14,7 +14,7 @@ import {
   TAGLINE,
 } from "@/lib/site";
 
-const display = Noto_Serif_Hebrew({
+const display = Heebo({
   variable: "--font-display",
   subsets: ["hebrew", "latin"],
   weight: ["500", "600", "700", "800", "900"],
