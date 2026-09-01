@@ -1,9 +1,9 @@
-import Image from "next/image";
+import DiamondMark from "./DiamondMark";
 
 /**
  * The Goldrock diamond, centred inside a gold-rimmed circle.
- * Every placement of the logo goes through here, so replacing
- * /assets/logo-goldrock.png updates the whole site at once.
+ * The pale ground keeps the charcoal half of the stone legible at
+ * nav size, where it disappeared against the original dark artwork.
  */
 export default function LogoMark({
   size = 44,
@@ -14,17 +14,10 @@ export default function LogoMark({
 }) {
   return (
     <span
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-gold/80 ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-white to-[#F3EEE4] ring-2 ring-gold shadow-[0_2px_10px_rgba(0,0,0,0.18)] ${className}`}
       style={{ width: size, height: size }}
     >
-      <Image
-        src="/assets/logo-goldrock.png"
-        alt="סמל Goldrock - יהלום זהב"
-        width={size * 2}
-        height={size * 2}
-        className="h-full w-full object-cover"
-        priority
-      />
+      <DiamondMark className="w-[62%]" />
     </span>
   );
 }
