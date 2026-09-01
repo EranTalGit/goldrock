@@ -17,11 +17,11 @@ export default function SectionHeading({
 }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <p className="gold-metal font-display text-3xl font-bold leading-tight sm:text-5xl">
+      <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
         {label}
       </p>
       <h2
-        className={`mt-3 font-display text-lg font-semibold leading-snug sm:text-2xl ${
+        className={`mt-4 font-display text-xl font-semibold leading-snug sm:text-3xl ${
           dark ? "text-white/90" : "text-ink"
         }`}
       >
@@ -29,7 +29,7 @@ export default function SectionHeading({
       </h2>
       {description ? (
         <p
-          className={`mt-4 text-[15px] leading-relaxed sm:text-base ${
+          className={`mt-5 text-base leading-relaxed sm:text-lg ${
             dark ? "text-white/60" : "text-ink-soft"
           }`}
         >

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 /**
  * The Goldrock diamond, centred in a gold-rimmed circle.
- * Swap /assets/logo-gr.png to change the mark everywhere at once.
+ * Swap /assets/logo-gr-v2.png to change the mark everywhere at once.
  */
 export default function LogoMark({
   size = 44,
@@ -17,7 +17,7 @@ export default function LogoMark({
       style={{ width: size, height: size }}
     >
       <Image
-        src="/assets/logo-gr.png"
+        src="/assets/logo-gr-v2.png"
         alt="סמל Goldrock - יהלום זהב"
         width={size * 2}
         height={size * 2}

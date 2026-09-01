@@ -16,17 +16,17 @@ export default function WhyUs() {
           {BENEFITS.map((benefit) => (
             <article
               key={benefit.title}
-              className="card-soft card-topline flex flex-col items-center p-7 text-center"
+              className="card-soft card-topline flex flex-col items-center p-8 text-center"
             >
               {/* Circular badge echoes the logo mark, and anchors the
                   centred card better than a bare floating icon. */}
-              <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-gold/30 bg-gold/[0.07] text-gold">
-                <ServiceIcon name={benefit.icon} width={30} height={30} />
+              <span className="inline-flex h-20 w-20 items-center justify-center rounded-full border border-gold/30 bg-gold/[0.07] text-gold">
+                <ServiceIcon name={benefit.icon} width={38} height={38} />
               </span>
-              <h3 className="mt-5 font-display text-lg font-bold leading-snug">
+              <h3 className="mt-6 font-display text-xl font-bold leading-snug">
                 {benefit.title}
               </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">
                 {benefit.text}
               </p>
             </article>
