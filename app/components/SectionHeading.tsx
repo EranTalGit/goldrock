@@ -27,9 +27,13 @@ export default function SectionHeading({
       >
         {title}
       </h2>
+      {/* Fades to nothing at both ends, so it separates without boxing
+          the heading in - and gives every block the same anchor. */}
+      <div className="gold-rule mx-auto mt-6 w-full max-w-2xl" />
+
       {description ? (
         <p
-          className={`mt-5 text-base leading-relaxed sm:text-lg ${
+          className={`mt-6 text-base leading-relaxed sm:text-lg ${
             dark ? "text-white/60" : "text-ink-soft"
           }`}
         >

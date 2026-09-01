@@ -27,13 +27,14 @@ export default function Home() {
       <section className="bg-sand text-ink">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-10 pb-24 sm:px-6 sm:py-14 sm:pb-28 lg:grid-cols-2">
           <div>
-            <p className="gold-metal font-display text-3xl font-bold leading-tight sm:text-5xl">
+            <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
             </p>
-            <h2 className="mt-3 font-display text-lg font-semibold leading-snug text-ink sm:text-2xl">
+            <h2 className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
               גולדרוק - מטפלים באבן עד שהיא מחזירה אור
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-ink-soft sm:text-base">
+            <div className="gold-rule mt-6 w-full max-w-md" />
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
               Goldrock הוקמה מתוך תשוקה לאבנים טבעיות ולמבנים מרהיבים. אנו מתמחים במתן שירותי פוליש וליטוש ברמה הגבוהה ביותר, תוך דגש על דיוק, ניקיון, עמידה בזמנים ושקיפות מלאה. בלי הבטחות סרק ובלי דירוגים מומצאים - רק עבודה מקצועית על שיש, מדרגות, מרצפות ופורצלן עם אחריות מלאה על התוצאה.
             </p>
             <ul className="mt-7 space-y-3.5">

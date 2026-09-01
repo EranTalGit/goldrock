@@ -11,7 +11,7 @@ export default function Services() {
         <SectionHeading
           label="השירותים שלנו"
           title="כל מה שהרצפה שלך צריכה"
-          description="מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. כל שירות עם דף מלא, תהליך ברור והצעת מחיר מהירה."
+          description="מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. לכל שירות תהליך עבודה ברור, מחיר שקוף והצעת מחיר מהירה בוואטסאפ."
         />
 
         <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
