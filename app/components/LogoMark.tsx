@@ -5,7 +5,7 @@ import Image from "next/image";
  * circle. The pale stone keeps the charcoal half of the diamond legible
  * at nav size, where it vanished against the original dark artwork.
  *
- * Swap /assets/logo-diamond.png to change the mark everywhere at once.
+ * Swap /assets/logo-diamond-gold.png to change the mark everywhere at once.
  */
 export default function LogoMark({
   size = 44,
