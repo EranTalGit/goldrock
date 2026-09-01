@@ -1,4 +1,5 @@
 import { GENERAL_FAQ } from "@/lib/site";
+import SectionHeading from "./SectionHeading";
 
 export default function FaqSection({
   items = GENERAL_FAQ,
@@ -7,15 +8,10 @@ export default function FaqSection({
 }) {
   return (
     <section className="bg-paper text-ink">
-      <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
-        <div className="text-center">
-          <p className="eyebrow">שאלות נפוצות</p>
-          <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
-            תשובות קצרות לפני שמתקשרים
-          </h2>
-        </div>
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+        <SectionHeading label="שאלות נפוצות" title="תשובות קצרות לפני שמתקשרים" />
 
-        <div className="mt-10 space-y-4">
+        <div className="mt-9 space-y-4">
           {items.map((item, i) => (
             <details
               key={item.q}

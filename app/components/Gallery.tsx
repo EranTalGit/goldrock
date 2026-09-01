@@ -1,17 +1,17 @@
 import Image from "next/image";
 import { GALLERY } from "@/lib/site";
+import SectionHeading from "./SectionHeading";
 
 export default function Gallery() {
   return (
     <section className="bg-obsidian">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-        <p className="eyebrow">גלריה</p>
-        <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-          אומנות הברק והאבן
-        </h2>
-        <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/60">
-          הנה חלק מהתוצאות שאנחנו מייצרים עבור הלקוחות שלנו במרכז.
-        </p>
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <SectionHeading
+          dark
+          label="גלריה"
+          title="אומנות הברק והאבן"
+          description="הנה חלק מהתוצאות שאנחנו מייצרים עבור הלקוחות שלנו במרכז."
+        />
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
           {GALLERY.map((item, i) => (
             <figure

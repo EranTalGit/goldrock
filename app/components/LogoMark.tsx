@@ -13,7 +13,7 @@ export default function LogoMark({
 }) {
   return (
     <span
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0D0D0E] ring-2 ring-gold shadow-[0_2px_10px_rgba(0,0,0,0.25)] ${className}`}
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0D0D0E] ring-1 ring-gold shadow-[0_2px_10px_rgba(0,0,0,0.25)] ${className}`}
       style={{ width: size, height: size }}
     >
       <Image

@@ -2,22 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 import { ServiceIcon } from "./icons";
+import SectionHeading from "./SectionHeading";
 
 export default function Services() {
   return (
     <section id="services" className="bg-sand text-ink">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">השירותים שלנו</p>
-          <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
-            כל מה שהרצפה שלך צריכה
-          </h2>
-          <p className="mt-5 text-[17px] leading-relaxed text-ink-soft">
-            מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. כל שירות עם דף מלא, תהליך ברור והצעת מחיר מהירה.
-          </p>
-        </div>
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <SectionHeading
+          label="השירותים שלנו"
+          title="כל מה שהרצפה שלך צריכה"
+          description="מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. כל שירות עם דף מלא, תהליך ברור והצעת מחיר מהירה."
+        />
 
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
             <article
               key={service.slug}

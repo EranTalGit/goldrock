@@ -11,7 +11,7 @@ export default function CtaBand({
 }) {
   return (
     <section className="bg-sand">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
         <div className="rounded-2xl border border-gold/30 bg-gradient-to-b from-[#1c1c1c] to-[#141414] px-6 py-10 shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:px-12 sm:py-12">
           <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div>

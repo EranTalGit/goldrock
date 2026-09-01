@@ -1,20 +1,17 @@
 import { PROCESS } from "@/lib/site";
+import SectionHeading from "./SectionHeading";
 
 export default function Process() {
   return (
     <section className="bg-paper text-ink">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">פשוט, נקי, מהיר</p>
-          <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
-            מחזירים את הברק לרצפה - התהליך שלנו
-          </h2>
-          <p className="mt-5 text-[17px] leading-relaxed text-ink-soft">
-            מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:
-          </p>
-        </div>
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <SectionHeading
+          label="פשוט, נקי, מהיר"
+          title="מחזירים את הברק לרצפה - התהליך שלנו"
+          description="מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:"
+        />
 
-        <ol className="mt-14 grid gap-10 md:grid-cols-4 md:gap-7">
+        <ol className="mt-12 grid gap-10 md:grid-cols-4 md:gap-7">
           {PROCESS.map((step, i) => {
             const last = i === PROCESS.length - 1;
             return (
