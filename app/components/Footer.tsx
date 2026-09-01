@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   BUSINESS_NAME,
@@ -21,8 +22,14 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <LogoMark size={58} />
-            <span className="font-brand text-2xl text-gold">{BUSINESS_NAME}</span>
+            <LogoMark size={62} />
+            <Image
+              src="/assets/logo-wordmark.png"
+              alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
+              width={700}
+              height={228}
+              className="h-12 w-auto"
+            />
           </div>
           <p className="mt-5 text-sm leading-relaxed text-[#A0A0A0]">
             גולדרוק - פוליש, ליטוש והברקת רצפות שיש ומדרגות בתל אביב, גוש דן והמרכז.

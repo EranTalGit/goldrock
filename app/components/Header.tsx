@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BUSINESS_NAME, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
@@ -31,13 +32,14 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <LogoMark size={46} />
-          <span
-            className={`font-brand text-xl transition-colors sm:text-2xl ${
-              solid ? "text-ink" : "text-white"
-            }`}
-          >
-            {BUSINESS_NAME}
-          </span>
+          <Image
+            src="/assets/logo-wordmark.png"
+            alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
+            width={700}
+            height={228}
+            priority
+            className="h-9 w-auto drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:h-11"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -45,7 +47,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-[17px] font-medium transition-colors hover:text-gold ${
+              className={`text-[19px] font-medium transition-colors hover:text-gold ${
                 solid ? "text-ink/80" : "text-white/90"
               }`}
             >
