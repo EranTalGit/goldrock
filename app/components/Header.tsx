@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BUSINESS_NAME, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
+import LogoMark from "./LogoMark";
+import { PhoneIcon } from "./icons";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -23,22 +24,15 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         solid
-          ? "border-b border-ink/8 bg-paper/90 shadow-[0_1px_20px_rgba(18,18,18,0.06)] backdrop-blur-md"
+          ? "border-b border-line bg-paper/92 shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Image
-            src="/assets/logo-mark.png"
-            alt="סמל Goldrock"
-            width={44}
-            height={44}
-            className="h-10 w-10 object-contain sm:h-11 sm:w-11"
-            priority
-          />
+          <LogoMark size={46} />
           <span
-            className={`font-brand text-lg transition-colors sm:text-xl ${
+            className={`font-brand text-xl transition-colors sm:text-2xl ${
               solid ? "text-ink" : "text-white"
             }`}
           >
@@ -46,13 +40,13 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors hover:text-gold ${
-                solid ? "text-ink/75" : "text-white/85"
+              className={`text-[17px] font-medium transition-colors hover:text-gold ${
+                solid ? "text-ink/80" : "text-white/90"
               }`}
             >
               {link.label}
@@ -60,17 +54,20 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <a
             href={PHONE_HREF}
-            className={`text-sm font-semibold transition-colors ${
-              solid ? "text-ink" : "text-white"
+            aria-label={`חיוג ל-${PHONE_DISPLAY}`}
+            title={PHONE_DISPLAY}
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white ${
+              solid
+                ? "border-gold/50 text-gold"
+                : "border-white/40 text-white hover:border-gold"
             }`}
-            dir="ltr"
           >
-            {PHONE_DISPLAY}
+            <PhoneIcon width={19} height={19} />
           </a>
-          <Link href="/contact" className="btn-gold rounded-xl px-5 py-2.5 text-sm">
+          <Link href="/contact" className="btn-gold rounded-xl px-6 py-3 text-[15px]">
             הזמנת שירות
           </Link>
         </div>
@@ -89,25 +86,34 @@ export default function Header() {
       </div>
 
       {open ? (
-        <div className="border-t border-ink/10 bg-paper px-4 py-5 lg:hidden">
+        <div className="border-t border-line bg-paper px-4 py-5 lg:hidden">
           <nav className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-lg text-ink"
+                className="text-lg font-medium text-ink"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="btn-gold mt-2 inline-flex justify-center rounded-xl px-4 py-3"
-              onClick={() => setOpen(false)}
-            >
-              הזמנת שירות
-            </Link>
+            <div className="mt-2 flex items-center gap-3">
+              <a
+                href={PHONE_HREF}
+                aria-label={`חיוג ל-${PHONE_DISPLAY}`}
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 text-gold"
+              >
+                <PhoneIcon width={20} height={20} />
+              </a>
+              <Link
+                href="/contact"
+                className="btn-gold inline-flex flex-1 justify-center rounded-xl px-4 py-3"
+                onClick={() => setOpen(false)}
+              >
+                הזמנת שירות
+              </Link>
+            </div>
           </nav>
         </div>
       ) : null}

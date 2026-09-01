@@ -86,7 +86,7 @@ export default async function CityPage({
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <p className="leading-relaxed text-ink/80">{city.intro}</p>
             <p className="mt-4 leading-relaxed text-ink/80">{city.note}</p>

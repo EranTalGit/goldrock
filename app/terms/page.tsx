@@ -21,7 +21,7 @@ export default function TermsPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl space-y-4 px-4 py-16 leading-relaxed text-ink/80 sm:px-6">
+        <div className="mx-auto max-w-3xl space-y-4 px-4 py-12 leading-relaxed text-ink/80 sm:px-6">
           <p>
             התוכן באתר הוא מידע כללי. הצעת מחיר סופית ניתנת אחרי בדיקת הרצפה או תמונות עדכניות.
           </p>

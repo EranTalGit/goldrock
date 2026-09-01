@@ -26,7 +26,7 @@ export default function AreasPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-5 px-4 py-20 sm:px-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-5 px-4 py-14 sm:px-6 sm:grid-cols-2 lg:grid-cols-3">
           {CITIES.map((city) => (
             <article key={city.slug} className="rounded-2xl bg-cream p-6">
               <h2 className="font-display text-2xl">

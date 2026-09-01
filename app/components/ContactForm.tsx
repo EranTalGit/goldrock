@@ -6,27 +6,27 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 
 const initial: LeadState = { ok: false, message: "" };
 
-const field =
-  "mt-1.5 w-full rounded-xl border border-white/15 bg-white/[0.06] px-4 py-3 text-white outline-none transition-colors placeholder:text-white/35 focus:border-gold";
+const field = "field-dark mt-1.5 w-full rounded-xl px-4 py-3";
+const label = "block text-sm font-medium text-[#E8E2D4]";
 
 export default function ContactForm({ source = "contact-form" }: { source?: string }) {
   const [state, action, pending] = useActionState(submitLead, initial);
 
   return (
-    <form action={action} className="space-y-4">
+    <form action={action} className="form-dark space-y-4">
       <input type="hidden" name="source" value={source} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm text-white/70">
+        <label className={label}>
           שם מלא
           <input name="name" required className={field} />
         </label>
-        <label className="block text-sm text-white/70">
+        <label className={label}>
           טלפון
           <input name="phone" required inputMode="tel" className={field} dir="ltr" />
         </label>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm text-white/70">
+        <label className={label}>
           עיר
           <select name="city" className={field} defaultValue="">
             <option value="">בחירה</option>
@@ -37,7 +37,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
             ))}
           </select>
         </label>
-        <label className="block text-sm text-white/70">
+        <label className={label}>
           סוג השירות
           <select name="service" className={field} defaultValue="">
             <option value="">בחירה</option>
@@ -49,7 +49,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
           </select>
         </label>
       </div>
-      <label className="block text-sm text-white/70">
+      <label className={label}>
         הודעה / סוג הרצפה
         <textarea
           name="message"
@@ -61,9 +61,9 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
       <button
         type="submit"
         disabled={pending}
-        className="btn-gold w-full rounded-2xl py-4 disabled:opacity-60"
+        className="btn-gold arrow-link w-full rounded-xl py-4 text-base disabled:opacity-60"
       >
-        {pending ? "שולחים..." : "שלחו הצעת מחיר ←"}
+        {pending ? "שולחים..." : <>שלחו הצעת מחיר <span className="arrow">←</span></>}
       </button>
       {state.message ? (
         <p className={state.ok ? "text-gold-soft" : "text-red-300"}>{state.message}</p>

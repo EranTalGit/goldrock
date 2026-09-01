@@ -74,7 +74,7 @@ export default async function BlogPostPage({
         ]}
       />
       <article className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
           <div className="relative mb-10 h-72 overflow-hidden rounded-2xl">
             <Image src={post.image} alt={post.title} fill className="object-cover" sizes="800px" />
           </div>

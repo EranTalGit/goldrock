@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
-/* Default: light luxury. Off-white paper, deep charcoal for drama, refined gold. */
+/* Alternating off-white rhythm, deep charcoal for the dramatic sections, metallic gold. */
 :root {
   --obsidian: #121212;
-  --charcoal: #1a1a1a;
-  --ink: #191919;
+  --charcoal: #161616;
+  --footer: #0d0d0d;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
   --gold: #c5a059;
   --gold-soft: #d4af37;
   --cream: #ffffff;
   --marble: #ece6da;
-  --muted: #a9a39b;
-  --paper: #fdfbf7;
-  --sand: #fbf9f5;
-  --shadow-soft: 0 1px 2px rgba(18, 18, 18, 0.04), 0 10px 30px rgba(18, 18, 18, 0.06);
-  --shadow-lift: 0 2px 4px rgba(18, 18, 18, 0.05), 0 18px 44px rgba(18, 18, 18, 0.1);
+  --muted: #a0a0a0;
+  --paper: #faf8f5;
+  --sand: #f1ebe1;
+  --line: #e5dec9;
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --shadow-glass: 0 12px 32px rgba(0, 0, 0, 0.05);
+  --shadow-lift: 0 18px 44px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="night"] {
   --obsidian: #0b0907;
   --charcoal: #14110e;
+  --footer: #0b0907;
   --ink: #1c1814;
+  --ink-soft: #4a4a4a;
   --gold: #c9a46a;
   --gold-soft: #e8d5a3;
   --cream: #f3eee4;
@@ -27,12 +34,15 @@
   --muted: #b8aea0;
   --paper: #faf7f1;
   --sand: #f3eee4;
+  --line: #e5dec9;
 }
 
 [data-theme="limestone"] {
   --obsidian: #f3eee4;
   --charcoal: #e8e0d2;
+  --footer: #e8e0d2;
   --ink: #1c1814;
+  --ink-soft: #4a4a4a;
   --gold: #8f6b32;
   --gold-soft: #6f5224;
   --cream: #1c1814;
@@ -40,12 +50,15 @@
   --muted: #6a6256;
   --paper: #fffdf8;
   --sand: #f3eee4;
+  --line: #ddd4c4;
 }
 
 [data-theme="bronze"] {
   --obsidian: #16100c;
   --charcoal: #221811;
+  --footer: #120c08;
   --ink: #1d1410;
+  --ink-soft: #4a4a4a;
   --gold: #c47a3a;
   --gold-soft: #e3b07a;
   --cream: #f3e6d4;
@@ -53,12 +66,15 @@
   --muted: #c4b09a;
   --paper: #f7efe4;
   --sand: #f3e6d4;
+  --line: #d8c4a8;
 }
 
 @theme inline {
   --color-obsidian: var(--obsidian);
   --color-charcoal: var(--charcoal);
+  --color-footer: var(--footer);
   --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-cream: var(--cream);
@@ -66,6 +82,7 @@
   --color-muted: var(--muted);
   --color-paper: var(--paper);
   --color-sand: var(--sand);
+  --color-line: var(--line);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-brand: var(--font-brand);
@@ -95,12 +112,19 @@ h3,
   letter-spacing: 0.18em;
 }
 
-/* Small uppercase eyebrow above section headings. */
 .eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   color: var(--gold);
+}
+
+/* Metallic gold text for the hero brand name. */
+.gold-metal {
+  background: linear-gradient(180deg, #f0dfa8 0%, #d4af37 38%, #c5a059 62%, #9c7c3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .gold-line {
@@ -108,17 +132,52 @@ h3,
   height: 1px;
 }
 
-/* Light cards: soft depth, no hard borders. */
+/* Solid white card on the off-white section backgrounds. */
 .card-soft {
   background: var(--cream);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-soft);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card-soft:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-lift);
-  transform: translateY(-3px);
+}
+
+/* Gold rule across the top edge of the benefit cards. */
+.card-topline {
+  border-top: 3px solid var(--gold-soft);
+}
+
+/* Frosted card used by the services grid. */
+.card-glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 217, 197, 0.6);
+  border-radius: 14px;
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-glass:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(197, 160, 89, 0.5);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.1);
+}
+
+/* Arrow nudges toward the reading direction on hover. */
+.arrow-link .arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.arrow-link:hover .arrow {
+  transform: translateX(-4px);
 }
 
 .marble-veil {
@@ -162,11 +221,23 @@ h3,
 
 .btn-gold:hover {
   background: var(--gold-soft);
-  box-shadow: 0 10px 26px rgba(212, 175, 55, 0.34);
+  box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
   transform: translateY(-2px);
 }
 
-/* Ghost button for dark backgrounds (hero, CTA band, footer). */
+/* Outlined gold button, readable on both dark and light grounds. */
+.btn-gold-outline {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-gold-outline:hover {
+  background: rgba(197, 160, 89, 0.12);
+  transform: translateY(-2px);
+}
+
 .btn-ghost {
   border: 1px solid rgba(255, 255, 255, 0.28);
   color: #ffffff;
@@ -178,9 +249,8 @@ h3,
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Outline button for light backgrounds. */
 .btn-outline {
-  border: 1px solid rgba(25, 25, 25, 0.18);
+  border: 1px solid rgba(26, 26, 26, 0.18);
   color: var(--ink);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
@@ -188,6 +258,67 @@ h3,
 .btn-outline:hover {
   background: rgba(197, 160, 89, 0.08);
   border-color: var(--gold);
+}
+
+/* City pills. */
+.chip {
+  background: var(--cream);
+  border: 1px solid #eae5d9;
+  border-radius: 50px;
+  color: #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.chip:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(197, 160, 89, 0.28);
+}
+
+/* Dark form: fields, focus glow, and a readable native dropdown list. */
+.form-dark {
+  color-scheme: dark;
+}
+
+.field-dark {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  color: #f5f5f7;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-dark::placeholder {
+  color: rgba(245, 245, 247, 0.4);
+}
+
+.field-dark:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+select.field-dark {
+  color-scheme: dark;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23C5A059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  padding-left: 2.5rem;
+}
+
+select.field-dark option {
+  background-color: #1a1a1a;
+  color: #f5f5f7;
+}
+
+select.field-dark option:checked {
+  background-color: var(--gold);
+  color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -199,7 +330,9 @@ h3,
     animation: none;
   }
 
-  .card-soft:hover {
+  .card-soft:hover,
+  .card-glass:hover,
+  .chip:hover {
     transform: none;
   }
 }

@@ -34,7 +34,7 @@ export default function ServicesPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-20 sm:px-6 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 sm:grid-cols-2">
           {SERVICES.map((service) => (
             <article key={service.slug} className="overflow-hidden rounded-2xl bg-cream">
               <div className="relative h-52">

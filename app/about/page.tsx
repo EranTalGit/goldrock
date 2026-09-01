@@ -25,7 +25,7 @@ export default function AboutPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
           <p className="leading-relaxed text-ink/80">
             Goldrock נולד מהרעיון הפשוט הזה: רצפת שיש לא חייבת להיראות עייפה. ליטוש נכון מחזיר לאבן את העומק שלה, בלי לפרק בית ובלי שיפוץ מיותר.
           </p>

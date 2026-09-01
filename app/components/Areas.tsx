@@ -3,32 +3,38 @@ import { CITIES, REGION_LABEL } from "@/lib/site";
 
 export default function Areas() {
   return (
-    <section id="areas" className="bg-charcoal">
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
-        <p className="eyebrow">אזורי שירות</p>
-        <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
-          מגיעים אליכם ב{REGION_LABEL}
-        </h2>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
-          פוליש לשיש, חידוש מדרגות וניקיון אחרי שיפוץ בכל גוש דן. בחרו עיר וקבלו פרטים מקומיים.
-        </p>
-        <div className="mt-12 flex flex-wrap gap-2.5">
+    <section id="areas" className="bg-paper text-ink">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">אזורי שירות</p>
+          <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
+            מגיעים אליכם ב{REGION_LABEL}
+          </h2>
+          <p className="mt-5 text-[17px] leading-relaxed text-ink-soft">
+            צוותי המומחים של Goldrock מעניקים שירותי פוליש, ליטוש שיש, חידוש מדרגות וקריסטליזציה בפריסה רחבה. בחרו את העיר שלכם לקבלת פרטים, מענה מהיר והצעת מחיר במקום.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2.5">
           {CITIES.map((city) => (
             <Link
               key={city.slug}
               href={`/areas/${city.slug}`}
-              className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-white/80 transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold-soft"
+              className="chip px-5 py-2.5 text-sm font-medium"
             >
               {city.name}
             </Link>
           ))}
         </div>
-        <Link
-          href="/areas"
-          className="mt-10 inline-block text-sm font-semibold text-gold transition-colors hover:text-gold-soft"
-        >
-          לכל אזורי השירות ←
-        </Link>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/areas"
+            className="arrow-link inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold transition-colors hover:text-gold-soft"
+          >
+            לכל אזורי השירות והערים הנוספות <span className="arrow">←</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

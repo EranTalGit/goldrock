@@ -95,7 +95,7 @@ export default async function ServicePage({
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <div className="relative mb-8 h-72 overflow-hidden rounded-2xl">
               <Image src={service.image} alt={service.h1} fill className="object-cover" sizes="60vw" />

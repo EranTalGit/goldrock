@@ -32,7 +32,7 @@ export default function ContactPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl">דרכים מהירות</h2>
             <a href={PHONE_HREF} className="mt-6 block text-2xl text-gold" dir="ltr">

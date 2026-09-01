@@ -1,60 +1,73 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   BUSINESS_NAME,
-  BUSINESS_NAME_HE,
   CITIES,
   NAV_LINKS,
   PHONE_DISPLAY,
   PHONE_HREF,
-  REGION_LABEL,
   SERVICES,
   whatsappLink,
   DEFAULT_WA_MESSAGE,
 } from "@/lib/site";
+import LogoMark from "./LogoMark";
+import { PhoneIcon, WhatsAppIcon } from "./icons";
+
+const linkClass =
+  "inline-block text-[#D1D1D1] transition-all duration-200 hover:text-gold hover:-translate-x-1";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gold/15 bg-obsidian">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-4">
+    <footer className="border-t border-gold/20 bg-footer">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <Image src="/assets/logo-mark.png" alt="" width={36} height={36} />
-            <span className="font-brand text-gold-soft">{BUSINESS_NAME}</span>
+            <LogoMark size={58} />
+            <span className="font-brand text-2xl text-gold">{BUSINESS_NAME}</span>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-muted">
-            {BUSINESS_NAME_HE} - פוליש, ליטוש והברקת רצפות שיש ומדרגות ב{REGION_LABEL}.
+          <p className="mt-5 text-sm leading-relaxed text-[#A0A0A0]">
+            גולדרוק - פוליש, ליטוש והברקת רצפות שיש ומדרגות בתל אביב, גוש דן והמרכז.
           </p>
-          <a href={PHONE_HREF} className="mt-4 block text-gold-soft" dir="ltr">
-            {PHONE_DISPLAY}
-          </a>
-          <a
-            href={whatsappLink(DEFAULT_WA_MESSAGE)}
-            className="mt-2 inline-block text-sm text-cream/80"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            שיחה בוואטסאפ
-          </a>
+          <div className="mt-5 space-y-3">
+            <a
+              href={PHONE_HREF}
+              className="flex items-center gap-2.5 text-[#D1D1D1] transition-colors hover:text-gold"
+            >
+              <span className="text-gold">
+                <PhoneIcon width={17} height={17} />
+              </span>
+              <span dir="ltr">{PHONE_DISPLAY}</span>
+            </a>
+            <a
+              href={whatsappLink(DEFAULT_WA_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 text-sm text-[#D1D1D1] transition-colors hover:text-gold"
+            >
+              <span className="text-gold">
+                <WhatsAppIcon width={17} height={17} />
+              </span>
+              שיחה בוואטסאפ
+            </a>
+          </div>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-gold">ניווט</h2>
-          <ul className="mt-4 space-y-2 text-sm text-cream/75">
+          <h2 className="text-sm font-bold tracking-wide text-gold">ניווט</h2>
+          <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-gold-soft">
+                <Link href={link.href} className={linkClass}>
                   {link.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/privacy" className="hover:text-gold-soft">
+              <Link href="/privacy" className={linkClass}>
                 פרטיות
               </Link>
             </li>
             <li>
-              <Link href="/terms" className="hover:text-gold-soft">
+              <Link href="/terms" className={linkClass}>
                 תנאי שימוש
               </Link>
             </li>
@@ -62,11 +75,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-gold">שירותים</h2>
-          <ul className="mt-4 space-y-2 text-sm text-cream/75">
+          <h2 className="text-sm font-bold tracking-wide text-gold">שירותים</h2>
+          <ul className="mt-4 space-y-2.5 text-sm">
             {SERVICES.map((service) => (
               <li key={service.slug}>
-                <Link href={`/services/${service.slug}`} className="hover:text-gold-soft">
+                <Link href={`/services/${service.slug}`} className={linkClass}>
                   {service.title}
                 </Link>
               </li>
@@ -75,11 +88,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-gold">אזורים</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 text-sm text-cream/75">
+          <h2 className="text-sm font-bold tracking-wide text-gold">אזורים</h2>
+          <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2.5 text-sm">
             {CITIES.slice(0, 10).map((city) => (
               <li key={city.slug}>
-                <Link href={`/areas/${city.slug}`} className="hover:text-gold-soft">
+                <Link href={`/areas/${city.slug}`} className={linkClass}>
                   {city.name}
                 </Link>
               </li>
@@ -87,8 +100,14 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-gold/10 py-5 text-center text-xs text-muted">
-        © {new Date().getFullYear()} {BUSINESS_NAME} / {BUSINESS_NAME_HE}. כל הזכויות שמורות.
+
+      <div className="border-t border-white/[0.07]">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-[#777777] sm:flex-row sm:px-6">
+          <p>
+            © {new Date().getFullYear()} {BUSINESS_NAME}. כל הזכויות שמורות.
+          </p>
+          <p>עיצוב ופיתוח אתרים</p>
+        </div>
       </div>
     </footer>
   );

@@ -35,6 +35,8 @@ const paths: Record<ServiceIconName, string> = {
   layers: "M12 4l8 4-8 4-8-4 8-4zm-8 8l8 4 8-4M4 16l8 4 8-4",
   grid: "M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z",
   broom: "M5 20l4-9 3 1-2 8H5zm7-10l6-6m-4 2l4 4",
+  pin: "M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11zm0-8.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z",
+  clock: "M12 21a9 9 0 100-18 9 9 0 000 18zm0-14v5l3.5 2",
 };
 
 export function ServiceIcon({

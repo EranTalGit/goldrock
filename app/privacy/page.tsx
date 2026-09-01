@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl space-y-4 px-4 py-16 leading-relaxed text-ink/80 sm:px-6">
+        <div className="mx-auto max-w-3xl space-y-4 px-4 py-12 leading-relaxed text-ink/80 sm:px-6">
           <p>
             בטופס יצירת הקשר נשמרים שם, טלפון, עיר, סוג שירות והודעה. המטרה היחידה היא לחזור אליכם עם הצעת מחיר ולתאם עבודה.
           </p>

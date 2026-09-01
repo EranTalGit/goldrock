@@ -28,7 +28,7 @@ export default function BlogPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:px-6 md:grid-cols-2">
           {POSTS.map((post) => (
             <article key={post.slug} className="overflow-hidden rounded-2xl bg-cream">
               <div className="relative h-48">
