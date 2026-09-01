@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 /**
- * The Goldrock diamond on its marble ground, centred in a gold-rimmed
- * circle. The pale stone keeps the charcoal half of the diamond legible
- * at nav size, where it vanished against the original dark artwork.
+ * The Goldrock diamond, centred in a gold-rimmed circle. The stone is
+ * uniformly bright, so it holds its shape against the dark ground and
+ * sits in the site palette rather than fighting it.
  *
  * Swap /assets/logo-diamond-gold.png to change the mark everywhere at once.
  */
@@ -20,7 +20,7 @@ export default function LogoMark({
       style={{ width: size, height: size }}
     >
       <Image
-        src="/assets/logo-diamond.png"
+        src="/assets/logo-diamond-gold.png"
         alt="סמל Goldrock - יהלום זהב"
         width={size * 2}
         height={size * 2}
