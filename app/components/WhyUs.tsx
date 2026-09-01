@@ -26,7 +26,7 @@ export default function WhyUs() {
               <h3 className="mt-6 font-display text-xl font-bold leading-snug">
                 {benefit.title}
               </h3>
-              <div className="gold-line mt-4 w-20" />
+              <div className="gold-line mt-4 w-28" />
               <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
                 {benefit.text}
               </p>

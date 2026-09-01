@@ -29,7 +29,7 @@ export default function SectionHeading({
       </h2>
       {/* Fades to nothing at both ends, so it separates without boxing
           the heading in - and gives every block the same anchor. */}
-      <div className="gold-rule mx-auto mt-6 w-full max-w-2xl" />
+      <div className="gold-rule mx-auto mt-6 w-full max-w-sm" />
 
       {description ? (
         <p

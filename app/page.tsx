@@ -33,7 +33,7 @@ export default function Home() {
             <h2 className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
               גולדרוק - מטפלים באבן עד שהיא מחזירה אור
             </h2>
-            <div className="gold-rule mt-6 w-full max-w-md" />
+            <div className="gold-rule mt-6 w-full max-w-sm" />
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
               Goldrock הוקמה מתוך תשוקה לאבנים טבעיות ולמבנים מרהיבים. אנו מתמחים במתן שירותי פוליש וליטוש ברמה הגבוהה ביותר, תוך דגש על דיוק, ניקיון, עמידה בזמנים ושקיפות מלאה. בלי הבטחות סרק ובלי דירוגים מומצאים - רק עבודה מקצועית על שיש, מדרגות, מרצפות ופורצלן עם אחריות מלאה על התוצאה.
             </p>
