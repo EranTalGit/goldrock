@@ -157,7 +157,7 @@ h3,
 }
 
 .shine:hover::after {
-  animation: shine-sweep 1.1s ease-in-out;
+  animation: shine-sweep 2.6s ease-in-out;
 }
 
 @keyframes shine-sweep {

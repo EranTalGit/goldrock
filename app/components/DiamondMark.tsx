@@ -1,74 +1,60 @@
 /**
- * The Goldrock diamond as vector art: a brilliant cut split down the
- * middle, charcoal on the right, gold on the left. Drawn rather than
- * cropped from the brand artwork so it stays crisp at nav size, where
- * the original raster read as an indistinct blob.
+ * The Goldrock diamond as vector art: a brilliant cut in gold with just
+ * enough facets to read as a cut stone. Drawn rather than photographed
+ * because at nav size a rendered gem turns to noise - the sparkle and
+ * refraction swallow the silhouette, which is the one thing a mark has
+ * to keep.
  */
 export default function DiamondMark({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 200 152"
+      viewBox="0 0 200 160"
       className={className}
       fill="none"
       aria-hidden
       focusable="false"
     >
       <defs>
-        <linearGradient id="gr-gold" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0%" stopColor="#F6E7B0" />
-          <stop offset="35%" stopColor="#E3C260" />
-          <stop offset="70%" stopColor="#C5A059" />
-          <stop offset="100%" stopColor="#9A7833" />
+        <linearGradient id="dm-gold" x1="0.15" y1="0" x2="0.7" y2="1">
+          <stop offset="0%" stopColor="#F7E9B4" />
+          <stop offset="30%" stopColor="#E6C868" />
+          <stop offset="62%" stopColor="#C9A45C" />
+          <stop offset="100%" stopColor="#A07C36" />
         </linearGradient>
-        <linearGradient id="gr-dark" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0%" stopColor="#54565A" />
-          <stop offset="55%" stopColor="#33353A" />
-          <stop offset="100%" stopColor="#1E2024" />
+        <linearGradient id="dm-crown" x1="0" y1="0" x2="0.4" y2="1">
+          <stop offset="0%" stopColor="#FBF1CE" />
+          <stop offset="100%" stopColor="#DCBB63" />
         </linearGradient>
-        <clipPath id="clip-left">
-          <rect x="0" y="0" width="100" height="152" />
-        </clipPath>
-        <clipPath id="clip-right">
-          <rect x="100" y="0" width="100" height="152" />
-        </clipPath>
       </defs>
 
-      {/* Body, split so each half carries its own finish. */}
-      <g>
-        <path
-          d="M50 18 H150 L192 62 L100 146 L8 62 Z"
-          fill="url(#gr-dark)"
-          clipPath="url(#clip-left)"
-        />
-        <path
-          d="M50 18 H150 L192 62 L100 146 L8 62 Z"
-          fill="url(#gr-gold)"
-          clipPath="url(#clip-right)"
-        />
-      </g>
+      {/* Pavilion and crown as one body. */}
+      <path
+        d="M52 20 H148 L192 66 L100 150 L8 66 Z"
+        fill="url(#dm-gold)"
+      />
+      {/* Brighter crown so the stone reads as cut, not flat. */}
+      <path d="M52 20 H148 L192 66 H8 Z" fill="url(#dm-crown)" opacity="0.95" />
 
-      {/* Facets. */}
+      {/* Minimal facets - any more turns to mush at 46px. */}
       <g
-        stroke="#14161A"
-        strokeWidth="3.2"
+        stroke="#8A6A2A"
+        strokeWidth="3"
         strokeLinejoin="round"
         strokeLinecap="round"
-        opacity="0.85"
+        opacity="0.75"
       >
-        <path d="M8 62 H192" />
-        <path d="M50 18 L64 62" />
-        <path d="M150 18 L136 62" />
-        <path d="M100 18 V62" />
-        <path d="M64 62 L100 146" />
-        <path d="M136 62 L100 146" />
-        <path d="M100 62 V146" />
+        <path d="M8 66 H192" />
+        <path d="M52 20 L68 66" />
+        <path d="M148 20 L132 66" />
+        <path d="M68 66 L100 150" />
+        <path d="M132 66 L100 150" />
       </g>
 
-      {/* Outline. */}
+      {/* Outline holds the silhouette together at small sizes. */}
       <path
-        d="M50 18 H150 L192 62 L100 146 L8 62 Z"
-        stroke="#14161A"
-        strokeWidth="3.6"
+        d="M52 20 H148 L192 66 L100 150 L8 66 Z"
+        stroke="#7A5C22"
+        strokeWidth="3.5"
         strokeLinejoin="round"
       />
     </svg>
