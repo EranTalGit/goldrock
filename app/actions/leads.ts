@@ -1,6 +1,6 @@
 "use server";
 
-import { getSupabase } from "@/lib/supabase";
+import { getDb } from "@/lib/db";
 import { SERVICES } from "@/lib/site";
 
 export type LeadState = {
@@ -30,25 +30,21 @@ export async function submitLead(
   const allowed = new Set(SERVICES.map((s) => s.title));
   const safeService = allowed.has(service) ? service : service || "לא צוין";
 
-  const supabase = getSupabase();
-  if (!supabase) {
+  const db = getDb();
+  if (!db) {
     return {
       ok: true,
       message: "הפרטים התקבלו. עכשיו אפשר להמשיך בוואטסאפ לתיאום מהיר.",
     };
   }
 
-  const { error } = await supabase.from("leads").insert({
-    name,
-    phone,
-    city,
-    service: safeService,
-    message,
-    source,
-    status: "new",
-  });
-
-  if (error) {
+  try {
+    await db.query(
+      `insert into leads (name, phone, city, service, message, source, status)
+       values ($1, $2, $3, $4, $5, $6, 'new')`,
+      [name, phone, city, safeService, message, source],
+    );
+  } catch {
     return {
       ok: false,
       message: "לא הצלחנו לשמור את הפנייה. נסו שוב או פנו בוואטסאפ.",
