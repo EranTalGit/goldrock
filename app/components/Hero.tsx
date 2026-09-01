@@ -37,21 +37,21 @@ export default function Hero() {
         </p>
 
         <p
-          className="rise mt-4 font-display text-3xl font-semibold tracking-wide text-white sm:text-5xl"
+          className="rise mt-4 font-display text-4xl font-semibold tracking-wide text-white sm:text-6xl"
           style={{ animationDelay: "140ms" }}
         >
           אומנות השחזור והליטוש
         </p>
 
         <h1
-          className="rise mt-6 font-display text-xl font-bold leading-[1.3] text-white sm:whitespace-nowrap sm:text-3xl"
+          className="rise mt-6 font-display text-2xl font-bold leading-[1.3] text-white sm:whitespace-nowrap sm:text-4xl"
           style={{ animationDelay: "200ms" }}
         >
           מחזירים לרצפה את הברק, היוקרה והחיים
         </h1>
 
         <p
-          className="rise mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg"
+          className="rise mt-5 max-w-3xl text-lg leading-relaxed text-white/80 sm:text-xl"
           style={{ animationDelay: "260ms" }}
         >
           חברת הפוליש והליטוש המובילה במרכז. מתמחים בהברקת רצפות, ליטוש שיש, חידוש אבן טבעית וטיפול בגרניט פורצלן. עבודה נקייה ללא אבק, בסטנדרט בלתי מתפשר ובאחריות מלאה.
@@ -69,9 +69,11 @@ export default function Hero() {
           >
             לקבלת הצעת מחיר בוואטסאפ <span className="arrow">←</span>
           </a>
+          {/* Secondary to the gold CTA, but still has to read as a control
+              over a busy photograph - hence the dark backing. */}
           <a
             href={PHONE_HREF}
-            className="inline-flex items-center gap-2 rounded-2xl border border-gold/60 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-gold/15 sm:text-lg"
+            className="inline-flex items-center gap-2 rounded-2xl border border-gold bg-black/45 px-8 py-4 text-base font-semibold text-white shadow-[0_4px_14px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold-soft hover:bg-black/65 sm:text-lg"
           >
             <PhoneIcon width={19} height={19} />
             חייגו עכשיו

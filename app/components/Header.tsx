@@ -38,7 +38,13 @@ export default function Header() {
             width={700}
             height={228}
             priority
-            className="h-9 w-auto drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] sm:h-11"
+            // The wordmark's pale gold highlights wash out once the bar turns
+            // light, so deepen and saturate it against the off-white.
+            className={`h-9 w-auto transition-[filter] duration-300 sm:h-11 ${
+              solid
+                ? "[filter:brightness(0.68)_saturate(1.6)_contrast(1.12)]"
+                : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+            }`}
           />
         </Link>
 
