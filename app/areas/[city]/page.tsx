@@ -6,6 +6,7 @@ import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
 import SectionHeading from "../../components/SectionHeading";
+import { ServiceIcon } from "../../components/icons";
 
 export function generateStaticParams() {
   return CITIES.map((city) => ({ city: city.slug }));
@@ -150,20 +151,33 @@ export default async function CityPage({
       </section>
 
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-[900px] px-4 py-[50px] sm:px-6">
+        <div className="mx-auto max-w-[1000px] px-4 py-[50px] sm:px-6">
           <BandHeading>שירותים {city.inName}</BandHeading>
-          <ul className="mt-8 space-y-4">
+
+          {/* auto-fit keeps two to a row wherever there is room for two, and
+              folds to one without a breakpoint of its own. */}
+          <ul className="mt-8 grid gap-5 [grid-template-columns:repeat(auto-fit,minmax(340px,1fr))]">
             {SERVICES.map((service) => (
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="font-display text-[1.1rem] font-bold text-gold transition-colors hover:text-gold-soft"
+                  className="group flex h-full flex-col rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white/85 px-6 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.04)] backdrop-blur-[10px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(212,175,55,0.55)] hover:shadow-[0_15px_35px_rgba(212,175,55,0.18)]"
                 >
-                  {service.title} {city.inName}
+                  <span className="flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
+                    >
+                      <ServiceIcon name={service.icon} width={18} height={18} />
+                    </span>
+                    <span className="font-display text-[18px] font-bold leading-snug text-[#B8860B]">
+                      {service.title} {city.inName}
+                    </span>
+                  </span>
+                  <span className="mt-3 text-[14px] leading-[1.6] text-[#555555]">
+                    {service.description}
+                  </span>
                 </Link>
-                <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">
-                  {service.description}
-                </p>
               </li>
             ))}
           </ul>
@@ -171,7 +185,7 @@ export default async function CityPage({
       </section>
 
       {/* The same closing form the service pages carry. */}
-      <section className="bg-white text-ink">
+      <section className="bg-sand text-ink">
         <div className="mx-auto max-w-2xl px-4 py-[50px] sm:px-6">
           <div className="rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.07)] sm:p-8">
             <h2 className="text-center font-display text-[1.5rem] font-bold leading-snug text-[#1A1A1A]">
