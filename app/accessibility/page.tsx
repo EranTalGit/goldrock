@@ -7,7 +7,7 @@ import {
   SITE_URL,
   whatsappLink,
 } from "@/lib/site";
-import InnerHero from "../components/InnerHero";
+import SectionHeading from "../components/SectionHeading";
 
 export const metadata: Metadata = {
   title: "הצהרת נגישות",
@@ -42,18 +42,20 @@ const MEASURES = [
 export default function AccessibilityPage() {
   return (
     <>
-      <InnerHero
-        eyebrow="נגישות"
-        title="הצהרת נגישות"
-        tagline="מה עשינו כדי שהאתר יהיה נוח לשימוש, ואיך לפנות אלינו"
-        note="נתקלתם בקושי בשימוש באתר? נשמח לשמוע ולתקן"
-        crumbs={[
-          { label: "דף הבית", href: "/" },
-          { label: "הצהרת נגישות", href: "/accessibility" },
-        ]}
-      />
+      {/* No hero on the legal pages: the heading block does that work, in
+          the same shape every other section uses. The top padding is what
+          the fixed bar would otherwise sit on. */}
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-12 leading-[1.95] text-ink-soft sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 pt-[110px] sm:px-6">
+          <SectionHeading
+            labelAs="h1"
+            label="הצהרת נגישות"
+            title="מה עשינו כדי שהאתר יהיה נוח לשימוש, ואיך לפנות אלינו"
+            description="נתקלתם בקושי בשימוש באתר? נשמח לשמוע ולתקן."
+          />
+        </div>
+
+        <div className="mx-auto max-w-3xl px-4 pb-12 pt-12 leading-[1.95] text-ink-soft sm:px-6">
           <p>
             {BUSINESS_NAME} רואה חשיבות רבה במתן שירות שוויוני לכלל הלקוחות ובהנגשת האתר לאנשים עם מוגבלות. אנו פועלים כמיטב יכולתנו להנגיש את האתר בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע&quot;ג-2013, ובהתאם לתקן הישראלי 5568 המבוסס על הנחיות WCAG 2.0 ברמת התאמה AA.
           </p>

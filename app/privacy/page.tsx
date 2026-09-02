@@ -8,7 +8,7 @@ import {
   SITE_URL,
   whatsappLink,
 } from "@/lib/site";
-import InnerHero from "../components/InnerHero";
+import SectionHeading from "../components/SectionHeading";
 import ConsentReset from "../components/ConsentReset";
 
 export const metadata: Metadata = {
@@ -44,18 +44,20 @@ export default function PrivacyPage() {
 
   return (
     <>
-      <InnerHero
-        eyebrow="משפטי"
-        title="מדיניות פרטיות"
-        tagline="מה נאסף באתר הזה, למה, ומה אתם יכולים לעשות בנוגע לזה"
-        note="כתבנו את המדיניות בשפה פשוטה ככל שאפשר, בלי סעיפים מיותרים"
-        crumbs={[
-          { label: "דף הבית", href: "/" },
-          { label: "מדיניות פרטיות", href: "/privacy" },
-        ]}
-      />
+      {/* No hero on the legal pages: the heading block does that work, in
+          the same shape every other section uses. The top padding is what
+          the fixed bar would otherwise sit on. */}
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-12 text-[1.02rem] leading-[1.95] text-ink-soft sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 pt-[110px] sm:px-6">
+          <SectionHeading
+            labelAs="h1"
+            label="מדיניות פרטיות"
+            title="מה נאסף באתר הזה, למה, ומה אתם יכולים לעשות בנוגע לזה"
+            description="כתבנו את המדיניות בשפה פשוטה ככל שאפשר, בלי סעיפים מיותרים."
+          />
+        </div>
+
+        <div className="mx-auto max-w-3xl px-4 pb-12 pt-12 text-[1.02rem] leading-[1.95] text-ink-soft sm:px-6">
           <p className="text-sm text-ink-soft/75">עודכן בספטמבר 2026</p>
 
           <p className="mt-5">
