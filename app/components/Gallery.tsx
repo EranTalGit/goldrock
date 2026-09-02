@@ -13,6 +13,7 @@ export default function Gallery() {
   const [pages, setPages] = useState(1);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
   /** How far the track can actually travel, in whole cards. */
   const measure = useCallback((track: HTMLDivElement) => {
@@ -106,6 +107,31 @@ export default function Gallery() {
     [measure, sync]
   );
 
+  // Escape closes, arrows step through, and the page behind stays put.
+  useEffect(() => {
+    if (lightbox === null) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+      // Right arrow moves toward the previous image in a right-to-left row.
+      if (e.key === "ArrowRight") {
+        setLightbox((v) => (v === null ? v : Math.max(0, v - 1)));
+      }
+      if (e.key === "ArrowLeft") {
+        setLightbox((v) => (v === null ? v : Math.min(GALLERY.length - 1, v + 1)));
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [lightbox]);
+
   return (
     <section className="relative overflow-hidden bg-sand text-ink">
       {/* Warm halo so the cloud of images has some depth behind it. */}
@@ -139,10 +165,18 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
               />
 
+              {/* The whole card opens the image, so the + means something. */}
+              <button
+                type="button"
+                aria-label={`הגדלת התמונה: ${item.caption}`}
+                onClick={() => setLightbox(i)}
+                className="absolute inset-0 z-10 cursor-zoom-in"
+              />
+
               {/* Caption and magnifier surface only on hover. The label
                   carries its own dark backing, so it stays readable over
                   the brighter photographs rather than sinking into them. */}
-              <figcaption className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/55 opacity-0 backdrop-blur-[3px] transition-opacity duration-400 group-hover:opacity-100">
+              <figcaption className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/55 opacity-0 backdrop-blur-[3px] transition-opacity duration-400 group-hover:opacity-100">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold/60 bg-black/40 text-2xl font-light leading-none text-gold-soft backdrop-blur-sm">
                   +
                 </span>
@@ -205,6 +239,73 @@ export default function Gallery() {
           </a>
         </div>
       </div>
+
+      {lightbox !== null ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={GALLERY[lightbox].caption}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 p-4 backdrop-blur-sm sm:p-8"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            aria-label="סגירה"
+            onClick={() => setLightbox(null)}
+            className="absolute left-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/50 bg-black/50 text-2xl leading-none text-gold-soft transition-colors hover:bg-gold hover:text-white sm:left-6 sm:top-6"
+          >
+            ×
+          </button>
+
+          {/* Clicks inside the frame must not fall through to the backdrop. */}
+          <figure
+            className="relative flex max-h-full w-full max-w-4xl flex-col items-center gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative h-[70vh] w-full overflow-hidden rounded-2xl border border-gold/30">
+              <Image
+                src={GALLERY[lightbox].src}
+                alt={GALLERY[lightbox].alt}
+                fill
+                sizes="(max-width: 1024px) 92vw, 900px"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <figcaption className="rounded-full border border-gold/40 bg-black/60 px-5 py-2 text-[15px] font-medium text-gold-soft">
+              {GALLERY[lightbox].caption}
+            </figcaption>
+          </figure>
+
+          {lightbox > 0 ? (
+            <button
+              type="button"
+              aria-label="התמונה הקודמת"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox(lightbox - 1);
+              }}
+              className="absolute right-3 inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-black/50 text-gold-soft transition-colors hover:bg-gold hover:text-white sm:right-6"
+            >
+              →
+            </button>
+          ) : null}
+
+          {lightbox < GALLERY.length - 1 ? (
+            <button
+              type="button"
+              aria-label="התמונה הבאה"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox(lightbox + 1);
+              }}
+              className="absolute left-3 inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-black/50 text-gold-soft transition-colors hover:bg-gold hover:text-white sm:left-6"
+            >
+              ←
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </section>
   );
 }
