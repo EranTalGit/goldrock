@@ -39,7 +39,7 @@ export default function Home() {
       <Gallery />
       <Areas />
       <section className="bg-sand text-ink">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-10 pb-24 sm:px-6 sm:py-14 sm:pb-28 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-8 pb-20 sm:px-6 sm:py-10 sm:pb-24 lg:grid-cols-2">
           <div className="text-center">
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
@@ -50,10 +50,10 @@ export default function Home() {
               <br />
               עד שהיא מחזירה אור
             </h2>
-            <div className="gold-rule mx-auto mt-7 w-full max-w-sm" />
+            <div className="gold-rule mx-auto mt-6 w-full max-w-sm" />
 
             {/* The owner's line, set apart so it reads as someone speaking. */}
-            <blockquote className="mx-auto mt-7 max-w-xl text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
+            <blockquote className="mx-auto mt-6 max-w-xl text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
               אנחנו לא רק &quot;מנקים&quot; או &quot;מבריקים&quot; רצפות - אנחנו מתייחסים לכל אבן ושיש כאל יצירת אומנות טבעית.
             </blockquote>
 
@@ -62,7 +62,7 @@ export default function Home() {
               <br />
               הנכס והציוד שלכם.
             </p>
-            <ul className="mx-auto mt-9 max-w-md space-y-7 text-right">
+            <ul className="mx-auto mt-7 w-fit max-w-full space-y-5 text-right">
               {highlights.map((item) => (
                 <li key={item.strong} className="flex items-center gap-4">
                   <span
@@ -82,7 +82,7 @@ export default function Home() {
             {/* The full story lives on its own page; this stays the summary. */}
             <Link
               href="/about"
-              className="arrow-link mt-9 inline-flex items-center gap-2 rounded-xl border border-gold/40 px-6 py-3 text-[17px] font-semibold text-gold transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold/10 hover:text-gold-soft"
+              className="arrow-link mt-7 inline-flex items-center gap-2 text-[17px] font-semibold text-gold transition-colors hover:text-gold-soft"
             >
               קראו עוד על הסיפור שלנו <span className="arrow">←</span>
             </Link>

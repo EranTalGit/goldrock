@@ -7,7 +7,7 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 const initial: LeadState = { ok: false, message: "" };
 
 const field = "field-dark mt-2 w-full rounded-xl px-4 py-3";
-const label = "block text-center text-[15px] font-medium tracking-wide text-[#E8E2D4]";
+const label = "block text-right text-[15px] font-medium tracking-wide text-[#E8E2D4]";
 
 const TONE_CLASS: Record<string, string> = {
   success: "text-gold-soft",
