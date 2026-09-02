@@ -67,6 +67,8 @@ export type Service = {
   slug: string;
   title: string;
   description: string;
+  /** Short qualifier shown beside the name in the services showcase. */
+  tag: string;
   icon: ServiceIconName;
   h1: string;
   tagline: string;
@@ -84,6 +86,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "polish-shish",
+    tag: "מבוקש ביותר",
     title: "פוליש וליטוש שיש",
     description:
       "חידוש עמוק, הסרת שריטות, כתמים ושחיקה. החזרת המראה המבריק, העשיר והיוקרתי של מגוון סוגי השיש - בדיוק כמו ביום ההתקנה.",
@@ -154,6 +157,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "kristalizatsia",
+    tag: "הגנה ארוכת טווח",
     title: "קריסטליזציה (הברקה קריסטלית)",
     description:
       "טיפול מיקרו-מכני מתקדם היוצר שכבת הגנה עמידה נגד שריטות, מעניק לרצפה מראה קריסטלי מרהיב ומונע החלקה לאורך זמן.",
@@ -222,6 +226,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "chidush-madregot",
+    tag: "לבנייני יוקרה",
     title: "חידוש מדרגות ולובי",
     description:
       "ליטוש, תיקון והברקה של מדרגות שיש ושטחים משותפים בבנייני יוקרה, משרדים ובתים פרטיים בסטנדרט המקצועי הגבוה ביותר.",
@@ -290,6 +295,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "chidush-martzefot",
+    tag: "לבתים פרטיים",
     title: "חידוש מרצפות ואבן",
     description:
       "יישור פאזות, הסרת כתמים קשים והחזרת מראה רענן, אחיד ויוקרתי לרצפות ישנות ואבן טבעית ללא צורך בהחלפה יקרה.",
@@ -353,6 +359,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "granit-porcelan",
+    tag: "ניקוי עמוק",
     title: "טיפול בגרניט פורצלן",
     description:
       "ניקוי עמוק והסרת שאריות רובה, מלט, שומנים וליכלוך קשה באמצעות חומרים המותאמים במיוחד למרקם הפורצלן.",
@@ -422,6 +429,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "nikayon-shiputz",
+    tag: "אחרי שיפוץ",
     title: "ניקיון יסודי לאחר שיפוץ",
     description:
       "הסרת צבע, אבק בנייה ושאריות חומרים. קבלת דירה נוצצת, מבריקה, נקייה לחלוטין ומוכנה למגורים מיידיים.",
