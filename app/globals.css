@@ -237,6 +237,61 @@ h3,
   transform: rotate(-38deg) translateX(14px);
 }
 
+/* Staggered reveal for the process: each step, then the line that
+   carries the eye to the next one. Held hidden until the section is
+   actually on screen. */
+.seq {
+  opacity: 0;
+}
+
+.seq-run .seq-step {
+  animation: step-in 0.55s ease both;
+}
+
+.seq-run .seq-line {
+  animation: line-draw 0.45s ease-out both;
+  transform-origin: right center;
+}
+
+.seq-run .seq-fade {
+  animation: step-in 0.4s ease both;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* No reveal for anyone who asked for less motion - just show it. */
+@media (prefers-reduced-motion: reduce) {
+  .seq {
+    opacity: 1;
+  }
+
+  .seq-run .seq-step,
+  .seq-run .seq-line,
+  .seq-run .seq-fade {
+    animation: none;
+  }
+}
+
 /* ---- Process concepts ---- */
 
 /* Oversized index sitting behind a step's content. */
