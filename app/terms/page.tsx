@@ -14,7 +14,8 @@ export default function TermsPage() {
       <InnerHero
         eyebrow="משפטי"
         title="תנאי שימוש"
-        tagline="האתר מיועד להזמנת שירותי פוליש וליטוש רצפות."
+        tagline="האתר מיועד להזמנת שירותי פוליש וליטוש רצפות"
+        note="התנאים שלהלן חלים על כל שימוש באתר ועל כל פנייה שנשלחת דרכו"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "תנאי שימוש", href: "/terms" },

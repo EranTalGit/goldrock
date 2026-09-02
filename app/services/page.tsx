@@ -27,7 +27,8 @@ export default function ServicesPage() {
       <InnerHero
         eyebrow="השירותים"
         title="פוליש, ליטוש וחידוש אבן"
-        tagline={`טיפול מקצועי לכל סוגי הרצפות והמדרגות ב${REGION_LABEL}.`}
+        tagline={`טיפול מקצועי לכל סוגי הרצפות והמדרגות ב${REGION_LABEL}`}
+        note="כל שירות מותאם לסוג האבן ולמצב שלה, אחרי בדיקה ולא לפי הערכה בטלפון"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "שירותים", href: "/services" },

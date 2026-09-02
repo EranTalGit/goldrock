@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { POSTS } from "@/lib/blog";
+import { POSTS, readMinutes } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 import InnerHero from "../components/InnerHero";
+import CtaBand from "../components/CtaBand";
+import { PostMeta } from "./parts";
 
 const title = "מדריך פוליש לשיש";
 const description =
-  "מאמרים קצרים על מחיר פוליש לשיש, פוליש מול החלפת ריצוף, תחזוקת ברק וההבדל בין קריסטליזציה לפוליש.";
+  "מדריכים על פוליש לשיש, סוגי ריצוף, חידוש חדר מדרגות, מחירים ותחזוקת ברק. בלי מילוי, מהניסיון בשטח.";
 
 export const metadata: Metadata = {
   title,
@@ -20,33 +22,59 @@ export default function BlogPage() {
     <>
       <InnerHero
         eyebrow="מדריך"
-        title="ידע קצר לפני שמזמינים פוליש"
-        tagline="בלי מילוי. תשובות לשאלות שהכי חוזרות בגוש דן."
-        crumbs={[
-          { label: "דף הבית", href: "/" },
-          { label: "מדריך", href: "/blog" },
-        ]}
+        title="מדריך פוליש וחידוש רצפות"
+        tagline="מה שכדאי לדעת לפני שמזמינים עבודה"
+        note="מה מתאים לאיזו רצפה, מה משפיע על המחיר, ואיך שומרים על התוצאה לאורך זמן"
       />
+
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:px-6 md:grid-cols-2">
-          {POSTS.map((post) => (
-            <article key={post.slug} className="overflow-hidden rounded-2xl bg-cream">
-              <div className="relative h-48">
-                <Image src={post.image} alt={post.title} fill className="object-cover" sizes="50vw" />
-              </div>
-              <div className="p-6">
-                <h2 className="font-display text-2xl">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-ink/70">{post.excerpt}</p>
-                <Link href={`/blog/${post.slug}`} className="mt-4 inline-block text-sm font-semibold text-gold">
-                  לקריאה
-                </Link>
-              </div>
-            </article>
-          ))}
+        <div className="mx-auto max-w-6xl px-4 py-[60px] sm:px-6">
+          <div className="grid gap-7 md:grid-cols-2">
+            {POSTS.map((post) => (
+              <article
+                key={post.slug}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.34)] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold hover:shadow-[0_18px_40px_rgba(212,175,55,0.2)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-sand">
+                  <Image
+                    src={post.image}
+                    alt={post.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-[550ms] ease-out group-hover:scale-[1.06] motion-reduce:transform-none"
+                  />
+                  {/* A gold wash that rises from the foot of the picture. */}
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(163,127,52,0.32)_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <span className="absolute top-3.5 right-3.5 z-10 rounded-full bg-[linear-gradient(180deg,#CBA55C,#A37F34)] px-3.5 py-1.5 text-[12px] font-bold text-white shadow-[0_8px_20px_-10px_rgba(163,127,52,0.9)]">
+                    {post.tag}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <PostMeta date={post.date} minutes={readMinutes(post)} />
+                  <h2 className="font-display text-[1.24rem] font-bold leading-snug text-[#1A1A1A] transition-colors group-hover:text-gold">
+                    {/* The whole card is the target, not only the words. */}
+                    <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0">
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className="flex-1 text-[15px] leading-relaxed text-ink-soft">
+                    {post.excerpt}
+                  </p>
+                  <span className="arrow-link self-start text-[15px] font-semibold text-gold">
+                    לקריאת המדריך <span className="arrow">←</span>
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
+
+      <CtaBand />
     </>
   );
 }

@@ -45,7 +45,8 @@ export default function AccessibilityPage() {
       <InnerHero
         eyebrow="נגישות"
         title="הצהרת נגישות"
-        tagline="מה נעשה כדי שהאתר יהיה נוח לשימוש, ואיך לפנות אלינו."
+        tagline="מה עשינו כדי שהאתר יהיה נוח לשימוש, ואיך לפנות אלינו"
+        note="נתקלתם בקושי בשימוש באתר? נשמח לשמוע ולתקן"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "הצהרת נגישות", href: "/accessibility" },

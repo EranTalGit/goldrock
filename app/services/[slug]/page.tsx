@@ -88,6 +88,7 @@ export default async function ServicePage({
         eyebrow={BUSINESS_NAME}
         title={service.h1}
         tagline={service.tagline}
+        note="שולחים תמונה של הרצפה ומקבלים כיוון מחיר, בלי התחייבות"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "שירותים", href: "/services" },

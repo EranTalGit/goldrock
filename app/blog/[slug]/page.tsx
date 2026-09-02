@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPost, POSTS } from "@/lib/blog";
+import { getPost, POSTS, readMinutes } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
+import { PostMeta, Rich } from "../parts";
 
 export function generateStaticParams() {
   return POSTS.map((post) => ({ slug: post.slug }));
@@ -44,6 +45,9 @@ export default async function BlogPostPage({
   const post = getPost(slug);
   if (!post) notFound();
 
+  const minutes = readMinutes(post);
+  const related = POSTS.filter((p) => p.slug !== post.slug).slice(0, 2);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -63,41 +67,125 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <InnerHero
-        eyebrow="מדריך"
-        title={post.title}
-        tagline={post.excerpt}
-        crumbs={[
-          { label: "דף הבית", href: "/" },
-          { label: "מדריך", href: "/blog" },
-          { label: post.title, href: `/blog/${post.slug}` },
-        ]}
-      />
+
+      <InnerHero eyebrow={post.tag} title={post.title} tagline={post.excerpt}>
+        <PostMeta date={post.date} minutes={minutes} className="mt-5" />
+      </InnerHero>
+
       <article className="bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-          <div className="relative mb-10 h-72 overflow-hidden rounded-2xl">
-            <Image src={post.image} alt={post.title} fill className="object-cover" sizes="800px" />
-          </div>
-          {post.body.map((section) => (
-            <section key={section.h2} className="mt-10">
-              <h2 className="font-display text-3xl">{section.h2}</h2>
-              {section.paragraphs.map((p) => (
-                <p key={p} className="mt-4 leading-relaxed text-ink/80">
-                  {p}
-                </p>
-              ))}
-            </section>
-          ))}
-          <p className="mt-10 text-sm text-ink/60">
-            עוד במדריך:{" "}
-            {POSTS.filter((p) => p.slug !== post.slug).map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="ml-3 text-gold">
-                {p.title}
-              </Link>
+        <div className="mx-auto max-w-3xl px-4 py-[55px] sm:px-6">
+          {/* A picture that sets the scene rather than filling the screen
+              before the reading starts. */}
+          <figure className="mx-auto mb-9 max-w-[460px] overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.34)] shadow-[0_14px_34px_rgba(0,0,0,0.08)]">
+            <div className="relative aspect-[4/3]">
+              <Image
+                src={post.image}
+                alt={post.imageAlt}
+                fill
+                priority
+                sizes="460px"
+                className="object-cover"
+              />
+            </div>
+          </figure>
+
+          <div className="text-[1.05rem] leading-[1.92] text-ink-soft">
+            {post.intro.map((paragraph) => (
+              <p key={paragraph} className="mt-4 first:mt-0">
+                <Rich text={paragraph} />
+              </p>
             ))}
-          </p>
+
+            {post.body.map((section) => (
+              <section key={section.h2}>
+                <h2 className="mt-11 font-display text-[1.35rem] font-bold leading-snug text-ink sm:text-[1.6rem]">
+                  {section.h2}
+                </h2>
+                <div className="gold-line mt-3 w-16" />
+                {section.blocks.map((block, i) => {
+                  if (block.k === "h3") {
+                    return (
+                      <h3
+                        key={i}
+                        className="mt-7 font-display text-[1.12rem] font-bold leading-snug text-ink"
+                      >
+                        {block.text}
+                      </h3>
+                    );
+                  }
+                  if (block.k === "ul") {
+                    return (
+                      <ul
+                        key={i}
+                        className="mt-4 list-disc space-y-2 ps-6 marker:text-gold"
+                      >
+                        {block.items.map((item) => (
+                          <li key={item}>
+                            <Rich text={item} />
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  if (block.k === "pull") {
+                    return (
+                      <p
+                        key={i}
+                        className="mt-6 rounded-xl border border-[rgba(212,175,55,0.28)] border-s-4 border-s-gold bg-white px-6 py-5 text-[1.02rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
+                      >
+                        <Rich text={block.text} />
+                      </p>
+                    );
+                  }
+                  return (
+                    <p key={i} className="mt-4">
+                      <Rich text={block.text} />
+                    </p>
+                  );
+                })}
+              </section>
+            ))}
+          </div>
         </div>
       </article>
+
+      {/* Where to go next, in the same card language as the index. */}
+      <section className="border-t border-[rgba(212,175,55,0.25)] bg-sand text-ink">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+          <h2 className="text-center font-display text-xl font-bold text-ink sm:text-2xl">
+            עוד במדריך
+          </h2>
+          <div className="gold-rule mx-auto mt-4 w-full max-w-xs" />
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            {related.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/blog/${item.slug}`}
+                className="group flex flex-col gap-2.5 rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)]"
+              >
+                <PostMeta date={item.date} minutes={readMinutes(item)} />
+                <span className="font-display text-[1.05rem] font-bold leading-snug text-[#1A1A1A] transition-colors group-hover:text-gold">
+                  {item.title}
+                </span>
+                <span className="arrow-link mt-1 text-[15px] font-semibold text-gold">
+                  לקריאה <span className="arrow">←</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/blog"
+              className="arrow-link text-[15px] font-semibold text-gold"
+            >
+              לכל המדריכים <span className="arrow">←</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <CtaBand />
     </>
   );

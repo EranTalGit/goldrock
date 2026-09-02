@@ -47,7 +47,8 @@ export default function PrivacyPage() {
       <InnerHero
         eyebrow="משפטי"
         title="מדיניות פרטיות"
-        tagline="מה נאסף באתר הזה, למה, ומה אתם יכולים לעשות בנוגע לזה."
+        tagline="מה נאסף באתר הזה, למה, ומה אתם יכולים לעשות בנוגע לזה"
+        note="כתבנו את המדיניות בשפה פשוטה ככל שאפשר, בלי סעיפים מיותרים"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "מדיניות פרטיות", href: "/privacy" },

@@ -19,12 +19,12 @@ const VALUES: { icon: ServiceIconName; title: string; text: string }[] = [
   {
     icon: "layers",
     title: "אבחון מדויק ומותאם אישית",
-    text: "התאמה מלאה של סוג הליטוש והחומרים לפי סוג השיש - חלילה, מצפה, טרוורטין, קרארה ועוד. אין שתי רצפות זהות, ולכן אין טיפול אחד שמתאים לכולן.",
+    text: "מתאימים את סוג הליטוש ואת החומרים לאבן שיש לכם בבית - שיש, טרצו, טרוורטין או אבן טבעית. אין שתי רצפות זהות, ולכן אין טיפול אחד שמתאים לכולן.",
   },
   {
     icon: "diamond",
     title: "טכנולוגיית ליטוש יהלום",
-    text: "שימוש בדיסקיות יהלום במגוון גדלים להסרת שריטות וכתמים ולהחלקה מושלמת, בלי גליות ובלי סימני מעבר בין אזורים.",
+    text: "דיסקיות יהלום במגוון דרגות, שמסירות שריטות וכתמים ומשאירות משטח חלק ואחיד - בלי בליטות ובלי סימני מעבר בין אזורים.",
   },
   {
     icon: "broom",
@@ -51,7 +51,8 @@ export default function AboutPage() {
       <InnerHero
         eyebrow={BUSINESS_NAME}
         title="האומנות שמאחורי האבן"
-        tagline={`חברת ${BUSINESS_NAME} נולדה מתוך תשוקה להחזיר לשיש ולאבן הטבעית את הברק, העומק והאופי המקורי שלהם - ללא הרס, ללא אבק, ובמיומנות של אטלייה.`}
+        tagline="מחזירים לשיש ולאבן הטבעית את הברק, העומק והאופי המקורי שלהם"
+        note={`חברת ${BUSINESS_NAME} נולדה מתוך תשוקה לעבודה עם אבן - בלי הרס, בלי אבק, ובדיוק של עבודת יד`}
       />
 
       {/* The story, beside a photograph of the work itself. */}
@@ -104,7 +105,7 @@ export default function AboutPage() {
             {VALUES.map((value) => (
               <article
                 key={value.title}
-                className="rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)]"
+                className="flex flex-col items-center rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-6 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)]"
               >
                 <span className="trust-badge inline-flex h-14 w-14 items-center justify-center rounded-full text-gold">
                   <ServiceIcon name={value.icon} width={26} height={26} />
@@ -122,14 +123,14 @@ export default function AboutPage() {
       </section>
 
       {/* Numbers bar. */}
-      <section className="border-y border-[rgba(212,175,55,0.25)] bg-[#F3ECE2]">
+      <section className="border-y border-[rgba(212,175,55,0.25)] bg-white">
         <div className="mx-auto grid max-w-6xl gap-y-8 px-4 py-12 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-x-reverse lg:divide-[rgba(212,175,55,0.35)]">
           {STATS.map((stat) => (
             <div key={stat.label} className="px-4 text-center">
               <p className="gold-metal font-display text-2xl font-bold leading-tight sm:text-[1.7rem]">
                 {stat.value}
               </p>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-2 text-[1.05rem] font-medium leading-relaxed text-[#2C2C2C]">
                 {stat.label}
               </p>
             </div>
