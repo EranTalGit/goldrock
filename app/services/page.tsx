@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BUSINESS_NAME, REGION_LABEL, SERVICES, SITE_URL } from "@/lib/site";
 import InnerHero from "../components/InnerHero";
 import CtaBand from "../components/CtaBand";
+import SectionHeading from "../components/SectionHeading";
 
 const title = "שירותי פוליש, ליטוש והברקת רצפות";
 const description = `כל שירותי Goldrock: פוליש לשיש, קריסטליזציה, חידוש מדרגות, חידוש מרצפות, גרניט פורצלן וניקיון לאחר שיפוץ ב${REGION_LABEL}.`;
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      {/* No eyebrow here - the section below already leads with it. */}
       <InnerHero
-        eyebrow="השירותים"
         title="פוליש, ליטוש וחידוש אבן"
         tagline={`טיפול מקצועי לכל סוגי הרצפות והמדרגות ב${REGION_LABEL}`}
         note="כל שירות מותאם לסוג האבן ולמצב שלה, אחרי בדיקה ולא לפי הערכה בטלפון"
@@ -35,7 +36,14 @@ export default function ServicesPage() {
         ]}
       />
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 sm:grid-cols-2">
+        <div className="mx-auto max-w-6xl px-4 py-[45px] sm:px-6">
+          <SectionHeading
+            label="שירותים"
+            title="טיפול אחד לא מתאים לכל אבן"
+            description="לכל סוג רצפה יש תהליך משלו, ולכן כל שירות כאן עומד בפני עצמו. בכל אחד מהם תמצאו מה הוא כולל, לאיזה משטח הוא מתאים ומה התוצאה שאפשר לצפות לה."
+          />
+
+          <div className="mt-16 grid gap-8 sm:grid-cols-2">
           {SERVICES.map((service) => (
             <article key={service.slug} className="overflow-hidden rounded-2xl bg-cream">
               <div className="relative h-52">
@@ -52,6 +60,7 @@ export default function ServicesPage() {
               </div>
             </article>
           ))}
+          </div>
         </div>
       </section>
       <CtaBand />
