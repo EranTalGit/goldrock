@@ -37,18 +37,20 @@ export default function InnerHero({
   return (
     <section className="relative overflow-hidden border-b border-[rgba(212,175,55,0.3)] bg-[#FAF6F0]">
       <Image
-        src="/assets/gallery/marble-closeup.webp"
+        src="/assets/gallery/hall-panorama.webp"
         alt=""
         aria-hidden
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-cover object-top"
       />
-      {/* Wash over the texture, so the heading reads at full contrast. */}
+      {/* The wash is heaviest under the type, which sits on the right in RTL,
+          and thins out to the left so the hall stays visible. On a phone the
+          text spans the full width, so it falls back to an even wash. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(130deg,rgba(250,246,240,0.94),rgba(245,238,228,0.88))]"
+        className="absolute inset-0 bg-[linear-gradient(to_left,rgba(250,246,240,0.95),rgba(249,245,238,0.93))] sm:bg-[linear-gradient(to_left,rgba(250,246,240,0.97)_0%,rgba(250,246,240,0.94)_42%,rgba(248,243,235,0.66)_72%,rgba(246,240,231,0.45)_100%)]"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-[38px] pt-[110px] sm:px-6 sm:pb-[48px] sm:pt-[120px]">
