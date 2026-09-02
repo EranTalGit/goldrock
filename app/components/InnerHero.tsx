@@ -45,12 +45,24 @@ export default function InnerHero({
         sizes="100vw"
         className="object-cover object-top"
       />
-      {/* The wash is heaviest down the middle, where the centred type sits,
-          and thins towards both edges so the hall stays visible either side.
-          On a phone the text spans the full width, so it falls back to flat. */}
+      {/* A light lift over the whole photograph, so it reads as part of the
+          cream palette rather than a window cut into it. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[rgba(250,246,240,0.94)] sm:bg-[linear-gradient(to_right,rgba(246,240,231,0.3)_0%,rgba(248,243,235,0.64)_18%,rgba(250,246,240,0.95)_36%,rgba(250,246,240,0.95)_64%,rgba(248,243,235,0.64)_82%,rgba(246,240,231,0.3)_100%)]"
+        className="absolute inset-0 bg-[rgba(250,246,240,0.94)] sm:bg-[rgba(250,246,240,0.2)]"
+      />
+      {/* A short fade across the top strip only, so the gold wordmark in the
+          transparent navbar never lands on a bright window. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 hidden h-[110px] sm:block sm:bg-[linear-gradient(to_bottom,rgba(250,246,240,0.88)_0%,rgba(250,246,240,0.55)_45%,rgba(250,246,240,0)_100%)]"
+      />
+      {/* Then a soft halo behind the centred type only. The hall stays fully
+          visible at the sides and corners; the heading still reads on cream.
+          A phone gets the flat wash above instead, since its text is full-width. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 hidden sm:block sm:bg-[radial-gradient(ellipse_58%_78%_at_50%_58%,rgba(250,246,240,0.96)_0%,rgba(250,246,240,0.93)_38%,rgba(250,246,240,0.6)_68%,rgba(250,246,240,0)_100%)]"
       />
 
       <div className="relative mx-auto max-w-4xl px-4 pb-[42px] pt-[110px] text-center sm:px-6 sm:pb-[52px] sm:pt-[120px]">

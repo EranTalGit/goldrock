@@ -35,29 +35,29 @@ export default function ContactPage() {
       />
 
       <section className="bg-[#FAF6F0] text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-[60px] sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-[60px] sm:px-6">
+          {/* One heading over both columns. */}
           <div className="text-center">
             <h2 className="font-display text-[1.8rem] font-bold text-[#1A1A1A]">
               צור קשר
             </h2>
             <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
-            <p className="mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-[#666059]">
+            <p className="mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-[#666059]">
               הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות.
             </p>
           </div>
 
-          <div className="mt-14 text-center">
-            <h2 className="font-display text-[1.8rem] font-bold text-[#1A1A1A]">
-              דרכים מהירות
-            </h2>
-            <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
-            <p className="mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-[#666059]">
-              מעדיפים מענה מיידי? שלחו תמונה של הרצפה בוואטסאפ לקבלת הצעת מחיר מדויקת במקום.
-            </p>
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-12">
+            <div className="text-center">
+              <h3 className="font-display text-[1.5rem] font-bold text-[#1A1A1A]">
+                דרכים מהירות
+              </h3>
+              <div className="gold-rule mx-auto mt-4 w-full max-w-[180px]" />
+              <p className="mx-auto mt-5 max-w-md text-[1.02rem] leading-relaxed text-[#666059]">
+                מעדיפים מענה מיידי? שלחו תמונה של הרצפה בוואטסאפ לקבלת הצעת מחיר מדויקת במקום.
+              </p>
 
-            {/* Held well short of the column width, so the two routes read as
-                buttons rather than as full-width bands. */}
-            <div className="mx-auto mt-7 max-w-md space-y-4 text-right">
+              <div className="mt-7 space-y-4 text-right">
               <a
                 href={whatsappLink(DEFAULT_WA_MESSAGE)}
                 target="_blank"
@@ -98,18 +98,19 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <p className="mx-auto mt-7 max-w-xl text-[15px] leading-relaxed text-[#666059]">
-              הכי מדויק: שולחים תמונה של הרצפה או המדרגות. ככה אפשר להגיד אם צריך פוליש מלא, קריסטליזציה או ניקיון אחרי שיפוץ.
-            </p>
-          </div>
+              <p className="mx-auto mt-7 max-w-md text-[15px] leading-relaxed text-[#666059]">
+                הכי מדויק: שולחים תמונה של הרצפה או המדרגות. ככה אפשר להגיד אם צריך פוליש מלא, קריסטליזציה או ניקיון אחרי שיפוץ.
+              </p>
+            </div>
 
-          <div className="mt-14 rounded-2xl border border-[rgba(212,175,55,0.2)] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] sm:p-8">
-            <h2 className="text-center font-display text-[1.8rem] font-bold text-[#1A1A1A]">
-              השאירו פנייה
-            </h2>
-            <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
-            <div className="mt-7">
-              <ContactForm source="contact-page" tone="light" compact />
+            <div className="rounded-2xl border border-[rgba(212,175,55,0.2)] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] sm:p-8">
+              <h3 className="text-center font-display text-[1.5rem] font-bold text-[#1A1A1A]">
+                השאירו פנייה
+              </h3>
+              <div className="gold-rule mx-auto mt-4 w-full max-w-[180px]" />
+              <div className="mt-7">
+                <ContactForm source="contact-page" tone="light" compact />
+              </div>
             </div>
           </div>
         </div>
