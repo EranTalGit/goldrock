@@ -129,7 +129,7 @@ export default async function CityPage({
           <aside className="form-card h-fit p-6 sm:p-7">
             <h2 className="font-display text-2xl">הזמנה {city.toName}</h2>
             <div className="mt-6">
-              <ContactForm source={`city-${city.slug}`} />
+              <ContactForm source={`city-${city.slug}`} defaultCity={city.name} />
             </div>
           </aside>
         </div>

@@ -36,11 +36,14 @@ export default function ContactForm({
   compact = false,
   /** Preselects the service, so a service page arrives already answered. */
   defaultService = "",
+  /** Likewise for the city, on a city page. */
+  defaultCity = "",
 }: {
   source?: string;
   tone?: "dark" | "light";
   compact?: boolean;
   defaultService?: string;
+  defaultCity?: string;
 }) {
   const [state, action, pending] = useActionState(submitLead, initial);
   const replyTone = state.tone ?? (state.ok ? "success" : "error");
@@ -80,7 +83,7 @@ export default function ContactForm({
         {compact ? null : (
           <label className={label}>
             עיר
-            <select name="city" className={field} defaultValue="">
+            <select name="city" className={field} defaultValue={defaultCity}>
               <option value="">בחירה</option>
               {CITIES.map((city) => (
                 <option key={city.slug} value={city.name}>
