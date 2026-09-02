@@ -206,11 +206,13 @@ export default async function ServicePage({
         <div className="mx-auto max-w-4xl px-4 py-[45px] sm:px-6">
           <BandHeading>מתאים ל</BandHeading>
 
-          <ul className="mt-8 flex flex-wrap justify-center gap-3">
+          {/* A grid rather than a wrapping row, so every pill is the same
+              width, and the mirror treatment the home page uses for cities. */}
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                className="rounded-full border border-[rgba(212,175,55,0.3)] bg-[#FDFCFA] px-6 py-2.5 text-center text-[15px] font-medium text-[#2C2C2C] shadow-[0_4px_14px_rgba(0,0,0,0.03)]"
+                className="city-mirror flex items-center justify-center px-5 py-3 text-center text-[15px] font-medium"
               >
                 {item}
               </li>
@@ -289,12 +291,12 @@ export default async function ServicePage({
           <h2 className="text-center font-display text-[1.3rem] font-bold text-[#1A1A1A]">
             {service.title} לפי אזור
           </h2>
-          <ul className="mt-6 flex flex-wrap justify-center gap-x-3 gap-y-2.5">
-            {CITIES.slice(0, 10).map((city) => (
-              <li key={city.slug}>
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {CITIES.slice(0, 9).map((city) => (
+              <li key={city.slug} className="flex">
                 <Link
                   href={`/areas/${city.slug}`}
-                  className="inline-block rounded-lg border border-[#E6DFD2] bg-white px-4 py-2 text-[14px] text-[#55504A] transition-colors hover:border-gold hover:text-gold"
+                  className="city-mirror flex flex-1 items-center justify-center px-5 py-3 text-center text-[15px] font-medium"
                 >
                   {service.title} {city.inName}
                 </Link>
