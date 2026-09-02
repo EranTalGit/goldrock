@@ -31,8 +31,8 @@ export default function FaqPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* No eyebrow here - the section below already leads with it. */}
       <InnerHero
-        eyebrow="שאלות נפוצות"
         title="כל מה ששואלים לפני פוליש"
         tagline="מחיר, זמן, אחריות וההבדל בין פוליש לקריסטליזציה"
         note="לא מצאתם את מה שחיפשתם? שלחו הודעה ונענה אישית, בלי התחייבות"
