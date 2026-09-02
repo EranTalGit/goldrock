@@ -69,7 +69,7 @@ export default async function BlogPostPage({
       />
 
       <InnerHero eyebrow={post.tag} title={post.title} tagline={post.excerpt}>
-        <PostMeta date={post.date} minutes={minutes} className="mt-5" />
+        <PostMeta date={post.date} minutes={minutes} className="mt-5 justify-center" />
       </InnerHero>
 
       <article className="bg-paper text-ink">
