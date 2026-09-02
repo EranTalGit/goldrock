@@ -18,8 +18,15 @@ export default function Services() {
     <section id="services" className="bg-sand text-ink">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <SectionHeading
-          label="התמחות באבן ושיש"
+          label="השירותים שלנו"
           title="כל מה שהרצפה שלך צריכה כדי להבריק"
+          description={
+            <>
+              מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. לכל שירות תהליך עבודה ברור, מחיר שקוף
+              <br />
+              והצעת מחיר מהירה בוואטסאפ.
+            </>
+          }
         />
 
         {/* Desktop: split view. */}
@@ -35,7 +42,7 @@ export default function Services() {
                     onFocus={() => setActive(i)}
                     onClick={() => setActive(i)}
                     aria-expanded={on}
-                    className="w-full border-b border-gold/15 py-7 text-right transition-colors last:border-0"
+                    className="w-full border-b border-gold/15 py-4 text-right transition-colors last:border-0"
                   >
                     <span className="flex items-center gap-4">
                       {/* Glow bar marks the active row on the leading edge. */}
@@ -71,12 +78,12 @@ export default function Services() {
                       }`}
                     >
                       <span className="overflow-hidden ps-7">
-                        <span className="block text-[15px] leading-relaxed text-ink-soft">
+                        <span className="block text-[17px] leading-relaxed text-ink-soft">
                           {service.description}
                         </span>
                         <Link
                           href={`/services/${service.slug}`}
-                          className="arrow-link mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold"
+                          className="arrow-link mt-4 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
                         >
                           לפרטים והצעת מחיר <span className="arrow">←</span>
                         </Link>
@@ -104,17 +111,9 @@ export default function Services() {
             <span className="absolute right-5 top-5 rounded-full border border-gold/50 bg-black/55 px-4 py-1.5 text-[11px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
               {SERVICES[active].tag}
             </span>
-            {/* A light glass caption instead of a full-width bar, so the
-                photograph stays the subject. */}
-            <span className="absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-white backdrop-blur-md">
-              <span className="text-[13px] font-semibold text-gold-soft">
-                0{active + 1}
-              </span>
-              <span className="h-3 w-px bg-white/30" />
-              <span className="text-[13px] font-light tracking-wide">
-                {SERVICES[active].title}
-              </span>
-            </span>
+            {/* No caption naming the service: the highlighted row already
+                says which one is showing, and a light glass badge was
+                unreadable over the brighter photographs. */}
           </div>
         </div>
 
