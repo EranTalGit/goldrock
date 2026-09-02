@@ -8,10 +8,13 @@ import SectionHeading from "./SectionHeading";
 export default function FaqSection({
   items = GENERAL_FAQ,
   moreHref,
+  ground = "paper",
 }: {
   items?: { q: string; a: string }[];
   /** Shows a link on to the fuller list when given. */
   moreHref?: string;
+  /** The darker ground, where the sections either side are light. */
+  ground?: "paper" | "sand";
 }) {
   // Everything starts closed, and only one answer is open at a time.
   // Driven from state rather than the native toggle so the behaviour is
@@ -19,7 +22,7 @@ export default function FaqSection({
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-paper text-ink">
+    <section className={ground === "sand" ? "bg-sand text-ink" : "bg-paper text-ink"}>
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <SectionHeading
           label="שאלות נפוצות"

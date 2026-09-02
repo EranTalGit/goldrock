@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import WhyUs from "./components/WhyUs";
 import Process from "./components/Process";
 import BlogTeaser from "./components/BlogTeaser";
+import Testimonials from "./components/Testimonials";
 import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import Areas from "./components/Areas";
@@ -109,7 +110,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <FaqSection items={HOME_FAQ} moreHref="/faq" />
+      <Testimonials />
+      <FaqSection items={HOME_FAQ} moreHref="/faq" ground="sand" />
       <BlogTeaser />
       <CtaBand />
     </>

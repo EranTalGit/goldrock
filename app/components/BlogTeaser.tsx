@@ -15,7 +15,7 @@ export default function BlogTeaser() {
     .slice(0, 3);
 
   return (
-    <section className="border-t border-[rgba(212,175,55,0.25)] bg-paper text-ink">
+    <section className="bg-paper text-ink">
       <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
         <SectionHeading
           label="בלוג"
