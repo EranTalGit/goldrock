@@ -33,7 +33,9 @@ function Arrow({ back }: { back?: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
-      className={back ? "" : "rotate-180"}
+      // The path points left. The button that goes back sits on the right
+      // in RTL and has to point at the edge it travels toward, so it turns.
+      className={back ? "rotate-180" : ""}
     >
       <path d="M15 6l-6 6 6 6" />
     </svg>
