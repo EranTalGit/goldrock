@@ -22,6 +22,7 @@ export default function InnerHero({
   title,
   tagline,
   note,
+  headingAs = "h1",
   children,
 }: {
   /** Omitted where the page repeats it as a heading further down. */
@@ -31,10 +32,17 @@ export default function InnerHero({
   tagline: string;
   /** The small line that closes the block. */
   note?: string;
+  /**
+   * Drops to a paragraph on pages whose real h1 lives further down, such as
+   * an article, so the document keeps exactly one h1 and it names the piece.
+   */
+  headingAs?: "h1" | "p";
   /** Anything that belongs below the note, such as an article's byline. */
   children?: React.ReactNode;
   crumbs?: unknown;
 }) {
+  const Heading = headingAs;
+
   return (
     <section className="relative overflow-hidden border-b border-[rgba(212,175,55,0.3)] bg-[#FAF6F0]">
       <Image
@@ -72,9 +80,9 @@ export default function InnerHero({
             {trim(eyebrow)}
           </p>
         ) : null}
-        <h1 className="shine gold-metal mt-3 font-display text-[2.3rem] font-black leading-[1.1] tracking-tight sm:text-[3.2rem]">
+        <Heading className="shine gold-metal mt-3 font-display text-[2.3rem] font-black leading-[1.1] tracking-tight sm:text-[3.2rem]">
           {trim(title)}
-        </h1>
+        </Heading>
         <p className="mx-auto mt-5 max-w-2xl font-display text-[1.25rem] font-bold leading-snug text-[#1A1A1A] sm:text-[1.45rem]">
           {trim(tagline)}
         </p>
