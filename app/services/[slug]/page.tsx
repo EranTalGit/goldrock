@@ -174,16 +174,16 @@ export default async function ServicePage({
         <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
           <BandHeading>למה לבחור בטיפול הזה</BandHeading>
 
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             {service.benefits.map((benefit) => (
               <li key={benefit} className="text-center">
                 <span
                   aria-hidden
-                  className="trust-badge mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full text-[1.3rem] font-bold text-gold"
+                  className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full border border-[rgba(197,160,89,0.4)] bg-white text-[1.3rem] font-bold text-gold shadow-[0_4px_14px_rgba(0,0,0,0.05)]"
                 >
                   ✓
                 </span>
-                <p className="mt-4 text-balance text-[15px] font-semibold leading-relaxed text-[#2C2C2C]">
+                <p className="mt-4 text-balance text-[1rem] font-semibold leading-relaxed text-[#2C2C2C]">
                   {benefit}
                 </p>
               </li>
@@ -208,11 +208,14 @@ export default async function ServicePage({
 
           {/* A grid rather than a wrapping row, so every pill is the same
               width, and the mirror treatment the home page uses for cities. */}
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Fixed widths in a centred wrap rather than a grid: with four or
+              five entries the last row is never full, and a grid would leave
+              it hanging off to one side. */}
+          <ul className="mt-8 flex flex-wrap justify-center gap-3">
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                className="city-mirror flex items-center justify-center px-5 py-3 text-center text-[15px] font-medium"
+                className="city-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]"
               >
                 {item}
               </li>
