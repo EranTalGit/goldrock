@@ -6,13 +6,16 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 
 const initial: LeadState = { ok: false, message: "" };
 
-const field = "field-dark mt-1.5 w-full rounded-xl px-4 py-2.5";
-const label = "block text-right text-[15px] font-medium tracking-wide text-[#E8E2D4]";
-
 const TONE_CLASS: Record<string, string> = {
   success: "text-gold-soft",
   warning: "text-[#E8C766]",
   error: "text-red-300",
+};
+
+const TONE_CLASS_LIGHT: Record<string, string> = {
+  success: "text-[#1f7a3d]",
+  warning: "text-[#8a6412]",
+  error: "text-[#a51f1f]",
 };
 
 /** Marks a field the form will not submit without. */
@@ -25,13 +28,30 @@ function Required() {
   );
 }
 
-export default function ContactForm({ source = "contact-form" }: { source?: string }) {
+export default function ContactForm({
+  source = "contact-form",
+  /** "dark" sits on the obsidian panel; "light" on a pearl card. */
+  tone = "dark",
+  /** Drops the city field, for the shorter contact-page version. */
+  compact = false,
+}: {
+  source?: string;
+  tone?: "dark" | "light";
+  compact?: boolean;
+}) {
   const [state, action, pending] = useActionState(submitLead, initial);
-  const tone = state.tone ?? (state.ok ? "success" : "error");
+  const replyTone = state.tone ?? (state.ok ? "success" : "error");
+  const light = tone === "light";
+
+  const field = `${light ? "field-light" : "field-dark"} mt-1.5 w-full rounded-xl px-4 py-2.5`;
+  const label = `block text-right text-[15px] tracking-wide ${
+    light ? "font-semibold text-[#2C2C2C]" : "font-medium text-[#E8E2D4]"
+  }`;
 
   return (
-    <form action={action} className="form-dark space-y-3">
+    <form action={action} className={`${light ? "" : "form-dark"} space-y-3`}>
       <input type="hidden" name="source" value={source} />
+
       <div className="grid gap-3 sm:grid-cols-2">
         <label className={label}>
           שם מלא
@@ -52,18 +72,21 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
           />
         </label>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className={label}>
-          עיר
-          <select name="city" className={field} defaultValue="">
-            <option value="">בחירה</option>
-            {CITIES.map((city) => (
-              <option key={city.slug} value={city.name}>
-                {city.name}
-              </option>
-            ))}
-          </select>
-        </label>
+
+      <div className={compact ? "" : "grid gap-3 sm:grid-cols-2"}>
+        {compact ? null : (
+          <label className={label}>
+            עיר
+            <select name="city" className={field} defaultValue="">
+              <option value="">בחירה</option>
+              {CITIES.map((city) => (
+                <option key={city.slug} value={city.name}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <label className={label}>
           סוג השירות
           <select name="service" className={field} defaultValue="">
@@ -73,9 +96,11 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
                 {service.title}
               </option>
             ))}
+            <option value="אחר">אחר</option>
           </select>
         </label>
       </div>
+
       <label className={label}>
         הודעה / סוג הרצפה
         <textarea
@@ -86,7 +111,11 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
         />
       </label>
 
-      <p className="text-center text-xs text-[#E8E2D4]/50">
+      <p
+        className={`text-center text-xs ${
+          light ? "text-[#6B655C]" : "text-[#E8E2D4]/50"
+        }`}
+      >
         שדות המסומנים ב<span className="text-gold">*</span> הם חובה
       </p>
 
@@ -95,14 +124,22 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
         disabled={pending}
         className="btn-gold-metal arrow-link w-full rounded-xl py-3.5 text-base"
       >
-        {pending ? "שולחים..." : <>שלחו הצעת מחיר <span className="arrow">←</span></>}
+        {pending ? (
+          "שולחים..."
+        ) : (
+          <>
+            שליחת בקשה להצעת מחיר <span className="arrow">←</span>
+          </>
+        )}
       </button>
 
       {state.message ? (
         <p
           role="status"
           aria-live="polite"
-          className={`text-center text-sm leading-relaxed ${TONE_CLASS[tone]}`}
+          className={`text-center text-sm font-medium leading-relaxed ${
+            (light ? TONE_CLASS_LIGHT : TONE_CLASS)[replyTone]
+          }`}
         >
           {state.message}
         </p>

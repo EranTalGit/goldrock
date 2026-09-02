@@ -143,7 +143,7 @@ export default function AccessibilityWidget() {
         aria-controls="a11y-panel"
         title="נגישות"
         onClick={() => setOpen((v) => !v)}
-        className="fixed right-0 top-1/2 z-[95] grid h-[58px] w-[46px] -translate-y-1/2 place-items-center rounded-l-2xl border border-r-0 border-gold/50 bg-[#161616] text-gold shadow-[-6px_0_24px_-8px_rgba(0,0,0,0.7)] transition-colors hover:bg-[#1f1f1f] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-gold"
+        className="fixed right-0 top-[calc(50%+150px)] z-[95] grid h-[58px] w-[46px] -translate-y-1/2 place-items-center rounded-l-2xl border border-r-0 border-gold/50 bg-[#161616] text-gold shadow-[-6px_0_24px_-8px_rgba(0,0,0,0.7)] transition-colors hover:bg-[#1f1f1f] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-gold"
       >
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="h-6 w-6">
           <circle cx="12" cy="3.6" r="2" />

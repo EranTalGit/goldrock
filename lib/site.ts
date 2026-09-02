@@ -22,6 +22,7 @@ export const DEFAULT_WA_MESSAGE =
   "היי Goldrock, הגעתי דרך האתר ואשמח לקבל הצעת מחיר לפוליש / ליטוש רצפה.";
 
 export const NAV_LINKS = [
+  { label: "דף הבית", href: "/" },
   { label: "שירותים", href: "/services" },
   { label: "אזורי שירות", href: "/areas" },
   { label: "אודות", href: "/about" },

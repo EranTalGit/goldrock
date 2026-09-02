@@ -881,3 +881,30 @@ html.a11y-contrast img,
 html.a11y-contrast-light img {
   filter: grayscale(1) contrast(1.1);
 }
+
+/* Light twin of .field-dark, for the form on the contact page. */
+.field-light {
+  background: #faf8f5;
+  border: 1px solid #e2dbcf;
+  color: #1a1a1a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-light::placeholder {
+  color: rgba(26, 26, 26, 0.4);
+}
+
+.field-light:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+}
+
+select.field-light {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23C5A059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  padding-left: 2.5rem;
+}
