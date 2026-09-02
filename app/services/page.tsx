@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/services`,
     locale: "he_IL",
+    type: "website",
     images: [{ url: "/assets/og.webp" }],
   },
 };
@@ -35,6 +36,7 @@ export default function ServicesPage() {
           { label: "שירותים", href: "/services" },
         ]}
       />
+
       <section className="bg-paper text-ink">
         <div className="mx-auto max-w-6xl px-4 py-[45px] sm:px-6">
           <SectionHeading
@@ -43,26 +45,85 @@ export default function ServicesPage() {
             description="לכל סוג רצפה יש תהליך משלו, ולכן כל שירות כאן עומד בפני עצמו. בכל אחד מהם תמצאו מה הוא כולל, לאיזה משטח הוא מתאים ומה התוצאה שאפשר לצפות לה."
           />
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-2">
-          {SERVICES.map((service) => (
-            <article key={service.slug} className="overflow-hidden rounded-2xl bg-cream">
-              <div className="relative h-52">
-                <Image src={service.image} alt={service.title} fill className="object-cover" sizes="50vw" />
-              </div>
-              <div className="p-6">
-                <h2 className="font-display text-2xl">
-                  <Link href={`/services/${service.slug}`}>{service.title}</Link>
-                </h2>
-                <p className="mt-3 leading-relaxed text-ink/70">{service.description}</p>
-                <Link href={`/services/${service.slug}`} className="mt-4 inline-block font-semibold text-gold">
-                  לפרטי השירות
-                </Link>
-              </div>
-            </article>
-          ))}
+          {/* Alternating rows. The picture leads on a phone in every row,
+              and only from lg do the sides swap on the even ones. */}
+          <div className="mt-16">
+            {SERVICES.map((service, i) => {
+              const href = `/services/${service.slug}`;
+              const last = i === SERVICES.length - 1;
+              return (
+                <article
+                  key={service.slug}
+                  className={`flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-[50px] ${
+                    i % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  } ${
+                    last
+                      ? ""
+                      : "mb-20 border-b border-[rgba(212,175,55,0.15)] pb-20"
+                  }`}
+                >
+                  <Link
+                    href={href}
+                    aria-hidden
+                    tabIndex={-1}
+                    className="group w-full shrink-0 overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.25)] shadow-[0_18px_45px_rgba(0,0,0,0.1)] lg:w-1/2"
+                  >
+                    <span className="relative block aspect-[4/3]">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-[400ms] ease-out group-hover:scale-[1.03] motion-reduce:transform-none"
+                      />
+                    </span>
+                  </Link>
+
+                  <div className="w-full lg:w-1/2">
+                    <p className="text-[13px] font-bold tracking-[0.18em] text-gold">
+                      {String(i + 1).padStart(2, "0")}
+                      <span className="mx-2 opacity-40">|</span>
+                      {service.tag}
+                    </p>
+
+                    <h2 className="mt-3 font-display text-[1.8rem] font-bold leading-snug text-[#1A1A1A]">
+                      <Link href={href} className="transition-colors hover:text-gold">
+                        {service.title}
+                      </Link>
+                    </h2>
+
+                    <p className="mt-4 text-[1.05rem] leading-relaxed text-[#55504A]">
+                      {service.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-2.5">
+                      {service.benefits.slice(0, 3).map((benefit) => (
+                        <li
+                          key={benefit}
+                          className="flex items-start gap-3 text-[1rem] leading-relaxed text-[#55504A]"
+                        >
+                          <span aria-hidden className="shrink-0 font-bold text-gold">
+                            ✓
+                          </span>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      href={href}
+                      className="arrow-link mt-7 inline-flex items-center gap-2 text-[1.05rem] font-bold text-gold transition-colors hover:text-gold-soft"
+                    >
+                      לפרטים מלאים והזמנה <span className="arrow">←</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
+
       <CtaBand />
     </>
   );
