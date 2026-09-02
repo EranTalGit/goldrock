@@ -51,7 +51,7 @@ export default function AccessibilityPage() {
             labelAs="h1"
             label="הצהרת נגישות"
             title="מה עשינו כדי שהאתר יהיה נוח לשימוש, ואיך לפנות אלינו"
-            description="נתקלתם בקושי בשימוש באתר? נשמח לשמוע ולתקן."
+            description="נתקלתם בקושי בשימוש באתר? נשמח לשמוע ולתקן"
           />
         </div>
 

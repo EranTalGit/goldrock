@@ -56,15 +56,15 @@ export default function AreasPage() {
           {CITIES.map((city) => (
             <article
               key={city.slug}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.35)] bg-white/85 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-[12px] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_15px_35px_rgba(212,175,55,0.15)]"
+              className="group sweep-on-hover relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.35)] bg-white/85 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-[12px] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_15px_35px_rgba(212,175,55,0.15)]"
             >
               {/* Light catching the upper corner, the way it would on glass. */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(255,249,236,0.4)_24%,transparent_48%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(255,249,236,0.4)_24%,transparent_48%)] opacity-80 transition-opacity duration-300 group-hover:opacity-100"
               />
 
-              <div className="relative flex items-center gap-2.5">
+              <div className="relative z-10 flex items-center gap-2.5">
                 <span
                   aria-hidden
                   className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
@@ -72,23 +72,22 @@ export default function AreasPage() {
                   <ServiceIcon name="pin" width={17} height={17} />
                 </span>
                 <h2 className="font-display text-[1.1rem] font-bold leading-snug text-[#1A1A1A] transition-colors group-hover:text-gold">
-                  {/* The whole card is the target, not only the words. */}
-                  <Link
-                    href={`/areas/${city.slug}`}
-                    className="after:absolute after:inset-0"
-                  >
+                  <Link href={`/areas/${city.slug}`}>
                     פוליש לשיש {city.inName}
                   </Link>
                 </h2>
               </div>
 
-              <p className="relative mt-3.5 text-[14px] leading-relaxed text-[#4A4A4A]">
+              <p className="relative z-10 mt-3.5 text-[14px] leading-relaxed text-[#4A4A4A]">
                 {city.intro}
               </p>
 
               {/* mt-auto lines every button up along one edge of the row. */}
-              <span className="relative mt-auto pt-5">
-                <span className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(212,175,55,0.4)] bg-[#FAF6F0] px-[18px] py-2.5 text-[15px] font-semibold text-[#B8860B] transition-colors duration-300 group-hover:border-gold group-hover:bg-[#F3E7CE]">
+              <span className="relative z-10 mt-auto pt-5">
+                <Link
+                  href={`/areas/${city.slug}`}
+                  className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(212,175,55,0.4)] bg-[#FAF6F0] px-[18px] py-2.5 text-[15px] font-semibold text-[#B8860B] transition-colors duration-300 group-hover:border-gold group-hover:bg-[#F3E7CE]"
+                >
                   לפירוט {city.inName}
                   <span
                     aria-hidden
@@ -96,8 +95,21 @@ export default function AreasPage() {
                   >
                     ←
                   </span>
-                </span>
+                </Link>
               </span>
+
+              {/* Makes the whole card one target. It has to be a direct child
+                  of the card: nested inside a z-indexed wrapper it would be
+                  trapped in that wrapper's stacking context and sit under the
+                  text beside it, which is what stopped the button working.
+                  Hidden from assistive tech, which already has the two links
+                  above it. */}
+              <Link
+                href={`/areas/${city.slug}`}
+                aria-hidden
+                tabIndex={-1}
+                className="absolute inset-0 z-20"
+              />
             </article>
           ))}
         </div>

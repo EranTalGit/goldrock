@@ -626,6 +626,37 @@ select.field-dark option:checked {
   box-shadow: 0 10px 24px rgba(197, 160, 89, 0.32);
 }
 
+/* The pills' highlight, for a larger surface such as a card. A backdrop
+   blur reads as nothing over a flat ground, so the glass is carried by
+   this sweep and the corner light instead. */
+.sweep-on-hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 42%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.sweep-on-hover:hover::after {
+  left: 130%;
+  transition: left 0.95s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep-on-hover:hover::after {
+    transition: none;
+  }
+}
+
 .pill-mirror {
   position: relative;
   overflow: hidden;
