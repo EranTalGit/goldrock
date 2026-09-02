@@ -43,8 +43,8 @@ export default function ContactForm({
   const replyTone = state.tone ?? (state.ok ? "success" : "error");
   const light = tone === "light";
 
-  const field = `${light ? "field-light" : "field-dark"} mt-1.5 w-full rounded-xl px-4 py-2.5`;
-  const label = `block text-right text-[15px] tracking-wide ${
+  const field = `${light ? "field-light" : "field-dark"} mt-1.5 w-full rounded-xl px-4 py-2.5 text-[16px]`;
+  const label = `block text-right text-[16px] tracking-wide ${
     light ? "font-semibold text-[#2C2C2C]" : "font-medium text-[#E8E2D4]"
   }`;
 

@@ -24,7 +24,8 @@ export default function InnerHero({
   note,
   children,
 }: {
-  eyebrow: string;
+  /** Omitted where the page repeats it as a heading further down. */
+  eyebrow?: string;
   title: string;
   /** The subheading, directly under the gold heading. */
   tagline: string;
@@ -55,20 +56,22 @@ export default function InnerHero({
           transparent navbar never lands on a bright window. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 hidden h-[110px] sm:block sm:bg-[linear-gradient(to_bottom,rgba(250,246,240,0.88)_0%,rgba(250,246,240,0.55)_45%,rgba(250,246,240,0)_100%)]"
+        className="absolute inset-x-0 top-0 hidden h-[130px] sm:block sm:bg-[linear-gradient(to_bottom,rgba(250,246,240,0.94)_0%,rgba(250,246,240,0.88)_38%,rgba(250,246,240,0.5)_66%,rgba(250,246,240,0)_100%)]"
       />
       {/* Then a soft halo behind the centred type only. The hall stays fully
           visible at the sides and corners; the heading still reads on cream.
           A phone gets the flat wash above instead, since its text is full-width. */}
       <div
         aria-hidden
-        className="absolute inset-0 hidden sm:block sm:bg-[radial-gradient(ellipse_58%_78%_at_50%_58%,rgba(250,246,240,0.96)_0%,rgba(250,246,240,0.93)_38%,rgba(250,246,240,0.6)_68%,rgba(250,246,240,0)_100%)]"
+        className="absolute inset-0 hidden sm:block sm:bg-[radial-gradient(ellipse_38%_50%_at_50%_56%,rgba(250,246,240,0.96)_0%,rgba(250,246,240,0.93)_58%,rgba(250,246,240,0.5)_84%,rgba(250,246,240,0)_100%)]"
       />
 
-      <div className="relative mx-auto max-w-4xl px-4 pb-[42px] pt-[110px] text-center sm:px-6 sm:pb-[52px] sm:pt-[120px]">
-        <p className="text-xs font-semibold tracking-[0.28em] text-gold">
-          {trim(eyebrow)}
-        </p>
+      <div className="relative mx-auto max-w-4xl px-4 pb-[34px] pt-[96px] text-center sm:px-6 sm:pb-[40px] sm:pt-[104px]">
+        {eyebrow ? (
+          <p className="text-xs font-semibold tracking-[0.28em] text-gold">
+            {trim(eyebrow)}
+          </p>
+        ) : null}
         <h1 className="shine gold-metal mt-3 font-display text-[2.3rem] font-black leading-[1.1] tracking-tight sm:text-[3.2rem]">
           {trim(title)}
         </h1>
