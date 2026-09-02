@@ -35,6 +35,18 @@ export async function generateMetadata({
   };
 }
 
+/** One heading treatment for every band, as on the service pages. */
+function BandHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <h2 className="text-center font-display text-[1.6rem] font-bold leading-snug text-[#1A1A1A] sm:text-[1.95rem]">
+        {children}
+      </h2>
+      <div className="gold-rule mx-auto mt-4 w-full max-w-xs" />
+    </>
+  );
+}
+
 export default async function CityPage({
   params,
 }: {
@@ -108,78 +120,80 @@ export default async function CityPage({
           />
         </div>
 
-        {/* One measured column rather than two: the form beside the copy was
-            far shorter than it, and left the page hanging open below it. */}
-        <div className="mx-auto max-w-[900px] px-4 pb-12 pt-14 sm:px-6">
-          <div>
-            <div className="space-y-4 text-[1.08rem] leading-[1.85] text-ink-soft">
-              {city.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-
-            <h2 className="mt-11 font-display text-2xl font-bold text-ink sm:text-3xl">
-              שכונות {city.inName}
-            </h2>
-            <div className="gold-rule mt-4 w-full max-w-sm" />
-            {/* The pill the service pages use for their "מתאים ל" list: one
-                width for all of them, taken from the longest name. */}
-            <ul className="mt-6 flex flex-wrap gap-3">
-              {city.neighborhoods.map((n) => (
-                <li
-                  key={n}
-                  style={{ width: neighbourhoodWidth }}
-                  className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium"
-                >
-                  {n}
-                </li>
-              ))}
-            </ul>
-
-            <h2 className="mt-11 font-display text-2xl font-bold text-ink sm:text-3xl">
-              שירותים {city.inName}
-            </h2>
-            <div className="gold-rule mt-4 w-full max-w-sm" />
-            <ul className="mt-6 space-y-4">
-              {SERVICES.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="font-display text-[1.1rem] font-bold text-gold transition-colors hover:text-gold-soft"
-                  >
-                    {service.title} {city.inName}
-                  </Link>
-                  <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">
-                    {service.description}
-                  </p>
-                </li>
-              ))}
-            </ul>
+        <div className="mx-auto max-w-[900px] px-4 pb-[50px] pt-12 text-[1.08rem] leading-[1.85] text-ink-soft sm:px-6">
+          <div className="space-y-4">
+            {city.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* The form runs the width of the page, under everything it needs to
-            be read after. */}
-        <div className="mx-auto max-w-[900px] px-4 pb-[55px] sm:px-6">
-          <div className="rounded-[20px] border border-[rgba(212,175,55,0.35)] bg-white/95 p-7 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-[10px] sm:p-[35px]">
-            <h2 className="text-center font-display text-[1.4rem] font-bold leading-snug text-[#1A1A1A] sm:text-[1.6rem]">
-              רוצים הצעת מחיר מדויקת לפוליש {city.inName}? תאמו עכשיו
+      {/* The neighbourhoods, on their own ground. */}
+      <section className="bg-sand text-ink">
+        <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
+          <BandHeading>שכונות {city.inName}</BandHeading>
+          {/* Wraps on a small screen, and holds one row from lg where the
+              pills share the width between them. */}
+          <ul className="mt-8 flex flex-wrap justify-center gap-3 lg:flex-nowrap">
+            {city.neighborhoods.map((n) => (
+              <li
+                key={n}
+                style={{ width: neighbourhoodWidth }}
+                className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium lg:w-auto lg:min-w-0 lg:flex-1"
+              >
+                {n}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-paper text-ink">
+        <div className="mx-auto max-w-[900px] px-4 py-[50px] sm:px-6">
+          <BandHeading>שירותים {city.inName}</BandHeading>
+          <ul className="mt-8 space-y-4">
+            {SERVICES.map((service) => (
+              <li key={service.slug}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="font-display text-[1.1rem] font-bold text-gold transition-colors hover:text-gold-soft"
+                >
+                  {service.title} {city.inName}
+                </Link>
+                <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">
+                  {service.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The same closing form the service pages carry. */}
+      <section className="bg-white text-ink">
+        <div className="mx-auto max-w-2xl px-4 py-[50px] sm:px-6">
+          <div className="rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.07)] sm:p-8">
+            <h2 className="text-center font-display text-[1.5rem] font-bold leading-snug text-[#1A1A1A]">
+              רוצים הצעת מחיר מדויקת לפוליש {city.inName}?
             </h2>
-            <p className="mt-3 text-center text-[15px] leading-relaxed text-[#666666]">
-              משאירים פרטים או שולחים תמונה בוואטסאפ להצעת מחיר מדויקת
+            <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
+            <p className="mx-auto mt-4 max-w-md text-center text-[15px] leading-relaxed text-[#666059]">
+              משאירים שם וטלפון, או שולחים תמונה של הרצפה בוואטסאפ
+              <br />
+              ומקבלים הצעת מחיר עוד באותו יום
             </p>
-            <div className="gold-rule mx-auto mt-5 w-full max-w-xs" />
-            <div className="mt-7">
+            <div className="mt-6">
               <ContactForm
                 source={`city-${city.slug}`}
                 tone="light"
-                wide
                 defaultCity={city.name}
               />
             </div>
           </div>
         </div>
       </section>
+
       <CtaBand title={`פוליש ${city.inName} - מתחילים בתמונה`} />
     </>
   );
