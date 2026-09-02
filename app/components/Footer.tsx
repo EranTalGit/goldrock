@@ -103,7 +103,7 @@ export default function Footer() {
 
         <div className="text-center">
           <h2 className="text-sm font-bold tracking-wide text-gold">אזורים</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <ul className="mx-auto mt-4 grid w-fit grid-cols-2 gap-x-5 gap-y-2.5 text-sm">
             {CITIES.slice(0, 10).map((city) => (
               <li key={city.slug}>
                 <Link href={`/areas/${city.slug}`} className={linkClass}>
