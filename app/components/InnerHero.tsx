@@ -79,7 +79,7 @@ export default function InnerHero({
           {trim(tagline)}
         </p>
         {note ? (
-          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-[#6B655C] sm:text-[16px]">
+          <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-[#5A554E] sm:text-[18px]">
             {trim(note)}
           </p>
         ) : null}

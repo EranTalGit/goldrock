@@ -26,7 +26,7 @@ export const NAV_LINKS = [
   { label: "שירותים", href: "/services" },
   { label: "אזורי שירות", href: "/areas" },
   { label: "אודות", href: "/about" },
-  { label: "מדריך", href: "/blog" },
+  { label: "בלוג", href: "/blog" },
   { label: "שאלות נפוצות", href: "/faq" },
   { label: "צור קשר", href: "/contact" },
 ];
