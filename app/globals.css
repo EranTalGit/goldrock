@@ -701,3 +701,68 @@ select.field-dark option:checked {
     display: none;
   }
 }
+
+/* Slow gold breath on the closing CTA's primary button. */
+.pulse-gold {
+  animation: pulse-gold 2.8s ease-in-out infinite;
+}
+
+.pulse-gold:hover {
+  animation: none;
+}
+
+@keyframes pulse-gold {
+  0%,
+  100% {
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.28);
+  }
+  50% {
+    box-shadow: 0 6px 26px rgba(212, 175, 55, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-gold {
+    animation: none;
+  }
+}
+
+/* The crystal turns and breathes; its small companion counter-turns. */
+.crystal-a {
+  animation: crystal-a 9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.crystal-b {
+  animation: crystal-b 6.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes crystal-a {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.18);
+  }
+}
+
+@keyframes crystal-b {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(0.85);
+    opacity: 0.65;
+  }
+  50% {
+    transform: rotate(-140deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crystal-a,
+  .crystal-b {
+    animation: none;
+  }
+}
