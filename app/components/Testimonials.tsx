@@ -206,17 +206,49 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Dots, for the phone where the arrows are hidden. */}
-        <div className="mt-6 flex justify-center gap-2 lg:hidden">
-          {Array.from({ length: pages }, (_, i) => (
-            <span
-              key={i}
-              aria-hidden
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === page ? "w-6 bg-gold" : "w-2 bg-gold/30"
-              }`}
+        {/* On a phone the side arrows have nowhere to sit, so the controls
+            move below. A bar rather than dots: one card to a view means
+            sixteen of them, which is more clutter than information. */}
+        <div className="mt-7 flex items-center justify-center gap-4 lg:hidden">
+          <button
+            type="button"
+            onClick={() => step(1)}
+            aria-label="ביקורות קודמות"
+            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-white text-gold transition-all hover:bg-gold hover:text-white ${
+              atStart ? "pointer-events-none opacity-30" : "opacity-100"
+            }`}
+          >
+            <Arrow back />
+          </button>
+
+          <div
+            className="h-1.5 w-28 overflow-hidden rounded-full bg-ink/15"
+            role="progressbar"
+            aria-valuemin={1}
+            aria-valuemax={pages}
+            aria-valuenow={page + 1}
+            aria-label="התקדמות בביקורות"
+          >
+            <div
+              className="h-full rounded-full bg-gold transition-[width] duration-300"
+              style={{ width: `${((page + 1) / pages) * 100}%` }}
             />
-          ))}
+          </div>
+
+          <span className="shrink-0 text-[13px] font-semibold tabular-nums text-ink-soft">
+            {page + 1}/{pages}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => step(-1)}
+            aria-label="ביקורות נוספות"
+            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-white text-gold transition-all hover:bg-gold hover:text-white ${
+              atEnd ? "pointer-events-none opacity-30" : "opacity-100"
+            }`}
+          >
+            <Arrow />
+          </button>
         </div>
       </div>
     </section>
