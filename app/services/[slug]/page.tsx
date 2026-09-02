@@ -138,7 +138,7 @@ export default async function ServicePage({
 
         {/* 1. The service in detail: words on the right, picture on the left
                and held to a smaller share of the row so the reading leads. */}
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch lg:gap-12">
           <div>
             <div className="space-y-5 text-[1.1rem] leading-[1.85] text-[#4A453F]">
               {service.intro.map((paragraph) => (
@@ -158,8 +158,11 @@ export default async function ServicePage({
             </div>
           </div>
 
+          {/* Beside the copy the picture takes the row's full height rather
+              than a fixed ratio, so a longer introduction makes it taller
+              and never wider. */}
           <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_16px_38px_rgba(0,0,0,0.1)] lg:max-w-none">
-            <div className="relative aspect-[4/3]">
+            <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full">
               <Image
                 src={service.image}
                 alt={service.h1}

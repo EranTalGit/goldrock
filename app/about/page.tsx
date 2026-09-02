@@ -66,8 +66,10 @@ export default function AboutPage() {
           />
 
           {/* Photograph on the right, the story beside it on the left. */}
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+          {/* The picture takes the row's height beside the copy, so a longer
+              story makes it taller and never wider. */}
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-14">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)] lg:aspect-auto">
               <Image
                 src="/assets/services/marble-polish.webp"
                 alt="ליטוש רצפת שיש בעבודת אומן"
