@@ -14,6 +14,7 @@ import {
 import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
+import SectionHeading from "../../components/SectionHeading";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -118,9 +119,19 @@ export default async function ServicePage({
         note="כל שירות מותאם לסוג האבן ולמצב שלה, אחרי בדיקה ולא לפי הערכה בטלפון"
       />
 
-      {/* 1. The service itself: words on the right, the picture on the left. */}
+      {/* The same opener every page carries, holding the page's h1. */}
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-[50px] sm:px-6 lg:grid-cols-2 lg:gap-14">
+        <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
+          <SectionHeading
+            labelAs="h1"
+            label={service.h1}
+            title={service.tagline}
+            description={service.description}
+          />
+        </div>
+
+        {/* 1. The service in detail: words on the right, picture on the left. */}
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-2 lg:gap-14">
           <div>
             <p className="text-[13px] font-bold tracking-[0.2em] text-gold">
               {BUSINESS_NAME}
@@ -128,17 +139,11 @@ export default async function ServicePage({
               שירותי פרימיום
             </p>
 
-            <h1 className="mt-4 font-display text-[2rem] font-bold leading-tight text-[#1A1A1A] sm:text-[2.5rem]">
-              {service.h1}
-            </h1>
-            <div className="gold-line mt-5 w-32" />
-
-            <p className="mt-5 text-[1.1rem] font-semibold leading-snug text-[#2C2C2C]">
-              {service.tagline}
-            </p>
-            <p className="mt-4 text-[1.02rem] leading-relaxed text-[#55504A]">
-              {service.description}
-            </p>
+            <div className="mt-4 space-y-4 text-[1.02rem] leading-relaxed text-[#55504A]">
+              {service.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
 
             <a
               href={wa}
