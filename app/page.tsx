@@ -18,7 +18,7 @@ const highlights: { icon: ServiceIconName; strong: string; rest: string }[] = [
     rest: "על כל תהליך הליטוש והציפוי.",
   },
   {
-    icon: "sparkle",
+    icon: "diamond",
     strong: "טכנולוגיית ליטוש יהלום וקריסטל:",
     rest: "חומרי איטום מאירופה לעמידות לשנים.",
   },
@@ -40,7 +40,7 @@ export default function Home() {
       <Areas />
       <section className="bg-sand text-ink">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-10 pb-24 sm:px-6 sm:py-14 sm:pb-28 lg:grid-cols-2">
-          <div>
+          <div className="text-center">
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
             </p>
@@ -50,22 +50,22 @@ export default function Home() {
               <br />
               עד שהיא מחזירה אור
             </h2>
-            <div className="gold-rule mt-7 w-full max-w-sm" />
+            <div className="gold-rule mx-auto mt-7 w-full max-w-sm" />
 
             {/* The owner's line, set apart so it reads as someone speaking. */}
-            <blockquote className="mt-7 border-e-2 border-gold pe-5 text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
+            <blockquote className="mx-auto mt-7 max-w-xl text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
               אנחנו לא רק &quot;מנקים&quot; או &quot;מבריקים&quot; רצפות - אנחנו מתייחסים לכל אבן ושיש כאל יצירת אומנות טבעית.
             </blockquote>
 
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
               חברת Goldrock מתמחה בפתרונות ליטוש, קריסטליזציה ושחזור משטחי שיש, אבן טבעית וגרניט פורצלן ברמת פרימיום. אנו משלבים טכנולוגיית ליטוש יהלום חדשנית לצד עבודה קפדנית ללא אבק, תוך שמירה מוחלטת על הנכס והציוד שלכם.
             </p>
-            <ul className="mt-9 space-y-7">
+            <ul className="mx-auto mt-9 max-w-md space-y-7 text-right">
               {highlights.map((item) => (
-                <li key={item.strong} className="flex items-start gap-4">
+                <li key={item.strong} className="flex items-center gap-4">
                   <span
                     aria-hidden
-                    className="trust-badge mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-gold"
+                    className="trust-badge inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-gold"
                   >
                     <ServiceIcon name={item.icon} width={24} height={24} />
                   </span>
@@ -80,16 +80,20 @@ export default function Home() {
             {/* The full story lives on its own page; this stays the summary. */}
             <Link
               href="/about"
-              className="arrow-link mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold transition-colors hover:text-gold-soft"
+              className="arrow-link mt-9 inline-flex items-center gap-2 rounded-xl border border-gold/40 px-6 py-3 text-[17px] font-semibold text-gold transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold/10 hover:text-gold-soft"
             >
               קראו עוד על הסיפור שלנו <span className="arrow">←</span>
             </Link>
           </div>
           <div className="form-card p-7 sm:p-9">
-            <h3 className="font-display text-2xl font-bold text-white">
+            <p className="gold-metal text-center font-display text-3xl font-bold leading-tight">
+              צרו קשר
+            </p>
+            <h3 className="mt-2 text-center font-display text-xl font-bold text-white sm:text-2xl">
               השאירו פרטים להצעת מחיר
             </h3>
-            <p className="mt-2 text-sm text-[#E8E2D4]/70">
+            <div className="gold-line mx-auto mt-5 w-40" />
+            <p className="mt-4 text-center text-sm text-[#E8E2D4]/70">
               שם וטלפון מספיקים. אפשר להוסיף עיר וסוג שירות.
             </p>
             <div className="mt-7">

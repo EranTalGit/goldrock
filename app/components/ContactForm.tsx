@@ -6,11 +6,28 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 
 const initial: LeadState = { ok: false, message: "" };
 
-const field = "field-dark mt-1.5 w-full rounded-xl px-4 py-3";
-const label = "block text-sm font-medium tracking-wide text-[#E8E2D4]";
+const field = "field-dark mt-2 w-full rounded-xl px-4 py-3";
+const label = "block text-center text-[15px] font-medium tracking-wide text-[#E8E2D4]";
+
+const TONE_CLASS: Record<string, string> = {
+  success: "text-gold-soft",
+  warning: "text-[#E8C766]",
+  error: "text-red-300",
+};
+
+/** Marks a field the form will not submit without. */
+function Required() {
+  return (
+    <span className="text-gold" aria-hidden>
+      {" "}
+      *
+    </span>
+  );
+}
 
 export default function ContactForm({ source = "contact-form" }: { source?: string }) {
   const [state, action, pending] = useActionState(submitLead, initial);
+  const tone = state.tone ?? (state.ok ? "success" : "error");
 
   return (
     <form action={action} className="form-dark space-y-4">
@@ -18,11 +35,21 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
       <div className="grid gap-4 sm:grid-cols-2">
         <label className={label}>
           שם מלא
+          <Required />
           <input name="name" required className={field} />
         </label>
         <label className={label}>
           טלפון
-          <input name="phone" required inputMode="tel" className={field} dir="ltr" />
+          <Required />
+          <input
+            name="phone"
+            required
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="050-1234567"
+            className={field}
+            dir="ltr"
+          />
         </label>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -58,6 +85,11 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
           placeholder="סוג הרצפה, גודל בערך, מתי נוח"
         />
       </label>
+
+      <p className="text-center text-xs text-[#E8E2D4]/50">
+        שדות המסומנים ב<span className="text-gold">*</span> הם חובה
+      </p>
+
       <button
         type="submit"
         disabled={pending}
@@ -65,15 +97,22 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
       >
         {pending ? "שולחים..." : <>שלחו הצעת מחיר <span className="arrow">←</span></>}
       </button>
+
       {state.message ? (
-        <p className={state.ok ? "text-gold-soft" : "text-red-300"}>{state.message}</p>
+        <p
+          role="status"
+          aria-live="polite"
+          className={`text-center text-sm leading-relaxed ${TONE_CLASS[tone]}`}
+        >
+          {state.message}
+        </p>
       ) : null}
       {state.ok ? (
         <a
           href={whatsappLink(DEFAULT_WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-center text-sm text-gold"
+          className="block text-center text-sm font-semibold text-gold"
         >
           להמשיך בוואטסאפ
         </a>

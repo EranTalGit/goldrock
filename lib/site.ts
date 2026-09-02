@@ -61,7 +61,8 @@ export type ServiceIconName =
   | "grid"
   | "broom"
   | "pin"
-  | "clock";
+  | "clock"
+  | "diamond";
 
 export type Service = {
   slug: string;
