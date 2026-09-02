@@ -9,7 +9,18 @@ const STEP_MS = 650;
 const LINE_OFFSET_MS = 320;
 const ARROW_OFFSET_MS = 560;
 
-export default function Process() {
+export default function Process({
+  steps = PROCESS,
+  label = "פשוט, נקי, מהיר",
+  title = "מחזירים את הברק לרצפה - התהליך שלנו",
+  description = "מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:",
+}: {
+  /** Defaults to the company's own process; a service passes its own steps. */
+  steps?: { title: string; text: string }[];
+  label?: string;
+  title?: string;
+  description?: string;
+} = {}) {
   const ref = useRef<HTMLOListElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -51,11 +62,7 @@ export default function Process() {
   return (
     <section className="bg-paper text-ink">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
-        <SectionHeading
-          label="פשוט, נקי, מהיר"
-          title="מחזירים את הברק לרצפה - התהליך שלנו"
-          description="מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:"
-        />
+        <SectionHeading label={label} title={title} description={description} />
 
         {/* A row of four on desktop; a rail of markers down the right with
             the copy beside them on a phone. */}
@@ -65,8 +72,8 @@ export default function Process() {
             started ? "seq-run" : ""
           }`}
         >
-          {PROCESS.map((step, i) => {
-            const last = i === PROCESS.length - 1;
+          {steps.map((step, i) => {
+            const last = i === steps.length - 1;
             const stepDelay = 120 + i * STEP_MS;
             return (
               <li key={step.title} className="group flex items-stretch gap-5 md:block">

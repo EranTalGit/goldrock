@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  BUSINESS_NAME,
   CITIES,
   getService,
   REGION_LABEL,
@@ -14,6 +13,7 @@ import {
 import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
+import Process from "../../components/Process";
 import SectionHeading from "../../components/SectionHeading";
 
 export function generateStaticParams() {
@@ -130,16 +130,11 @@ export default async function ServicePage({
           />
         </div>
 
-        {/* 1. The service in detail: words on the right, picture on the left. */}
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-2 lg:gap-14">
+        {/* 1. The service in detail: words on the right, picture on the left
+               and held to a smaller share of the row so the reading leads. */}
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
           <div>
-            <p className="text-[13px] font-bold tracking-[0.2em] text-gold">
-              {BUSINESS_NAME}
-              <span className="mx-2 opacity-40">|</span>
-              שירותי פרימיום
-            </p>
-
-            <div className="mt-4 space-y-4 text-[1.02rem] leading-relaxed text-[#55504A]">
+            <div className="space-y-5 text-[1.1rem] leading-[1.85] text-[#4A453F]">
               {service.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -149,20 +144,20 @@ export default async function ServicePage({
               href={wa}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold-metal arrow-link mt-7 inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[1rem]"
+              className="btn-gold-metal arrow-link mt-8 inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[1rem]"
             >
               להצעת מחיר מהירה בוואטסאפ <span className="arrow">←</span>
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_18px_45px_rgba(0,0,0,0.1)]">
+          <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_16px_38px_rgba(0,0,0,0.1)] lg:max-w-none">
             <div className="relative aspect-[4/3]">
               <Image
                 src={service.image}
                 alt={service.h1}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 384px, 30vw"
                 className="object-cover"
               />
             </div>
@@ -170,57 +165,38 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* 2. The benefits, as cards rather than a bullet list. */}
+      {/* 2. What the treatment gives you. Five one-line promises make a lot
+             of chrome as five cards, and leave an orphan in a three-column
+             grid; one framed checklist reads faster and sits far shorter. */}
       <section className="bg-sand text-ink">
-        <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
+        <div className="mx-auto max-w-4xl px-4 py-[50px] sm:px-6">
           <BandHeading>למה לבחור בטיפול הזה</BandHeading>
 
-          <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mx-auto mt-9 grid gap-x-10 gap-y-4 rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-7 shadow-[0_12px_32px_rgba(0,0,0,0.05)] sm:grid-cols-2 sm:p-9">
             {service.benefits.map((benefit) => (
-              <article
-                key={benefit}
-                className="flex flex-col items-center rounded-xl border border-[rgba(212,175,55,0.22)] bg-white p-6 text-center shadow-[0_10px_28px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_36px_rgba(212,175,55,0.16)]"
-              >
+              <li key={benefit} className="flex items-start gap-3">
                 <span
                   aria-hidden
-                  className="trust-badge inline-flex h-12 w-12 items-center justify-center rounded-full text-[1.2rem] font-bold text-gold"
+                  className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/[0.12] text-[13px] font-bold text-gold"
                 >
                   ✓
                 </span>
-                <p className="mt-4 text-[1rem] font-semibold leading-relaxed text-[#2C2C2C]">
+                <span className="text-[1rem] font-medium leading-relaxed text-[#2C2C2C]">
                   {benefit}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. The four steps, side by side. */}
-      <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
-          <BandHeading>איך העבודה מתבצעת</BandHeading>
-
-          <ol className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {service.steps.map((step, i) => (
-              <li
-                key={step.title}
-                className="rounded-xl border border-[rgba(212,175,55,0.22)] bg-white p-6 shadow-[0_10px_28px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_36px_rgba(212,175,55,0.16)]"
-              >
-                <span className="gold-metal font-display text-[2.1rem] font-black leading-none">
-                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-display text-[1.1rem] font-bold leading-snug text-[#1A1A1A]">
-                  {step.title}
-                </h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-[#55504A]">
-                  {step.text}
-                </p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
+
+      {/* 3. The four steps, in the same flow the home page uses. */}
+      <Process
+        steps={service.steps}
+        label="שלב אחרי שלב"
+        title={`איך מתבצעת העבודה ב${service.title}`}
+        description="ארבעה שלבים, בסדר הזה, בכל עבודה. אתם יודעים מראש מה קורה בכל שלב וכמה זמן הוא לוקח."
+      />
 
       {/* 4. What it suits, as pills. */}
       <section className="bg-sand text-ink">
