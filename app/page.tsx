@@ -38,7 +38,7 @@ export default function Home() {
       <Process />
       <Gallery />
       <Areas />
-      <section className="bg-sand text-ink">
+      <section id="quote" className="bg-sand text-ink">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-5 pb-16 sm:px-6 sm:py-7 sm:pb-20 lg:grid-cols-2">
           <div className="text-center">
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       </section>
       <FaqSection items={HOME_FAQ} moreHref="/faq" />
-      <CtaBand />
+      <CtaBand formHref="#quote" />
     </>
   );
 }

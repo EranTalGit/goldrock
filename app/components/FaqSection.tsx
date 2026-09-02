@@ -21,7 +21,11 @@ export default function FaqSection({
   return (
     <section className="bg-paper text-ink">
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-        <SectionHeading label="שאלות נפוצות" title="תשובות קצרות לפני שמתקשרים" />
+        <SectionHeading
+          label="שאלות נפוצות"
+          title="תשובות קצרות לפני שמתקשרים"
+          description="ריכזנו כאן את מה שלקוחות שואלים אותנו לפני שמזמינים עבודה - אבק, עמידות, אחריות, סוגי משטחים ומחיר. אם נשארה לכם שאלה פתוחה, אנחנו במרחק הודעה אחת בוואטסאפ."
+        />
 
         <div className="mt-9 space-y-3">
           {items.map((item, i) => {
@@ -62,7 +66,7 @@ export default function FaqSection({
           <div className="mt-8 text-center">
             <Link
               href={moreHref}
-              className="arrow-link inline-flex items-center gap-2 text-[16px] font-semibold text-gold transition-colors hover:text-gold-soft"
+              className="arrow-link inline-flex items-center gap-2 text-[17px] font-semibold text-gold transition-colors hover:text-gold-soft"
             >
               לכל השאלות והתשובות המלאות <span className="arrow">←</span>
             </Link>
