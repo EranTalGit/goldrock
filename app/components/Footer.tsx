@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BUSINESS_NAME,
   CITIES,
@@ -24,7 +27,18 @@ const LEGAL_LINKS = [
   { label: "נגישות", href: "/accessibility" },
 ];
 
+/** True while the link points at the page being viewed. */
+function isCurrent(href: string, pathname: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Footer() {
+  const pathname = usePathname();
+  // Matches the header: the page you are on is named in gold.
+  const linkFor = (href: string) =>
+    isCurrent(href, pathname) ? `${linkClass} font-bold !text-gold` : linkClass;
+
   return (
     <footer className="border-t border-gold/20 bg-footer">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-6 pt-12 sm:px-6 md:grid-cols-4">
@@ -73,14 +87,22 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className={linkClass}>
+                <Link
+                  href={link.href}
+                  aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
+                  className={linkFor(link.href)}
+                >
                   {link.label}
                 </Link>
               </li>
             ))}
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className={linkClass}>
+                <Link
+                  href={link.href}
+                  aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
+                  className={linkFor(link.href)}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -93,7 +115,10 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {SERVICES.map((service) => (
               <li key={service.slug}>
-                <Link href={`/services/${service.slug}`} className={linkClass}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className={linkFor(`/services/${service.slug}`)}
+                >
                   {service.title}
                 </Link>
               </li>
@@ -106,7 +131,10 @@ export default function Footer() {
           <ul className="mx-auto mt-4 grid w-fit grid-cols-2 gap-x-5 gap-y-2.5 text-sm sm:grid-cols-3">
             {CITIES.map((city) => (
               <li key={city.slug}>
-                <Link href={`/areas/${city.slug}`} className={linkClass}>
+                <Link
+                  href={`/areas/${city.slug}`}
+                  className={linkFor(`/areas/${city.slug}`)}
+                >
                   {city.name}
                 </Link>
               </li>

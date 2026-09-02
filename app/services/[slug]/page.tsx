@@ -70,6 +70,18 @@ export default async function ServicePage({
   // already carry a city name too. The heading below keeps the full title.
   const shortTitle = service.title.replace(/\s*\([^)]*\)/g, "").trim();
 
+  // Every "מתאים ל" pill takes the width of the longest entry, so they match
+  // without being stretched to an arbitrary share of the section. A ch is the
+  // width of a digit, which runs wider than a Hebrew letter, so this errs on
+  // the roomy side. A centred wrap then keeps a short last row on the axis.
+  const suitedWidth = `${Math.max(...service.suitedFor.map((s) => s.length)) + 5}ch`;
+  // Four entries fit one row. More than four are capped to three per row, so
+  // five reads as three and a centred pair rather than four and a lone one.
+  const suitedRowCap =
+    service.suitedFor.length > 4
+      ? `calc(3 * ${suitedWidth} + 1.5rem)`
+      : undefined;
+
   const wa = whatsappLink(
     `היי, אשמח להצעת מחיר ל${service.title}. אצרף תמונה של הרצפה.`,
   );
@@ -219,14 +231,15 @@ export default async function ServicePage({
 
           {/* A grid rather than a wrapping row, so every pill is the same
               width, and the mirror treatment the home page uses for cities. */}
-          {/* Fixed widths in a centred wrap rather than a grid: with four or
-              five entries the last row is never full, and a grid would leave
-              it hanging off to one side. */}
-          <ul className="mt-8 flex flex-wrap justify-center gap-3">
+          <ul
+            className="mx-auto mt-8 flex flex-wrap justify-center gap-3"
+            style={{ maxWidth: suitedRowCap }}
+          >
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                className="pill-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)]"
+                style={{ width: suitedWidth }}
+                className="pill-mirror flex max-w-full items-center justify-center px-4 py-3 text-center text-[15px] font-medium"
               >
                 {item}
               </li>
