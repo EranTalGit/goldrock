@@ -20,7 +20,7 @@ export default function BlogTeaser() {
         <SectionHeading
           label="בלוג"
           title="מה שכדאי לדעת לפני שמזמינים"
-          description="מדריכים קצרים מהניסיון בשטח: מה מתאים לאיזו רצפה, מה משפיע על המחיר, ואיך שומרים על התוצאה לאורך זמן."
+          description="מדריכים קצרים מהניסיון בשטח: מה מתאים לאיזו רצפה, מה משפיע על המחיר, ואיך שומרים על התוצאה לאורך זמן"
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
