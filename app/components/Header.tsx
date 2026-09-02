@@ -33,7 +33,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <LogoMark size={46} />
           <Image
-            src="/assets/logo-wordmark-v2.png"
+            src="/assets/logo-wordmark-v3.png"
             alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
             width={1050}
             height={385}
@@ -42,7 +42,7 @@ export default function Header() {
             // light, so deepen and saturate it against the off-white.
             className={`h-9 w-auto transition-[filter] duration-300 sm:h-11 ${
               solid
-                ? "[filter:brightness(0.68)_saturate(1.6)_contrast(1.12)]"
+                ? "[filter:brightness(0.78)_saturate(1.35)_contrast(1.08)]"
                 : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
             }`}
           />
