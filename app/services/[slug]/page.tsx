@@ -174,16 +174,18 @@ export default async function ServicePage({
         <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
           <BandHeading>למה לבחור בטיפול הזה</BandHeading>
 
-          <ul className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
+          {/* Two columns of three, the mark leading each line on the right
+              and the promise beside it. */}
+          <ul className="mx-auto mt-10 grid max-w-4xl gap-x-12 gap-y-6 sm:grid-cols-2">
             {service.benefits.map((benefit) => (
-              <li key={benefit} className="text-center">
+              <li key={benefit} className="flex items-center gap-4">
                 <span
                   aria-hidden
-                  className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full border border-[rgba(197,160,89,0.4)] bg-white text-[1.3rem] font-bold text-gold shadow-[0_4px_14px_rgba(0,0,0,0.05)]"
+                  className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(197,160,89,0.4)] bg-white text-[1.15rem] font-bold text-gold shadow-[0_4px_14px_rgba(0,0,0,0.05)]"
                 >
                   ✓
                 </span>
-                <p className="mt-4 text-balance text-[1rem] font-semibold leading-relaxed text-[#2C2C2C]">
+                <p className="text-[1rem] font-semibold leading-relaxed text-[#2C2C2C]">
                   {benefit}
                 </p>
               </li>
@@ -215,7 +217,7 @@ export default async function ServicePage({
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                className="city-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]"
+                className="pill-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]"
               >
                 {item}
               </li>
@@ -295,7 +297,7 @@ export default async function ServicePage({
             {service.title} לפי אזור
           </h2>
           <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {CITIES.slice(0, 9).map((city) => (
+            {CITIES.slice(0, 6).map((city) => (
               <li key={city.slug} className="flex">
                 <Link
                   href={`/areas/${city.slug}`}
