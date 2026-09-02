@@ -5,6 +5,7 @@ import { CITIES, getCity, SERVICES, SITE_URL } from "@/lib/site";
 import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
+import SectionHeading from "../../components/SectionHeading";
 
 export function generateStaticParams() {
   return CITIES.map((city) => ({ city: city.slug }));
@@ -75,19 +76,31 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* The hero names the section, exactly as on the areas index. The city
+          names itself in the heading block below, which carries the h1. */}
       <InnerHero
-        eyebrow={city.name}
-        title={`פוליש לשיש ${city.inName}`}
-        tagline={`ליטוש, הברקה וחידוש מדרגות ${city.inName} ובשכונות הסמוכות`}
-        note="שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום"
+        headingAs="p"
+        title="פוליש וליטוש בכל גוש דן"
+        tagline="כל עיר עם דף משלה: שכונות, שירותים מקומיים והזמנה מהירה"
+        note="מגיעים בתיאום מראש לבתים פרטיים, לדירות ולבנייני מגורים בכל האזור, ללא אבק"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "אזורי שירות", href: "/areas" },
           { label: city.name, href: `/areas/${city.slug}` },
         ]}
       />
+
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
+          <SectionHeading
+            labelAs="h1"
+            label={`פוליש לשיש ${city.inName}`}
+            title={`ליטוש, הברקה וחידוש מדרגות ${city.inName}`}
+            description={`מגיעים לכל השכונות ${city.inName} ולסביבה. שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום`}
+          />
+        </div>
+
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-12 pt-14 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <p className="leading-relaxed text-ink/80">{city.intro}</p>
             <p className="mt-4 leading-relaxed text-ink/80">{city.note}</p>
