@@ -52,20 +52,20 @@ export default function AreasPage() {
           />
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 pb-[50px] pt-14 sm:px-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="mx-auto grid max-w-6xl gap-5 px-4 pb-[50px] pt-14 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {CITIES.map((city) => (
             <article
               key={city.slug}
-              className="group relative flex flex-col rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.09)]"
+              className="group relative flex flex-col rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.09)]"
             >
               <div className="flex items-start gap-3">
                 <span
                   aria-hidden
-                  className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
+                  className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
                 >
-                  <ServiceIcon name="pin" width={19} height={19} />
+                  <ServiceIcon name="pin" width={17} height={17} />
                 </span>
-                <h2 className="font-display text-[1.2rem] font-bold leading-snug text-[#1A1A1A] transition-colors group-hover:text-gold">
+                <h2 className="font-display text-[1.1rem] font-bold leading-snug text-[#1A1A1A] transition-colors group-hover:text-gold">
                   {/* The whole card is the target, not only the words. */}
                   <Link
                     href={`/areas/${city.slug}`}
@@ -76,11 +76,11 @@ export default function AreasPage() {
                 </h2>
               </div>
 
-              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-[#4A4A4A]">
+              <p className="mt-3.5 flex-1 text-[14px] leading-relaxed text-[#4A4A4A]">
                 {city.intro}
               </p>
 
-              <span className="arrow-link mt-5 self-start text-[15px] font-semibold text-gold">
+              <span className="arrow-link mt-4 self-start text-[14px] font-semibold text-gold">
                 לפירוט {city.inName} <span className="arrow">←</span>
               </span>
             </article>
