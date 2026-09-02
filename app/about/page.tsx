@@ -65,30 +65,33 @@ export default function AboutPage() {
             description="Goldrock עוסקת בדבר אחד בלבד - חידוש משטחי אבן ושיש. אותה יד מגיעה לכל עבודה, כל רצפה נבדקת לפני שנוקבים במחיר, ומה שלא ניתן לעשות נאמר מראש."
           />
 
-          <figure className="relative mx-auto mt-12 aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
-            <Image
-              src="/assets/services/marble-polish.webp"
-              alt="ליטוש רצפת שיש בעבודת אומן"
-              fill
-              sizes="(max-width: 768px) 100vw, 448px"
-              className="object-cover"
-            />
-          </figure>
+          {/* Photograph on the right, the story beside it on the left. */}
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+              <Image
+                src="/assets/services/marble-polish.webp"
+                alt="ליטוש רצפת שיש בעבודת אומן"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
 
-          <div className="mx-auto mt-11 max-w-3xl">
-            <h3 className="text-center font-display text-2xl font-bold leading-snug text-[#1A1A1A] sm:text-3xl">
-              לא עוד פוליש גנרי - אומנות הטיפול באבן
-            </h3>
-            <div className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-ink-soft">
-              <p>
-                רצפת שיש אינה סתם עוד משטח בבית; היא אלמנט אדריכלי חי, נושם ויוקרתי. לאורך השנים, חומרי ניקוי חריפים, שחיקה יומיומית וטיפולים לא נכונים פוגעים בשכבה העליונה של האבן ומכבים את הברק הטבעי שלה.
-              </p>
-              <p>
-                ב-{BUSINESS_NAME} אנחנו לא מאמינים בפתרונות קסם מהירים או בשכבות ווקס קוסמטיות שנעלמות תוך חודשיים. העבודה שלנו מבוססת על אבחון עמוק של סוג האבן, התאמת דרגת הליטוש ביהלום, וקריסטליזציה רב-שכבתית שמחזירה לאבן את המראה המושלם שלה.
-              </p>
-              <p>
-                אנחנו מגיעים לכל בית ברמת גימור של אומן, עם ציוד שאיבת אבק מתקדם המבטיח עבודה נקייה לחלוטין, ויחס אישי ושקוף מהשיחה הראשונה ועד המסירה.
-              </p>
+            <div>
+              <h3 className="font-display text-2xl font-bold leading-snug text-[#1A1A1A] sm:text-3xl">
+                לא עוד פוליש גנרי - אומנות הטיפול באבן
+              </h3>
+              <div className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-ink-soft">
+                <p>
+                  רצפת שיש אינה סתם עוד משטח בבית; היא אלמנט אדריכלי חי, נושם ויוקרתי. לאורך השנים, חומרי ניקוי חריפים, שחיקה יומיומית וטיפולים לא נכונים פוגעים בשכבה העליונה של האבן ומכבים את הברק הטבעי שלה.
+                </p>
+                <p>
+                  ב-{BUSINESS_NAME} אנחנו לא מאמינים בפתרונות קסם מהירים או בשכבות ווקס קוסמטיות שנעלמות תוך חודשיים. העבודה שלנו מבוססת על אבחון עמוק של סוג האבן, התאמת דרגת הליטוש ביהלום, וקריסטליזציה רב-שכבתית שמחזירה לאבן את המראה המושלם שלה.
+                </p>
+                <p>
+                  אנחנו מגיעים לכל בית ברמת גימור של אומן, עם ציוד שאיבת אבק מתקדם המבטיח עבודה נקייה לחלוטין, ויחס אישי ושקוף מהשיחה הראשונה ועד המסירה.
+                </p>
+              </div>
             </div>
           </div>
         </div>
