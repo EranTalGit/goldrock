@@ -33,10 +33,10 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <LogoMark size={46} />
           <Image
-            src="/assets/logo-wordmark.png"
+            src="/assets/logo-wordmark-v2.png"
             alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
-            width={700}
-            height={228}
+            width={1050}
+            height={385}
             priority
             // The wordmark's pale gold highlights wash out once the bar turns
             // light, so deepen and saturate it against the off-white.
@@ -67,13 +67,15 @@ export default function Header() {
             href={PHONE_HREF}
             aria-label={`חיוג ל-${PHONE_DISPLAY}`}
             title={PHONE_DISPLAY}
-            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white ${
+            // A bare outline vanished against the hero photograph, so give it
+            // a filled ground to sit on.
+            className={`inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border-2 shadow-[0_2px_10px_rgba(0,0,0,0.15)] transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-white ${
               solid
-                ? "border-gold/50 text-gold"
-                : "border-white/40 text-white hover:border-gold"
+                ? "border-gold bg-gold/10 text-gold"
+                : "border-gold bg-black/45 text-gold-soft backdrop-blur-sm"
             }`}
           >
-            <PhoneIcon width={19} height={19} />
+            <PhoneIcon width={23} height={23} />
           </a>
           <Link href="/contact" className="btn-gold rounded-xl px-6 py-3 text-[15px]">
             הזמנת שירות

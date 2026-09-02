@@ -12,7 +12,7 @@ export default function SectionHeading({
 }: {
   label: string;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   dark?: boolean;
 }) {
   return (

@@ -24,10 +24,10 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <LogoMark size={62} />
             <Image
-              src="/assets/logo-wordmark.png"
+              src="/assets/logo-wordmark-v2.png"
               alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
-              width={700}
-              height={228}
+              width={1050}
+              height={385}
               className="h-12 w-auto"
             />
           </div>
