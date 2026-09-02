@@ -727,6 +727,38 @@ export function getCity(slug: string): City | undefined {
   return CITIES.find((c) => c.slug === slug);
 }
 
+/** Cities grouped by region, for the columned areas layout. */
+export const CITY_REGIONS: { title: string; slugs: string[] }[] = [
+  {
+    title: "תל אביב וגוש דן",
+    slugs: ["tel-aviv", "ramat-gan", "givatayim", "bnei-brak", "holon", "bat-yam"],
+  },
+  {
+    title: "השרון והסביבה",
+    slugs: ["herzliya", "raanana", "kfar-saba", "ramat-hasharon", "hod-hasharon"],
+  },
+  {
+    title: "השפלה ובקעת אונו",
+    slugs: [
+      "rishon-lezion",
+      "petah-tikva",
+      "nes-ziona",
+      "rehovot",
+      "rosh-haayin",
+      "yehud",
+      "or-yehuda",
+      "givat-shmuel",
+      "kiryat-ono",
+    ],
+  },
+];
+
+export function citiesInRegion(slugs: string[]): City[] {
+  return slugs
+    .map((slug) => CITIES.find((c) => c.slug === slug))
+    .filter((c): c is City => Boolean(c));
+}
+
 export const STATS = [
   { value: "גוש דן", label: "אזור שירות יומי" },
   { value: "יום אחד", label: "רוב הדירות מסתיימות" },
