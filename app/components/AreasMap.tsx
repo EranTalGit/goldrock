@@ -28,6 +28,91 @@ function project(lat: number, lng: number) {
   };
 }
 
+/**
+ * Which way each label leans off its pin. Hand-set rather than computed:
+ * the Tel Aviv cluster sits within a couple of kilometres, so labels have
+ * to be steered apart by hand. Coastal cities point out over the sea,
+ * where there is empty space.
+ */
+const LABEL_SIDE: Record<string, "west" | "east" | "north" | "south"> = {
+  herzliya: "west",
+  "ramat-hasharon": "west",
+  "tel-aviv": "west",
+  "bat-yam": "west",
+  holon: "west",
+  "rishon-lezion": "west",
+  "nes-ziona": "west",
+  rehovot: "west",
+  raanana: "north",
+  "kfar-saba": "east",
+  "hod-hasharon": "east",
+  "petah-tikva": "north",
+  "rosh-haayin": "east",
+  "bnei-brak": "north",
+  "ramat-gan": "east",
+  givatayim: "south",
+  "givat-shmuel": "east",
+  "kiryat-ono": "east",
+  yehud: "east",
+  "or-yehuda": "south",
+};
+
+const SIDE_CLASS: Record<string, string> = {
+  west: "right-full me-0 mr-2 top-1/2 -translate-y-1/2",
+  east: "left-full ml-2 top-1/2 -translate-y-1/2",
+  north: "bottom-full mb-1.5 left-1/2 -translate-x-1/2",
+  south: "top-full mt-1.5 left-1/2 -translate-x-1/2",
+};
+
+/**
+ * Simplified national outline, for the locator inset. Traced from real
+ * border and coastline points so the silhouette is recognisable; it is
+ * a schematic, not a survey, and takes no position on any boundary.
+ */
+const ISRAEL: [number, number][] = [
+  [33.28, 35.62],
+  [33.09, 35.3],
+  [33.05, 35.1],
+  [32.83, 35.07],
+  [32.7, 34.95],
+  [32.4, 34.87],
+  [32.08, 34.77],
+  [31.8, 34.65],
+  [31.55, 34.52],
+  [31.35, 34.48],
+  [31.25, 34.27],
+  [30.9, 34.35],
+  [30.4, 34.5],
+  [30.1, 34.7],
+  [29.55, 34.92],
+  [29.55, 34.97],
+  [30.1, 35.0],
+  [30.5, 35.15],
+  [30.95, 35.35],
+  [31.2, 35.42],
+  [31.5, 35.47],
+  [31.75, 35.5],
+  [31.9, 35.55],
+  [32.1, 35.55],
+  [32.35, 35.52],
+  [32.5, 35.55],
+  [32.72, 35.57],
+  [32.95, 35.68],
+  [33.1, 35.65],
+];
+
+const IL = { latMin: 29.4, latMax: 33.4, lngMin: 34.2, lngMax: 35.8 };
+const IL_COS = Math.cos((31.4 * Math.PI) / 180);
+const IL_SPAN_X = (IL.lngMax - IL.lngMin) * IL_COS;
+const IL_H = Math.round((IL.latMax - IL.latMin) / IL_SPAN_X * 100);
+
+function projectIL(lat: number, lng: number) {
+  return {
+    x: ((lng - IL.lngMin) * IL_COS * 100) / IL_SPAN_X,
+    y: ((IL.latMax - lat) * IL_H) / (IL.latMax - IL.latMin),
+  };
+}
+
 /** Real shoreline points, north to south. */
 const COAST: [number, number][] = [
   [32.25, 34.8],
@@ -130,7 +215,7 @@ export default function AreasMap() {
                     top: `${(y / VIEW_H) * 100}%`,
                     zIndex: on ? 20 : 10,
                   }}
-                  className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1"
+                  className="absolute -translate-x-1/2 -translate-y-1/2"
                   aria-label={`פוליש ${city.inName}`}
                 >
                   <span
@@ -141,10 +226,12 @@ export default function AreasMap() {
                     }`}
                   />
                   <span
-                    className={`whitespace-nowrap rounded-full border px-2 py-0.5 text-[10px] backdrop-blur-md transition-all duration-200 ${
+                    className={`absolute whitespace-nowrap rounded px-1.5 py-0.5 text-[10px] leading-tight transition-all duration-200 ${
+                      SIDE_CLASS[LABEL_SIDE[city.slug] ?? "east"]
+                    } ${
                       on
-                        ? "border-gold bg-black/80 text-gold opacity-100"
-                        : "border-white/10 bg-black/50 text-white/60 opacity-0"
+                        ? "bg-gold text-[#161616] shadow-[0_2px_10px_rgba(197,160,89,0.5)]"
+                        : "bg-black/55 text-white/80 backdrop-blur-sm"
                     }`}
                   >
                     {city.name}
@@ -153,9 +240,49 @@ export default function AreasMap() {
               );
             })}
 
-            <p className="absolute bottom-3 left-3 text-[10px] text-white/35">
-              מפה סכמטית
-            </p>
+            {/* Locator: the whole country, with a box round the part
+                enlarged here, so the window is recognisably Israel. */}
+            <div className="absolute bottom-3 left-3 flex items-end gap-2">
+              <svg
+                viewBox={`0 0 100 ${IL_H}`}
+                className="h-24 w-auto"
+                role="img"
+                aria-label="מפת ישראל, עם סימון אזור השירות במרכז"
+              >
+                <path
+                  d={
+                    ISRAEL.map(([lat, lng], i) => {
+                      const { x, y } = projectIL(lat, lng);
+                      return `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+                    }).join(" ") + " Z"
+                  }
+                  fill="rgba(197,160,89,0.12)"
+                  stroke="rgba(197,160,89,0.65)"
+                  strokeWidth="1"
+                  strokeLinejoin="round"
+                />
+                {(() => {
+                  const tl = projectIL(BOUNDS.latMax, BOUNDS.lngMin);
+                  const br = projectIL(BOUNDS.latMin, BOUNDS.lngMax);
+                  return (
+                    <rect
+                      x={tl.x}
+                      y={tl.y}
+                      width={br.x - tl.x}
+                      height={br.y - tl.y}
+                      fill="rgba(212,175,55,0.35)"
+                      stroke="#D4AF37"
+                      strokeWidth="1.2"
+                    />
+                  );
+                })()}
+              </svg>
+              <p className="pb-1 text-[10px] leading-tight text-white/45">
+                אזור השירות
+                <br />
+                מפה סכמטית
+              </p>
+            </div>
           </div>
         </div>
       </div>
