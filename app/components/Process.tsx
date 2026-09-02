@@ -14,12 +14,15 @@ export default function Process({
   label = "פשוט, נקי, מהיר",
   title = "מחזירים את הברק לרצפה - התהליך שלנו",
   description = "מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:",
+  cta,
 }: {
   /** Defaults to the company's own process; a service passes its own steps. */
   steps?: { title: string; text: string }[];
   label?: string;
   title?: string;
   description?: string;
+  /** An optional prompt below the steps, for pages with a long middle. */
+  cta?: { label: string; href: string; external?: boolean };
 } = {}) {
   const ref = useRef<HTMLOListElement>(null);
   const [started, setStarted] = useState(false);
@@ -138,6 +141,22 @@ export default function Process({
             );
           })}
         </ol>
+
+        {/* Keeps a way to act in the middle of a long page, not only at
+            its two ends. */}
+        {cta ? (
+          <div className="mt-10 text-center">
+            <a
+              href={cta.href}
+              {...(cta.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="btn-gold-metal arrow-link inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[1rem]"
+            >
+              {cta.label} <span className="arrow">←</span>
+            </a>
+          </div>
+        ) : null}
       </div>
     </section>
   );

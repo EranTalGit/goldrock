@@ -167,25 +167,25 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* 2. What the treatment gives you. Five one-line promises make a lot
-             of chrome as five cards, and leave an orphan in a three-column
-             grid; one framed checklist reads faster and sits far shorter. */}
+      {/* 2. What the treatment gives you: one open band of five, no boxes.
+             Each promise is a single line, so cards or a framed list were
+             more chrome than content - and five never divided evenly. */}
       <section className="bg-sand text-ink">
-        <div className="mx-auto max-w-4xl px-4 py-[50px] sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
           <BandHeading>למה לבחור בטיפול הזה</BandHeading>
 
-          <ul className="mx-auto mt-9 grid gap-x-10 gap-y-4 rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-7 shadow-[0_12px_32px_rgba(0,0,0,0.05)] sm:grid-cols-2 sm:p-9">
+          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-5">
             {service.benefits.map((benefit) => (
-              <li key={benefit} className="flex items-start gap-3">
+              <li key={benefit} className="text-center">
                 <span
                   aria-hidden
-                  className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/[0.12] text-[13px] font-bold text-gold"
+                  className="trust-badge mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full text-[1.3rem] font-bold text-gold"
                 >
                   ✓
                 </span>
-                <span className="text-[1rem] font-medium leading-relaxed text-[#2C2C2C]">
+                <p className="mt-4 text-balance text-[15px] font-semibold leading-relaxed text-[#2C2C2C]">
                   {benefit}
-                </span>
+                </p>
               </li>
             ))}
           </ul>
@@ -198,6 +198,7 @@ export default async function ServicePage({
         label="שלב אחרי שלב"
         title={`איך מתבצעת העבודה ב${service.title}`}
         description="ארבעה שלבים, בסדר הזה, בכל עבודה. אתם יודעים מראש מה קורה בכל שלב וכמה זמן הוא לוקח."
+        cta={{ label: "לקבלת הצעת מחיר בוואטסאפ", href: wa, external: true }}
       />
 
       {/* 4. What it suits, as pills. */}
