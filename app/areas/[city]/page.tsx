@@ -44,6 +44,12 @@ export default async function CityPage({
   const city = getCity(slug);
   if (!city) notFound();
 
+  // Every neighbourhood pill takes the width of the longest name, so the rows
+  // read as a grid rather than a ragged run of different-sized tags.
+  const neighbourhoodWidth = `${
+    Math.max(...city.neighborhoods.map((n) => n.length)) + 5
+  }ch`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -104,32 +110,64 @@ export default async function CityPage({
 
         <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-12 pt-14 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <p className="leading-relaxed text-ink/80">{city.intro}</p>
-            <p className="mt-4 leading-relaxed text-ink/80">{city.note}</p>
-            <h2 className="mt-10 font-display text-3xl">שכונות {city.inName}</h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
+            <div className="space-y-4 text-[1.08rem] leading-[1.85] text-ink-soft">
+              {city.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+
+            <h2 className="mt-11 font-display text-2xl font-bold text-ink sm:text-3xl">
+              שכונות {city.inName}
+            </h2>
+            <div className="gold-rule mt-4 w-full max-w-sm" />
+            {/* The pill the service pages use for their "מתאים ל" list: one
+                width for all of them, taken from the longest name. */}
+            <ul className="mt-6 flex flex-wrap gap-3">
               {city.neighborhoods.map((n) => (
-                <li key={n} className="rounded-full bg-cream px-3 py-1 text-sm">
+                <li
+                  key={n}
+                  style={{ width: neighbourhoodWidth }}
+                  className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium"
+                >
                   {n}
                 </li>
               ))}
             </ul>
-            <h2 className="mt-10 font-display text-3xl">שירותים {city.inName}</h2>
-            <ul className="mt-4 space-y-3">
+
+            <h2 className="mt-11 font-display text-2xl font-bold text-ink sm:text-3xl">
+              שירותים {city.inName}
+            </h2>
+            <div className="gold-rule mt-4 w-full max-w-sm" />
+            <ul className="mt-6 space-y-4">
               {SERVICES.map((service) => (
                 <li key={service.slug}>
-                  <Link href={`/services/${service.slug}`} className="font-semibold text-gold">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="font-display text-[1.1rem] font-bold text-gold transition-colors hover:text-gold-soft"
+                  >
                     {service.title} {city.inName}
                   </Link>
-                  <p className="text-sm text-ink/70">{service.description}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">
+                    {service.description}
+                  </p>
                 </li>
               ))}
             </ul>
           </div>
-          <aside className="form-card h-fit p-6 sm:p-7">
-            <h2 className="font-display text-2xl">הזמנה {city.toName}</h2>
+          <aside className="h-fit rounded-[20px] border border-[rgba(212,175,55,0.35)] bg-white/90 p-7 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-[10px]">
+            <h2 className="font-display text-[1.4rem] font-bold text-[#1A1A1A]">
+              הזמנת שירות {city.inName}
+            </h2>
+            <p className="mt-2 text-[14px] leading-relaxed text-[#666666]">
+              משאירים פרטים או שולחים תמונה בוואטסאפ להצעת מחיר מדויקת
+            </p>
+            <div className="gold-line mt-5 w-28" />
             <div className="mt-6">
-              <ContactForm source={`city-${city.slug}`} defaultCity={city.name} />
+              <ContactForm
+                source={`city-${city.slug}`}
+                tone="light"
+                defaultCity={city.name}
+              />
             </div>
           </aside>
         </div>

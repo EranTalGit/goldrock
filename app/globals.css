@@ -954,20 +954,20 @@ html.a11y-contrast-light img {
 
 /* Light twin of .field-dark, for the form on the contact page. */
 .field-light {
-  background: #faf8f5;
-  border: 1px solid #e2dbcf;
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.25);
   color: #1a1a1a;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .field-light::placeholder {
-  color: rgba(26, 26, 26, 0.4);
+  color: #888888;
 }
 
 .field-light:focus {
   outline: none;
   border-color: #d4af37;
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
 select.field-light {
