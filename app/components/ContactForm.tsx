@@ -6,7 +6,7 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 
 const initial: LeadState = { ok: false, message: "" };
 
-const field = "field-dark mt-2 w-full rounded-xl px-4 py-3";
+const field = "field-dark mt-1.5 w-full rounded-xl px-4 py-2.5";
 const label = "block text-right text-[15px] font-medium tracking-wide text-[#E8E2D4]";
 
 const TONE_CLASS: Record<string, string> = {
@@ -30,9 +30,9 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
   const tone = state.tone ?? (state.ok ? "success" : "error");
 
   return (
-    <form action={action} className="form-dark space-y-4">
+    <form action={action} className="form-dark space-y-3">
       <input type="hidden" name="source" value={source} />
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2">
         <label className={label}>
           שם מלא
           <Required />
@@ -52,7 +52,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
           />
         </label>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2">
         <label className={label}>
           עיר
           <select name="city" className={field} defaultValue="">
@@ -80,7 +80,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
         הודעה / סוג הרצפה
         <textarea
           name="message"
-          rows={4}
+          rows={3}
           className={field}
           placeholder="סוג הרצפה, גודל בערך, מתי נוח"
         />
@@ -93,7 +93,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
       <button
         type="submit"
         disabled={pending}
-        className="btn-gold-metal arrow-link w-full rounded-xl py-4 text-base"
+        className="btn-gold-metal arrow-link w-full rounded-xl py-3.5 text-base"
       >
         {pending ? "שולחים..." : <>שלחו הצעת מחיר <span className="arrow">←</span></>}
       </button>

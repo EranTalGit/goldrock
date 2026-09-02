@@ -45,24 +45,24 @@ export default function Home() {
               אודות
             </p>
             {/* Break held at "עד" so the name sits on its own line. */}
-            <h2 className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
+            <h2 className="mt-3 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
               גולדרוק - מטפלים באבן
               <br />
               עד שהיא מחזירה אור
             </h2>
-            <div className="gold-rule mx-auto mt-6 w-full max-w-sm" />
+            <div className="gold-rule mx-auto mt-5 w-full max-w-sm" />
 
             {/* The owner's line, set apart so it reads as someone speaking. */}
-            <blockquote className="mx-auto mt-6 max-w-xl text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
+            <blockquote className="mx-auto mt-5 max-w-xl text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
               אנחנו לא רק &quot;מנקים&quot; או &quot;מבריקים&quot; רצפות - אנחנו מתייחסים לכל אבן ושיש כאל יצירת אומנות טבעית.
             </blockquote>
 
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
               חברת Goldrock מתמחה בפתרונות ליטוש, קריסטליזציה ושחזור משטחי שיש, אבן טבעית וגרניט פורצלן ברמת פרימיום. אנו משלבים טכנולוגיית ליטוש יהלום חדשנית לצד עבודה קפדנית ללא אבק, תוך שמירה מוחלטת על
               <br />
               הנכס והציוד שלכם.
             </p>
-            <ul className="mx-auto mt-7 w-fit max-w-full space-y-5 text-right">
+            <ul className="mx-auto mt-6 w-fit max-w-full space-y-4 text-right">
               {highlights.map((item) => (
                 <li key={item.strong} className="flex items-center gap-4">
                   <span
@@ -82,23 +82,23 @@ export default function Home() {
             {/* The full story lives on its own page; this stays the summary. */}
             <Link
               href="/about"
-              className="arrow-link mt-7 inline-flex items-center gap-2 text-[17px] font-semibold text-gold transition-colors hover:text-gold-soft"
+              className="arrow-link mt-6 inline-flex items-center gap-2 text-[17px] font-semibold text-gold transition-colors hover:text-gold-soft"
             >
               קראו עוד על הסיפור שלנו <span className="arrow">←</span>
             </Link>
           </div>
-          <div className="form-card p-7 sm:p-9">
-            <p className="gold-metal text-center font-display text-3xl font-bold leading-tight">
+          <div className="form-card p-6 sm:p-7">
+            <p className="gold-metal text-center font-display text-2xl font-bold leading-tight">
               צרו קשר
             </p>
-            <h3 className="mt-2 text-center font-display text-xl font-bold text-white sm:text-2xl">
+            <h3 className="mt-1.5 text-center font-display text-lg font-bold text-white sm:text-xl">
               השאירו פרטים להצעת מחיר
             </h3>
-            <div className="gold-line mx-auto mt-5 w-40" />
-            <p className="mt-4 text-center text-sm text-[#E8E2D4]/70">
+            <div className="gold-line mx-auto mt-4 w-40" />
+            <p className="mt-3 text-center text-[13px] text-[#E8E2D4]/70">
               שם וטלפון מספיקים. אפשר להוסיף עיר וסוג שירות.
             </p>
-            <div className="mt-7">
+            <div className="mt-5">
               <ContactForm source="home" />
             </div>
           </div>
