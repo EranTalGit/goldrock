@@ -8,6 +8,7 @@ import {
 } from "@/lib/site";
 import InnerHero from "../components/InnerHero";
 import ContactForm from "../components/ContactForm";
+import SectionHeading from "../components/SectionHeading";
 import { PhoneIcon, WhatsAppIcon } from "../components/icons";
 
 const title = "צור קשר והזמנת פוליש";
@@ -27,25 +28,22 @@ const cardClass =
 export default function ContactPage() {
   return (
     <>
-      {/* No eyebrow here - "דברו איתנו" leads the section below instead. */}
+      {/* No eyebrow here - "צור קשר" leads the section below instead. */}
       <InnerHero
-        title="צור קשר"
+        title="דברו איתנו"
         tagline="נשמח לשמוע מכם, ולחזור אליכם עם תשובה ברורה"
         note="זמינים בכל גוש דן, בטלפון ובוואטסאפ, גם בשעות הערב"
       />
 
       <section className="bg-[#FAF6F0] text-ink">
         <div className="mx-auto max-w-6xl px-4 py-[45px] sm:px-6">
-          {/* One heading over both columns. */}
-          <div className="text-center">
-            <h2 className="gold-metal font-display text-[2rem] font-bold leading-tight sm:text-[2.4rem]">
-              דברו איתנו
-            </h2>
-            {/* Wide enough to hold the sentence on one line on a desktop. */}
-            <p className="mx-auto mt-5 max-w-4xl text-[1.12rem] leading-relaxed text-[#666059]">
-              הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות
-            </p>
-          </div>
+          {/* The same opener every other section uses: gold label, dark line,
+              gold rule, then the copy. */}
+          <SectionHeading
+            label="צור קשר"
+            title="בוחרים את הדרך שנוחה לכם"
+            description="הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות"
+          />
 
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="text-center">
@@ -57,9 +55,9 @@ export default function ContactPage() {
                 מעדיפים מענה מיידי? שלחו תמונה של הרצפה בוואטסאפ לקבלת הצעת מחיר מדויקת במקום.
               </p>
 
-              {/* Held to about two thirds of the column, so the routes read
-                  as buttons rather than as full-width bands. */}
-              <div className="mx-auto mt-6 max-w-sm space-y-4 text-right">
+              {/* Held short of the column width, so the routes read as
+                  buttons rather than as full-width bands. */}
+              <div className="mx-auto mt-6 max-w-[26rem] space-y-4 text-right">
               <a
                 href={whatsappLink(DEFAULT_WA_MESSAGE)}
                 target="_blank"
