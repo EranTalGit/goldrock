@@ -38,12 +38,15 @@ export default function ContactForm({
   defaultService = "",
   /** Likewise for the city, on a city page. */
   defaultCity = "",
+  /** Lays the short answers across one row, for a full-width band. */
+  wide = false,
 }: {
   source?: string;
   tone?: "dark" | "light";
   compact?: boolean;
   defaultService?: string;
   defaultCity?: string;
+  wide?: boolean;
 }) {
   const [state, action, pending] = useActionState(submitLead, initial);
   const replyTone = state.tone ?? (state.ok ? "success" : "error");
@@ -58,7 +61,9 @@ export default function ContactForm({
     <form action={action} className={`${light ? "" : "form-dark"} space-y-3`}>
       <input type="hidden" name="source" value={source} />
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      {/* Wide puts the three short answers on one row and carries the city
+          along hidden, since a page that sets it has already answered it. */}
+      <div className={`grid gap-3 ${wide ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
         <label className={label}>
           שם מלא
           <Required />
@@ -77,35 +82,53 @@ export default function ContactForm({
             dir="ltr"
           />
         </label>
-      </div>
-
-      <div className={compact ? "" : "grid gap-3 sm:grid-cols-2"}>
-        {compact ? null : (
+        {wide ? (
           <label className={label}>
-            עיר
-            <select name="city" className={field} defaultValue={defaultCity}>
+            סוג השירות
+            <select name="service" className={field} defaultValue={defaultService}>
               <option value="">בחירה</option>
-              {CITIES.map((city) => (
-                <option key={city.slug} value={city.name}>
-                  {city.name}
+              {SERVICES.map((service) => (
+                <option key={service.slug} value={service.title}>
+                  {service.title}
                 </option>
               ))}
+              <option value="אחר">אחר</option>
             </select>
           </label>
-        )}
-        <label className={label}>
-          סוג השירות
-          <select name="service" className={field} defaultValue={defaultService}>
-            <option value="">בחירה</option>
-            {SERVICES.map((service) => (
-              <option key={service.slug} value={service.title}>
-                {service.title}
-              </option>
-            ))}
-            <option value="אחר">אחר</option>
-          </select>
-        </label>
+        ) : null}
       </div>
+
+      {wide ? (
+        <input type="hidden" name="city" value={defaultCity} />
+      ) : (
+        <div className={compact ? "" : "grid gap-3 sm:grid-cols-2"}>
+          {compact ? null : (
+            <label className={label}>
+              עיר
+              <select name="city" className={field} defaultValue={defaultCity}>
+                <option value="">בחירה</option>
+                {CITIES.map((city) => (
+                  <option key={city.slug} value={city.name}>
+                    {city.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          <label className={label}>
+            סוג השירות
+            <select name="service" className={field} defaultValue={defaultService}>
+              <option value="">בחירה</option>
+              {SERVICES.map((service) => (
+                <option key={service.slug} value={service.title}>
+                  {service.title}
+                </option>
+              ))}
+              <option value="אחר">אחר</option>
+            </select>
+          </label>
+        </div>
+      )}
 
       <label className={label}>
         הודעה / סוג הרצפה

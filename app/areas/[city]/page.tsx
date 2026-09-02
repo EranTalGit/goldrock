@@ -108,7 +108,9 @@ export default async function CityPage({
           />
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-12 pt-14 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
+        {/* One measured column rather than two: the form beside the copy was
+            far shorter than it, and left the page hanging open below it. */}
+        <div className="mx-auto max-w-[900px] px-4 pb-12 pt-14 sm:px-6">
           <div>
             <div className="space-y-4 text-[1.08rem] leading-[1.85] text-ink-soft">
               {city.body.map((paragraph) => (
@@ -154,22 +156,28 @@ export default async function CityPage({
               ))}
             </ul>
           </div>
-          <aside className="h-fit rounded-[20px] border border-[rgba(212,175,55,0.35)] bg-white/90 p-7 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-[10px]">
-            <h2 className="font-display text-[1.4rem] font-bold text-[#1A1A1A]">
-              הזמנת שירות {city.inName}
+        </div>
+
+        {/* The form runs the width of the page, under everything it needs to
+            be read after. */}
+        <div className="mx-auto max-w-[900px] px-4 pb-[55px] sm:px-6">
+          <div className="rounded-[20px] border border-[rgba(212,175,55,0.35)] bg-white/95 p-7 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-[10px] sm:p-[35px]">
+            <h2 className="text-center font-display text-[1.4rem] font-bold leading-snug text-[#1A1A1A] sm:text-[1.6rem]">
+              רוצים הצעת מחיר מדויקת לפוליש {city.inName}? תאמו עכשיו
             </h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-[#666666]">
+            <p className="mt-3 text-center text-[15px] leading-relaxed text-[#666666]">
               משאירים פרטים או שולחים תמונה בוואטסאפ להצעת מחיר מדויקת
             </p>
-            <div className="gold-line mt-5 w-28" />
-            <div className="mt-6">
+            <div className="gold-rule mx-auto mt-5 w-full max-w-xs" />
+            <div className="mt-7">
               <ContactForm
                 source={`city-${city.slug}`}
                 tone="light"
+                wide
                 defaultCity={city.name}
               />
             </div>
-          </aside>
+          </div>
         </div>
       </section>
       <CtaBand title={`פוליש ${city.inName} - מתחילים בתמונה`} />
