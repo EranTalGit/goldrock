@@ -60,9 +60,8 @@ export default function ServicesShowcase() {
                       >
                         {service.title}
                       </span>
-                      <span className="me-auto rounded-full border border-gold/30 bg-white/60 px-3 py-1 text-[11px] font-medium text-ink-soft">
-                        {service.tag}
-                      </span>
+                      {/* The tag lives on the preview instead: one at a
+                          time reads as a caption, six read as clutter. */}
                     </span>
 
                     {/* Detail unfurls only for the active row. */}
@@ -102,11 +101,16 @@ export default function ServicesShowcase() {
                 }`}
               />
             ))}
-            <div className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-black/45 px-6 py-5 backdrop-blur-md">
+            <span className="absolute right-5 top-5 rounded-full border border-gold/50 bg-black/55 px-4 py-1.5 text-[11px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
+              {SERVICES[active].tag}
+            </span>
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 border-t border-white/15 bg-black/45 px-6 py-5 backdrop-blur-md">
               <p className="font-display text-lg font-bold text-white">
                 {SERVICES[active].title}
               </p>
-              <p className="mt-1 text-sm text-white/70">{SERVICES[active].tag}</p>
+              <span className="font-display text-sm font-bold text-gold-soft">
+                0{active + 1}
+              </span>
             </div>
           </div>
         </div>
@@ -126,6 +130,9 @@ export default function ServicesShowcase() {
                   sizes="78vw"
                   className="object-cover"
                 />
+                <span className="absolute right-3 top-3 rounded-full border border-gold/50 bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
+                  {service.tag}
+                </span>
               </div>
               <div className="relative p-5">
                 <span className="font-display text-xs font-bold text-gold">0{i + 1}</span>
