@@ -34,10 +34,13 @@ export default function ContactForm({
   tone = "dark",
   /** Drops the city field, for the shorter contact-page version. */
   compact = false,
+  /** Preselects the service, so a service page arrives already answered. */
+  defaultService = "",
 }: {
   source?: string;
   tone?: "dark" | "light";
   compact?: boolean;
+  defaultService?: string;
 }) {
   const [state, action, pending] = useActionState(submitLead, initial);
   const replyTone = state.tone ?? (state.ok ? "success" : "error");
@@ -89,7 +92,7 @@ export default function ContactForm({
         )}
         <label className={label}>
           סוג השירות
-          <select name="service" className={field} defaultValue="">
+          <select name="service" className={field} defaultValue={defaultService}>
             <option value="">בחירה</option>
             {SERVICES.map((service) => (
               <option key={service.slug} value={service.title}>

@@ -270,10 +270,14 @@ export default async function ServicePage({
             </h2>
             <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
             <p className="mx-auto mt-4 max-w-md text-center text-[15px] leading-relaxed text-[#666059]">
-              משאירים שם וטלפון, או שולחים תמונה של הרצפה בוואטסאפ ומקבלים כיוון מחיר עוד באותו יום.
+              משאירים שם וטלפון, או שולחים תמונה של הרצפה בוואטסאפ ומקבלים הצעת מחיר עוד באותו יום.
             </p>
             <div className="mt-6">
-              <ContactForm source={`service-${service.slug}`} tone="light" />
+              <ContactForm
+                source={`service-${service.slug}`}
+                tone="light"
+                defaultService={service.title}
+              />
             </div>
           </div>
         </div>

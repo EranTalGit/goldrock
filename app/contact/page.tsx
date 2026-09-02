@@ -72,7 +72,7 @@ export default function ContactPage() {
                     וואטסאפ מהיר
                   </span>
                   <span className="mt-1 block text-[15px] text-[#666059]">
-                    שלחו תמונה וקבלו כיוון מחיר
+                    שלחו תמונה וקבלו הצעת מחיר
                   </span>
                 </span>
                 <span className="arrow-link shrink-0 text-[16px] font-semibold text-gold">

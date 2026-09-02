@@ -79,7 +79,7 @@ export default async function CityPage({
         eyebrow={city.name}
         title={`פוליש לשיש ${city.inName}`}
         tagline={`ליטוש, הברקה וחידוש מדרגות ${city.inName} ובשכונות הסמוכות`}
-        note="שולחים תמונה של הרצפה ומקבלים כיוון מחיר עוד באותו יום"
+        note="שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום"
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "אזורי שירות", href: "/areas" },
