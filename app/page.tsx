@@ -2,6 +2,7 @@ import Link from "next/link";
 import Hero from "./components/Hero";
 import WhyUs from "./components/WhyUs";
 import Process from "./components/Process";
+import BlogTeaser from "./components/BlogTeaser";
 import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import Areas from "./components/Areas";
@@ -109,6 +110,7 @@ export default function Home() {
         </div>
       </section>
       <FaqSection items={HOME_FAQ} moreHref="/faq" />
+      <BlogTeaser />
       <CtaBand />
     </>
   );
