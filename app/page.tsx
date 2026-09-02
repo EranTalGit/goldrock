@@ -43,21 +43,24 @@ export default function Home() {
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
             </p>
+            {/* Break held at "עד" so the name sits on its own line. */}
             <h2 className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
-              גולדרוק - מטפלים באבן עד שהיא מחזירה אור
+              גולדרוק - מטפלים באבן
+              <br />
+              עד שהיא מחזירה אור
             </h2>
-            <div className="gold-rule mt-6 w-full max-w-sm" />
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              Goldrock הוקמה מתוך תשוקה לאבנים טבעיות ולמבנים מרהיבים. אנו מתמחים במתן שירותי פוליש וליטוש ברמה הגבוהה ביותר, תוך דגש על דיוק, ניקיון, עמידה בזמנים ושקיפות מלאה. בלי הבטחות סרק ובלי דירוגים מומצאים - רק עבודה מקצועית על שיש, מדרגות, מרצפות ופורצלן עם אחריות מלאה על התוצאה.
+            <div className="gold-rule mt-7 w-full max-w-sm" />
+            <p className="mt-7 text-base leading-relaxed text-ink-soft sm:text-lg">
+              חברת Goldrock מתמחה באומנות הטיפול, הליטוש והחידוש של משטחי אבן טבעית, שיש ופורצלן מהיוקרתיים בישראל. אנו משלבים טכנולוגיה מתקדמת של ליטוש יהלום וקריסטליזציה לצד עבודת יד קפדנית, תוך שמירה מלאה על תכניות העבודה, ניקיון הסביבה ודיוק ללא פשרות. עבורנו, כל רצפה ומשטח הם יצירת אמנות שראויה לקבל את הברק, העומק וההגנה המקסימליים.
             </p>
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-9 space-y-7">
               {highlights.map((item) => (
                 <li key={item.strong} className="flex items-start gap-4">
                   <span
                     aria-hidden
-                    className="trust-badge mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-gold"
+                    className="trust-badge mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-gold"
                   >
-                    <ServiceIcon name={item.icon} width={22} height={22} />
+                    <ServiceIcon name={item.icon} width={24} height={24} />
                   </span>
                   <span className="text-[16px] leading-relaxed text-ink-soft">
                     <strong className="font-bold text-gold">{item.strong}</strong>{" "}
