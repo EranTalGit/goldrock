@@ -152,12 +152,12 @@ export default function Testimonials() {
 
                   <span
                     aria-hidden
-                    className="mt-2 font-display text-[2.6rem] leading-[0.6] text-[#DDD6C9]"
+                    className="mt-10 font-display text-[2.6rem] leading-[0.4] text-[#DDD6C9]"
                   >
                     &rdquo;
                   </span>
 
-                  <blockquote className="mt-3 flex-1 text-[15px] leading-[1.75] text-[#333333]">
+                  <blockquote className="mt-0.5 flex-1 text-[15px] leading-[1.75] text-[#333333]">
                     {item.quote}
                   </blockquote>
 
