@@ -19,7 +19,7 @@ export default function CtaBand({
           <h2 className="font-display text-[2.2rem] font-bold leading-tight text-[#1A1A1A]">
             {title}
           </h2>
-          <p className="mt-4 max-w-xl text-[1.05rem] leading-relaxed text-[#666059]">
+          <p className="mt-4 max-w-xl text-[1.05rem] font-normal leading-relaxed text-[#55504A]">
             {text}
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function CtaBand({
 
           <a
             href={PHONE_HREF}
-            className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-[#D4AF37] px-7 py-4 font-semibold text-[#2C2416] transition-all hover:-translate-y-0.5 hover:bg-[rgba(212,175,55,0.12)]"
+            className="inline-flex items-center justify-center gap-2.5 rounded-xl border-[1.5px] border-[#D4AF37] px-7 py-4 font-semibold text-[#2C2416] transition-all hover:-translate-y-0.5 hover:bg-[rgba(212,175,55,0.12)]"
           >
             <PhoneIcon width={19} height={19} />
             <span dir="ltr">{PHONE_DISPLAY}</span>

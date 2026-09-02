@@ -1,4 +1,4 @@
-import { BENEFITS, DEFAULT_WA_MESSAGE, PHONE_DISPLAY, PHONE_HREF, whatsappLink } from "@/lib/site";
+import { BENEFITS, DEFAULT_WA_MESSAGE, whatsappLink } from "@/lib/site";
 import { ServiceIcon, WhatsAppIcon } from "./icons";
 import SectionHeading from "./SectionHeading";
 
@@ -38,24 +38,16 @@ export default function WhyUs() {
           <p className="text-center text-[15px] text-ink-soft">
             שולחים תמונה של הרצפה ומקבלים הערכת מחיר, בלי התחייבות.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href={whatsappLink(DEFAULT_WA_MESSAGE)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold-metal arrow-link inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[15px]"
-            >
-              <WhatsAppIcon width={19} height={19} />
-              לקבלת הצעת מחיר בוואטסאפ <span className="arrow">←</span>
-            </a>
-            <a
-              href={PHONE_HREF}
-              className="inline-flex items-center rounded-xl border border-gold/50 px-7 py-3.5 text-[15px] font-semibold text-gold transition-all hover:-translate-y-0.5 hover:bg-gold/10"
-              dir="ltr"
-            >
-              {PHONE_DISPLAY}
-            </a>
-          </div>
+          {/* One route only, matching the closing CTA's primary button. */}
+          <a
+            href={whatsappLink(DEFAULT_WA_MESSAGE)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="arrow-link inline-flex items-center gap-2.5 rounded-xl bg-[#D4AF37] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_4px_18px_rgba(212,175,55,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#e0bd4a] hover:shadow-[0_8px_26px_rgba(212,175,55,0.42)]"
+          >
+            <WhatsAppIcon width={19} height={19} />
+            לקבלת הצעת מחיר בוואטסאפ <span className="arrow">←</span>
+          </a>
         </div>
       </div>
     </section>
