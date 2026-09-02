@@ -189,104 +189,7 @@ h3,
   border-radius: 999px;
 }
 
-/* Solid white card on the off-white section backgrounds. */
-.card-soft {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.card-soft:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lift);
-}
-
-/* Gold rule across the top edge of the benefit cards. */
-.card-topline {
-  border-top: 3px solid var(--gold-soft);
-}
-
-/* Benefit cards: pearl white behind a hairline of gold. */
-.card-premium {
-  background: #ffffff;
-  border: 1px solid rgba(197, 160, 89, 0.25);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.card-premium:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(197, 160, 89, 0.2);
-  border-color: rgba(197, 160, 89, 0.55);
-}
-
-/* The one card we want the eye to land on. */
-.card-premium-featured {
-  border: 1.5px solid var(--gold);
-  box-shadow: 0 10px 30px rgba(197, 160, 89, 0.12);
-}
-
-.card-premium-featured:hover {
-  box-shadow: 0 18px 44px rgba(197, 160, 89, 0.26);
-}
-
-/* ---- Option A: bento ---- */
-
-.card-bento {
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid rgba(197, 160, 89, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.card-bento:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: 0 16px 40px rgba(197, 160, 89, 0.2);
-}
-
-.card-bento-dark {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 80% 0%, rgba(197, 160, 89, 0.22), transparent 55%),
-    linear-gradient(160deg, #1d1d1d 0%, #161616 55%, #101010 100%);
-  border: 1px solid var(--gold);
-  border-radius: 16px;
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-bento-dark:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 54px rgba(197, 160, 89, 0.32);
-}
-
-/* Oversized index sitting behind the content for depth. */
-.bento-num {
-  position: absolute;
-  bottom: -0.28em;
-  left: 0.12em;
-  font-size: 9rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  user-select: none;
-  color: rgba(197, 160, 89, 0.09);
-}
-
-.bento-num-dark {
-  color: rgba(212, 175, 55, 0.14);
-}
-
-/* ---- Option B: mirror glass ---- */
+/* Mirror-glass cards used by the benefits grid. */
 
 .card-mirror {
   position: relative;
@@ -331,51 +234,6 @@ h3,
 .card-mirror:hover::before {
   opacity: 1;
   filter: brightness(1.25) drop-shadow(0 0 10px rgba(212, 175, 55, 0.55));
-  transform: rotate(-38deg) translateX(14px);
-}
-
-/* Dark twin of the mirror card, for the lead tile. */
-.card-mirror-dark {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 80% 0%, rgba(197, 160, 89, 0.22), transparent 55%),
-    linear-gradient(160deg, #1d1d1d 0%, #161616 55%, #101010 100%);
-  border: 1px solid var(--gold);
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.card-mirror-dark:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 26px 56px rgba(197, 160, 89, 0.3);
-}
-
-.card-mirror-dark::before {
-  content: "";
-  position: absolute;
-  top: -58px;
-  left: -110px;
-  width: 260px;
-  height: 130px;
-  transform: rotate(-38deg);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(212, 175, 55, 0.45) 35%,
-    #f0dfa8 50%,
-    rgba(212, 175, 55, 0.45) 65%,
-    transparent 100%
-  );
-  opacity: 0.6;
-  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
-  pointer-events: none;
-}
-
-.card-mirror-dark:hover::before {
-  opacity: 0.95;
-  filter: brightness(1.3) drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
   transform: rotate(-38deg) translateX(14px);
 }
 
@@ -565,7 +423,7 @@ select.field-dark option:checked {
     animation: none;
   }
 
-  .card-soft:hover,
+  .card-mirror:hover,
   .card-glass:hover,
   .chip:hover {
     transform: none;

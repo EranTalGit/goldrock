@@ -89,7 +89,7 @@ const jsonLd = {
       url: SITE_URL,
       telephone: PHONE_INTL,
       image: `${SITE_URL}/assets/og.webp`,
-      logo: `${SITE_URL}/assets/logo-mark.png`,
+      logo: `${SITE_URL}/assets/logo-gr-v2.png`,
       slogan: TAGLINE,
       priceRange: "₪₪",
       areaServed: SERVICE_AREAS.map((name) => ({
