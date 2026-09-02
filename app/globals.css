@@ -149,8 +149,8 @@ h3,
   );
   background-size: 260% 100%;
   background-repeat: no-repeat;
-  /* Parked off the leading (right) edge until hovered. */
-  background-position: -160% 0;
+  /* Parked just off the leading (right) edge until hovered. */
+  background-position: -10% 0;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -162,10 +162,10 @@ h3,
 
 @keyframes shine-sweep {
   from {
-    background-position: 160% 0;
+    background-position: 5% 0;
   }
   to {
-    background-position: -160% 0;
+    background-position: 95% 0;
   }
 }
 

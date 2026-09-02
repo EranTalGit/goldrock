@@ -7,7 +7,7 @@ import { PhoneIcon, ServiceIcon, WhatsAppIcon } from "./icons";
  */
 export default function CtaBand({
   title = "רוצים רצפה שמחזירה ברק?",
-  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות.",
+  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות",
   /** Word to gild in the heading. Ignored when the title lacks it. */
   highlight = "ברק?",
 }: {
