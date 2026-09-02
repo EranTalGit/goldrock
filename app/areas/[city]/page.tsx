@@ -76,10 +76,12 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* The hero names the section, exactly as on the areas index. The city
-          names itself in the heading block below, which carries the h1. */}
+      {/* The hero is the areas index hero, with the city's name as the only
+          thing marking which page you are on. The city names itself again in
+          the heading block below, which carries the h1. */}
       <InnerHero
         headingAs="p"
+        eyebrow={city.name}
         title="פוליש וליטוש בכל גוש דן"
         tagline="כל עיר עם דף משלה: שכונות, שירותים מקומיים והזמנה מהירה"
         note="מגיעים בתיאום מראש לבתים פרטיים, לדירות ולבנייני מגורים בכל האזור, ללא אבק"
