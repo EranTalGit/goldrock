@@ -173,7 +173,9 @@ export default async function BlogPostPage({
       </article>
 
       {/* Where to go next: two pieces, each with its picture beside it. */}
-      <section className="border-t border-[rgba(212,175,55,0.25)] bg-[#FAF6F0] text-ink">
+      {/* The lighter ground the article sits on, carried through to the end
+          of the page; the gold hairline is all that marks the boundary. */}
+      <section className="border-t border-[rgba(212,175,55,0.25)] bg-paper text-ink">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
           <h2 className="text-center font-display text-xl font-bold text-ink sm:text-2xl">
             להמשך קריאה
