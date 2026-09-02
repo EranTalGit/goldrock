@@ -87,19 +87,23 @@ export default function Home() {
               קראו עוד על הסיפור שלנו <span className="arrow">←</span>
             </Link>
           </div>
-          <div className="form-card p-6 sm:p-7">
+          {/* Solid white rather than a dark panel: the charcoal card sat
+              heavily on the cream section, the same reason the dark box came
+              out of the closing band. A firmer gold edge and shadow keep it
+              the loudest thing here without the weight. */}
+          <div className="rounded-2xl border border-[rgba(212,175,55,0.35)] bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.07)] sm:p-8">
             <p className="gold-metal text-center font-display text-2xl font-bold leading-tight">
               צרו קשר
             </p>
-            <h3 className="mt-1.5 text-center font-display text-lg font-bold text-white sm:text-xl">
+            <h3 className="mt-1.5 text-center font-display text-lg font-bold text-[#1A1A1A] sm:text-xl">
               השאירו פרטים להצעת מחיר
             </h3>
             <div className="gold-line mx-auto mt-4 w-40" />
-            <p className="mt-3 text-center text-[13px] text-[#E8E2D4]/70">
+            <p className="mt-3 text-center text-[13px] text-[#6B655C]">
               שם וטלפון מספיקים. אפשר להוסיף עיר וסוג שירות.
             </p>
             <div className="mt-5">
-              <ContactForm source="home" />
+              <ContactForm source="home" tone="light" />
             </div>
           </div>
         </div>
