@@ -43,7 +43,7 @@ export default function ContactPage() {
             </h2>
             {/* Wide enough to hold the sentence on one line on a desktop. */}
             <p className="mx-auto mt-5 max-w-4xl text-[1.12rem] leading-relaxed text-[#666059]">
-              הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות.
+              הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות
             </p>
           </div>
 
