@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <LogoMark size={62} />
             <Image
-              src="/assets/logo-wordmark-v3.png"
+              src="/assets/logo-wordmark-v4.png"
               alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
               width={1050}
               height={385}
