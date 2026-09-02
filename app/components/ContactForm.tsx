@@ -7,7 +7,7 @@ import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 const initial: LeadState = { ok: false, message: "" };
 
 const field = "field-dark mt-1.5 w-full rounded-xl px-4 py-3";
-const label = "block text-sm font-medium text-[#E8E2D4]";
+const label = "block text-sm font-medium tracking-wide text-[#E8E2D4]";
 
 export default function ContactForm({ source = "contact-form" }: { source?: string }) {
   const [state, action, pending] = useActionState(submitLead, initial);
@@ -61,7 +61,7 @@ export default function ContactForm({ source = "contact-form" }: { source?: stri
       <button
         type="submit"
         disabled={pending}
-        className="btn-gold arrow-link w-full rounded-xl py-4 text-base disabled:opacity-60"
+        className="btn-gold-metal arrow-link w-full rounded-xl py-4 text-base"
       >
         {pending ? "שולחים..." : <>שלחו הצעת מחיר <span className="arrow">←</span></>}
       </button>

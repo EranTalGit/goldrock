@@ -110,7 +110,7 @@ export default async function CityPage({
               ))}
             </ul>
           </div>
-          <aside className="h-fit rounded-2xl bg-obsidian p-6 text-cream">
+          <aside className="form-card h-fit p-6 sm:p-7">
             <h2 className="font-display text-2xl">הזמנה {city.toName}</h2>
             <div className="mt-6">
               <ContactForm source={`city-${city.slug}`} />

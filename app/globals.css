@@ -526,18 +526,19 @@ h3,
 }
 
 .field-dark {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(197, 160, 89, 0.22);
   color: #f5f5f7;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .field-dark::placeholder {
-  color: rgba(245, 245, 247, 0.4);
+  color: rgba(232, 226, 212, 0.45);
 }
 
 .field-dark:focus {
   outline: none;
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--gold);
   box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
 }
@@ -630,6 +631,73 @@ select.field-dark option:checked {
   }
 
   .city-mirror::after {
+    display: none;
+  }
+}
+
+/* ---- About + contact ---- */
+
+/* Dark glass panel holding the quote form. */
+.form-card {
+  background: linear-gradient(160deg, rgba(28, 28, 28, 0.96), rgba(18, 18, 18, 0.95));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Trust marks beside the about copy. */
+.trust-badge {
+  background: rgba(197, 160, 89, 0.1);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Solid metallic gold, with a highlight that crosses it on hover. */
+.btn-gold-metal {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #c5a059 0%, #d4af37 50%, #b38b42 100%);
+  color: #161616;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-gold-metal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 45%;
+  transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-gold-metal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.45);
+}
+
+.btn-gold-metal:hover::after {
+  left: 130%;
+}
+
+.btn-gold-metal:disabled {
+  opacity: 0.6;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gold-metal:hover {
+    transform: none;
+  }
+
+  .btn-gold-metal::after {
     display: none;
   }
 }

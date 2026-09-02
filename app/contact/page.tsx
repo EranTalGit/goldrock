@@ -50,7 +50,7 @@ export default function ContactPage() {
               הכי מדויק: שולחים תמונה של הרצפה או המדרגות. ככה אפשר להגיד אם צריך פוליש מלא, קריסטליזציה או ניקיון אחרי שיפוץ.
             </p>
           </div>
-          <div className="rounded-2xl bg-obsidian p-6 text-cream">
+          <div className="form-card p-6 sm:p-7">
             <h2 className="font-display text-2xl">טופס קצר</h2>
             <div className="mt-6">
               <ContactForm source="contact-page" />

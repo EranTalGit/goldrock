@@ -153,7 +153,7 @@ export default async function ServicePage({
               ))}
             </div>
           </div>
-          <aside className="h-fit rounded-2xl bg-obsidian p-6 text-cream">
+          <aside className="form-card h-fit p-6 sm:p-7">
             <h2 className="font-display text-2xl">הצעת מחיר ל{service.title}</h2>
             <p className="mt-2 text-sm text-muted">משאירים פרטים או שולחים תמונה בוואטסאפ.</p>
             <div className="mt-6">
