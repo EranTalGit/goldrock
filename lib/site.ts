@@ -504,9 +504,6 @@ export function getService(slug: string): Service | undefined {
 
 export type City = {
   slug: string;
-  /** Real centre, decimal degrees, for plotting on the areas map. */
-  lat: number;
-  lng: number;
   name: string;
   inName: string;
   toName: string;
@@ -518,8 +515,6 @@ export type City = {
 export const CITIES: City[] = [
   {
     slug: "tel-aviv",
-    lat: 32.0853,
-    lng: 34.7818,
     name: "תל אביב",
     inName: "בתל אביב",
     toName: "לתל אביב",
@@ -538,8 +533,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "ramat-gan",
-    lat: 32.0684,
-    lng: 34.8248,
     name: "רמת גן",
     inName: "ברמת גן",
     toName: "לרמת גן",
@@ -550,8 +543,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "givatayim",
-    lat: 32.0724,
-    lng: 34.8106,
     name: "גבעתיים",
     inName: "בגבעתיים",
     toName: "לגבעתיים",
@@ -562,8 +553,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "bnei-brak",
-    lat: 32.0807,
-    lng: 34.8338,
     name: "בני ברק",
     inName: "בבני ברק",
     toName: "לבני ברק",
@@ -574,8 +563,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "petah-tikva",
-    lat: 32.0878,
-    lng: 34.8878,
     name: "פתח תקווה",
     inName: "בפתח תקווה",
     toName: "לפתח תקווה",
@@ -586,8 +573,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "rishon-lezion",
-    lat: 31.973,
-    lng: 34.8066,
     name: "ראשון לציון",
     inName: "בראשון לציון",
     toName: "לראשון לציון",
@@ -598,8 +583,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "holon",
-    lat: 32.0117,
-    lng: 34.7725,
     name: "חולון",
     inName: "בחולון",
     toName: "לחולון",
@@ -610,8 +593,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "bat-yam",
-    lat: 32.0171,
-    lng: 34.75,
     name: "בת ים",
     inName: "בבת ים",
     toName: "לבת ים",
@@ -622,8 +603,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "herzliya",
-    lat: 32.1624,
-    lng: 34.8447,
     name: "הרצליה",
     inName: "בהרצליה",
     toName: "להרצליה",
@@ -634,8 +613,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "raanana",
-    lat: 32.1848,
-    lng: 34.8713,
     name: "רעננה",
     inName: "ברעננה",
     toName: "לרעננה",
@@ -646,8 +623,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "kfar-saba",
-    lat: 32.175,
-    lng: 34.907,
     name: "כפר סבא",
     inName: "בכפר סבא",
     toName: "לכפר סבא",
@@ -658,8 +633,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "ramat-hasharon",
-    lat: 32.1461,
-    lng: 34.8394,
     name: "רמת השרון",
     inName: "ברמת השרון",
     toName: "לרמת השרון",
@@ -670,8 +643,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "hod-hasharon",
-    lat: 32.15,
-    lng: 34.8886,
     name: "הוד השרון",
     inName: "בהוד השרון",
     toName: "להוד השרון",
@@ -682,8 +653,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "rehovot",
-    lat: 31.8942,
-    lng: 34.8117,
     name: "רחובות",
     inName: "ברחובות",
     toName: "לרחובות",
@@ -694,8 +663,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "nes-ziona",
-    lat: 31.9293,
-    lng: 34.7986,
     name: "נס ציונה",
     inName: "בנס ציונה",
     toName: "לנס ציונה",
@@ -706,8 +673,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "rosh-haayin",
-    lat: 32.0956,
-    lng: 34.9518,
     name: "ראש העין",
     inName: "בראש העין",
     toName: "לראש העין",
@@ -718,8 +683,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "yehud",
-    lat: 32.0333,
-    lng: 34.8894,
     name: "יהוד",
     inName: "ביהוד",
     toName: "ליהוד",
@@ -730,8 +693,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "or-yehuda",
-    lat: 32.03,
-    lng: 34.85,
     name: "אור יהודה",
     inName: "באור יהודה",
     toName: "לאור יהודה",
@@ -742,8 +703,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "kiryat-ono",
-    lat: 32.0553,
-    lng: 34.8555,
     name: "קרית אונו",
     inName: "בקרית אונו",
     toName: "לקרית אונו",
@@ -754,8 +713,6 @@ export const CITIES: City[] = [
   },
   {
     slug: "givat-shmuel",
-    lat: 32.0778,
-    lng: 34.8483,
     name: "גבעת שמואל",
     inName: "בגבעת שמואל",
     toName: "לגבעת שמואל",
@@ -768,38 +725,6 @@ export const CITIES: City[] = [
 
 export function getCity(slug: string): City | undefined {
   return CITIES.find((c) => c.slug === slug);
-}
-
-/** Cities grouped by region, for the columned areas layout. */
-export const CITY_REGIONS: { title: string; slugs: string[] }[] = [
-  {
-    title: "תל אביב וגוש דן",
-    slugs: ["tel-aviv", "ramat-gan", "givatayim", "bnei-brak", "holon", "bat-yam"],
-  },
-  {
-    title: "השרון והסביבה",
-    slugs: ["herzliya", "raanana", "kfar-saba", "ramat-hasharon", "hod-hasharon"],
-  },
-  {
-    title: "השפלה ובקעת אונו",
-    slugs: [
-      "rishon-lezion",
-      "petah-tikva",
-      "nes-ziona",
-      "rehovot",
-      "rosh-haayin",
-      "yehud",
-      "or-yehuda",
-      "givat-shmuel",
-      "kiryat-ono",
-    ],
-  },
-];
-
-export function citiesInRegion(slugs: string[]): City[] {
-  return slugs
-    .map((slug) => CITIES.find((c) => c.slug === slug))
-    .filter((c): c is City => Boolean(c));
 }
 
 export const STATS = [

@@ -17,31 +17,33 @@ export default function Process() {
     const el = ref.current;
     if (!el) return;
 
-    // Nothing to observe against if the API is missing - just show it.
-    if (typeof IntersectionObserver === "undefined") {
-      setStarted(true);
-      return;
+    const supported = typeof IntersectionObserver !== "undefined";
+
+    let observer: IntersectionObserver | undefined;
+    if (supported) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            setStarted(true);
+            observer?.disconnect();
+          }
+        },
+        // Start just before the list reaches the viewport.
+        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      );
+      observer.observe(el);
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setStarted(true);
-          observer.disconnect();
-        }
-      },
-      // Start just before the list reaches the viewport.
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+    // The steps are hidden until this runs, so never let a missed
+    // observation leave them invisible. Without the API to observe with,
+    // the same timer is what reveals them, so it fires immediately.
+    const failsafe = window.setTimeout(
+      () => setStarted(true),
+      supported ? 2500 : 0
     );
 
-    observer.observe(el);
-
-    // The steps are hidden until this runs, so never let a missed
-    // observation leave them invisible.
-    const failsafe = window.setTimeout(() => setStarted(true), 2500);
-
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       window.clearTimeout(failsafe);
     };
   }, []);
