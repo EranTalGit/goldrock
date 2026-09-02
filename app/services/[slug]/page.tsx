@@ -277,7 +277,9 @@ export default async function ServicePage({
             </h2>
             <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
             <p className="mx-auto mt-4 max-w-md text-center text-[15px] leading-relaxed text-[#666059]">
-              משאירים שם וטלפון, או שולחים תמונה של הרצפה בוואטסאפ ומקבלים הצעת מחיר עוד באותו יום.
+              משאירים שם וטלפון, או שולחים תמונה של הרצפה בוואטסאפ
+              <br />
+              ומקבלים הצעת מחיר עוד באותו יום
             </p>
             <div className="mt-6">
               <ContactForm
@@ -296,12 +298,12 @@ export default async function ServicePage({
           <h2 className="text-center font-display text-[1.3rem] font-bold text-[#1A1A1A]">
             {service.title} לפי אזור
           </h2>
-          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {CITIES.slice(0, 6).map((city) => (
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {CITIES.slice(0, 12).map((city) => (
               <li key={city.slug} className="flex">
                 <Link
                   href={`/areas/${city.slug}`}
-                  className="city-mirror flex flex-1 items-center justify-center px-5 py-3 text-center text-[15px] font-medium"
+                  className="city-mirror flex flex-1 items-center justify-center px-4 py-3 text-center text-[14px] font-medium"
                 >
                   {service.title} {city.inName}
                 </Link>
