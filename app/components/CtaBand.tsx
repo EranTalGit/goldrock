@@ -10,10 +10,13 @@ export default function CtaBand({
   text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות",
   /** Word to gild in the heading. Ignored when the title lacks it. */
   highlight = "ברק?",
+  /** Lets a page whose last band is already dark close on the light one. */
+  light = false,
 }: {
   title?: string;
   text?: string;
   highlight?: string;
+  light?: boolean;
 }) {
   // Callers pass their own titles, so only split when the word is there.
   const at = highlight ? title.indexOf(highlight) : -1;
@@ -29,7 +32,11 @@ export default function CtaBand({
     );
 
   return (
-    <section className="relative overflow-hidden border-y border-[rgba(212,175,55,0.25)] bg-[#F3ECE2]">
+    <section
+      className={`relative overflow-hidden border-y border-[rgba(212,175,55,0.25)] ${
+        light ? "bg-paper" : "bg-[#F3ECE2]"
+      }`}
+    >
       {/* Warm light pooling behind the content. */}
       <div
         aria-hidden

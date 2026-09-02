@@ -208,7 +208,9 @@ export default async function CityPage({
         </div>
       </section>
 
-      <CtaBand title={`פוליש ${city.inName} - מתחילים בתמונה`} />
+      {/* The form band above is already the darker ground, so this one
+          closes on the light. */}
+      <CtaBand light title={`פוליש ${city.inName} - מתחילים בתמונה`} />
     </>
   );
 }
