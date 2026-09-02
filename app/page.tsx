@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       </section>
       <FaqSection items={HOME_FAQ} moreHref="/faq" />
-      <CtaBand formHref="#quote" />
+      <CtaBand />
     </>
   );
 }
