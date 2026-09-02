@@ -6,29 +6,54 @@ import { CITIES, REGION_LABEL } from "@/lib/site";
 import SectionHeading from "./SectionHeading";
 
 /**
- * Option B: copy on one side, an abstract map on the other.
+ * Option B: copy on one side, a map on the other.
  *
- * The shape is decorative, not cartographic - it suggests the coast and
- * the built-up strip inland without claiming to place anywhere exactly,
- * so nobody reads a real boundary into it. Pin positions are chosen for
- * balance, and the eight named here are the busiest; the rest stay as
- * chips beneath.
+ * Cities are plotted from their real coordinates rather than placed by
+ * eye, so the relative geography is correct. The coastline is a
+ * simplified trace of the real Mediterranean shore through this window -
+ * accurate in position, not in every inlet.
  */
-const PINS = [
-  { slug: "tel-aviv", x: 30, y: 46 },
-  { slug: "ramat-gan", x: 45, y: 41 },
-  { slug: "givatayim", x: 40, y: 50 },
-  { slug: "bnei-brak", x: 52, y: 34 },
-  { slug: "petah-tikva", x: 66, y: 30 },
-  { slug: "herzliya", x: 27, y: 22 },
-  { slug: "holon", x: 32, y: 64 },
-  { slug: "rishon-lezion", x: 44, y: 76 },
+const BOUNDS = { latMin: 31.85, latMax: 32.25, lngMin: 34.68, lngMax: 34.99 };
+
+/** Equirectangular is plenty at a 30km span; scale x by cos(lat). */
+const COS_LAT = Math.cos((32.05 * Math.PI) / 180);
+const SPAN_X = (BOUNDS.lngMax - BOUNDS.lngMin) * COS_LAT;
+const SPAN_Y = BOUNDS.latMax - BOUNDS.latMin;
+const VIEW_H = Math.round((SPAN_Y / SPAN_X) * 100);
+
+function project(lat: number, lng: number) {
+  return {
+    x: ((lng - BOUNDS.lngMin) * COS_LAT * 100) / SPAN_X,
+    y: ((BOUNDS.latMax - lat) * VIEW_H) / SPAN_Y,
+  };
+}
+
+/** Real shoreline points, north to south. */
+const COAST: [number, number][] = [
+  [32.25, 34.8],
+  [32.19, 34.785],
+  [32.162, 34.79],
+  [32.13, 34.783],
+  [32.1, 34.774],
+  [32.085, 34.768],
+  [32.05, 34.755],
+  [32.017, 34.743],
+  [31.98, 34.735],
+  [31.94, 34.723],
+  [31.9, 34.706],
+  [31.85, 34.69],
 ];
 
 export default function AreasMap() {
   const [active, setActive] = useState<string | null>(null);
-  const pinned = new Set(PINS.map((p) => p.slug));
-  const rest = CITIES.filter((c) => !pinned.has(c.slug));
+
+  const coastPath = COAST.map(([lat, lng], i) => {
+    const { x, y } = project(lat, lng);
+    return `${i === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`;
+  }).join(" ");
+
+  // Close the sea off to the west so it can be filled.
+  const seaPath = `${coastPath} L0 ${VIEW_H} L0 0 Z`;
 
   return (
     <section id="areas" className="bg-paper text-ink">
@@ -46,11 +71,14 @@ export default function AreasMap() {
               צוותי המומחים של Goldrock מעניקים שירותי פוליש, ליטוש שיש, חידוש מדרגות וקריסטליזציה בפריסה רחבה. בחרו את העיר שלכם לקבלת פרטים, מענה מהיר והצעת מחיר במקום.
             </p>
 
+            {/* The full list stays reachable without hunting on the map. */}
             <div className="mt-7 flex flex-wrap justify-center gap-2 lg:justify-start">
-              {rest.map((city) => (
+              {CITIES.map((city) => (
                 <Link
                   key={city.slug}
                   href={`/areas/${city.slug}`}
+                  onMouseEnter={() => setActive(city.slug)}
+                  onMouseLeave={() => setActive(null)}
                   className="city-pill inline-flex items-center px-4 py-2 text-[13px] font-medium"
                 >
                   {city.name}
@@ -66,65 +94,57 @@ export default function AreasMap() {
             </Link>
           </div>
 
-          {/* Abstract map. */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-gold/25 bg-gradient-to-br from-[#1d1d1d] to-[#101010] shadow-[0_20px_45px_rgba(0,0,0,0.25)] sm:aspect-square lg:aspect-[4/5]">
+          <div
+            className="relative w-full overflow-hidden rounded-2xl border border-gold/25 bg-gradient-to-br from-[#1d1d1d] to-[#101010] shadow-[0_20px_45px_rgba(0,0,0,0.25)]"
+            style={{ aspectRatio: `100 / ${VIEW_H}` }}
+          >
             <svg
-              viewBox="0 0 100 100"
+              viewBox={`0 0 100 ${VIEW_H}`}
               className="absolute inset-0 h-full w-full"
               aria-hidden
               preserveAspectRatio="none"
             >
+              <path d={seaPath} fill="rgba(197,160,89,0.06)" />
               <path
-                d="M18 0 C14 22 20 40 16 58 C13 74 20 88 17 100"
+                d={coastPath}
                 fill="none"
-                stroke="rgba(197,160,89,0.45)"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M22 6 C34 14 44 12 58 20 C72 28 80 24 92 32 C86 46 90 60 84 74 C72 84 58 82 44 90 C34 96 28 94 20 98"
-                fill="rgba(197,160,89,0.05)"
-                stroke="rgba(197,160,89,0.3)"
-                strokeWidth="0.4"
-              />
-              <path
-                d="M26 30 C40 34 52 44 66 46"
-                fill="none"
-                stroke="rgba(197,160,89,0.18)"
-                strokeWidth="0.3"
-              />
-              <path
-                d="M24 58 C38 60 50 68 64 68"
-                fill="none"
-                stroke="rgba(197,160,89,0.18)"
-                strokeWidth="0.3"
+                stroke="rgba(197,160,89,0.55)"
+                strokeWidth="0.6"
+                strokeLinejoin="round"
               />
             </svg>
 
-            {PINS.map((pin) => {
-              const city = CITIES.find((c) => c.slug === pin.slug);
-              if (!city) return null;
-              const on = active === pin.slug;
+            {CITIES.map((city) => {
+              const { x, y } = project(city.lat, city.lng);
+              const on = active === city.slug;
               return (
                 <Link
-                  key={pin.slug}
+                  key={city.slug}
                   href={`/areas/${city.slug}`}
-                  onMouseEnter={() => setActive(pin.slug)}
+                  onMouseEnter={() => setActive(city.slug)}
                   onMouseLeave={() => setActive(null)}
-                  onFocus={() => setActive(pin.slug)}
+                  onFocus={() => setActive(city.slug)}
                   onBlur={() => setActive(null)}
-                  style={{ right: `${pin.x}%`, top: `${pin.y}%` }}
-                  className="absolute flex -translate-y-1/2 translate-x-1/2 items-center gap-2"
+                  style={{
+                    left: `${x}%`,
+                    top: `${(y / VIEW_H) * 100}%`,
+                    zIndex: on ? 20 : 10,
+                  }}
+                  className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1"
+                  aria-label={`פוליש ${city.inName}`}
                 >
                   <span
                     className={`map-pin block rounded-full bg-gold transition-all duration-300 ${
-                      on ? "h-4 w-4 shadow-[0_0_18px_6px_rgba(197,160,89,0.55)]" : "h-2.5 w-2.5"
+                      on
+                        ? "h-3.5 w-3.5 shadow-[0_0_16px_5px_rgba(197,160,89,0.6)]"
+                        : "h-2 w-2"
                     }`}
                   />
                   <span
-                    className={`whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] backdrop-blur-md transition-colors ${
+                    className={`whitespace-nowrap rounded-full border px-2 py-0.5 text-[10px] backdrop-blur-md transition-all duration-200 ${
                       on
-                        ? "border-gold bg-black/70 text-gold"
-                        : "border-white/15 bg-black/45 text-white/75"
+                        ? "border-gold bg-black/80 text-gold opacity-100"
+                        : "border-white/10 bg-black/50 text-white/60 opacity-0"
                     }`}
                   >
                     {city.name}
@@ -132,6 +152,10 @@ export default function AreasMap() {
                 </Link>
               );
             })}
+
+            <p className="absolute bottom-3 left-3 text-[10px] text-white/35">
+              מפה סכמטית
+            </p>
           </div>
         </div>
       </div>
