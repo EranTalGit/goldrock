@@ -749,6 +749,8 @@ export type Benefit = {
   title: string;
   text: string;
   icon: ServiceIconName;
+  /** Draws a stronger gold border, to give the grid a focal point. */
+  featured?: boolean;
 };
 
 /* Section 2: the four reasons to pick Goldrock. Replaces the old stats strip. */
@@ -772,6 +774,7 @@ export const BENEFITS: Benefit[] = [
     title: "אחריות מלאה על התוצאה",
     text: "ליווי מקצועי מתחילת התהליך ועד למסירת רצפה מושלמת. אנו מעניקים אחריות מלאה על הברק והציפוי לצד הנחיות מדויקות לתחזוקה נכונה.",
     icon: "shield",
+    featured: true,
   },
 ];
 

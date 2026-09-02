@@ -208,6 +208,31 @@ h3,
   border-top: 3px solid var(--gold-soft);
 }
 
+/* Benefit cards: pearl white behind a hairline of gold. */
+.card-premium {
+  background: #ffffff;
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(197, 160, 89, 0.2);
+  border-color: rgba(197, 160, 89, 0.55);
+}
+
+/* The one card we want the eye to land on. */
+.card-premium-featured {
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(197, 160, 89, 0.12);
+}
+
+.card-premium-featured:hover {
+  box-shadow: 0 18px 44px rgba(197, 160, 89, 0.26);
+}
+
 /* Frosted card used by the services grid. */
 .card-glass {
   background: rgba(255, 255, 255, 0.75);

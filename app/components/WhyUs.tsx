@@ -12,21 +12,25 @@ export default function WhyUs() {
           description="כחברה המובילה בתחום הפוליש וחידוש המרצפות במרכז, אנו משלבים טכנולוגיה מתקדמת, חומרי ליטוש מהשורה הראשונה וסטנדרט עבודה בלתי מתפשר. הנה הסיבות שבגללן הלקוחות שלנו בוחרים בנו פעם אחר פעם:"
         />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Two by two rather than four narrow columns, which left the text
+            stranded in tall thin cards. */}
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-2">
           {BENEFITS.map((benefit) => (
             <article
               key={benefit.title}
-              className="card-soft card-topline flex flex-col items-center p-8 text-center"
+              className={`card-premium p-6 sm:p-7 ${
+                benefit.featured ? "card-premium-featured" : ""
+              }`}
             >
-              {/* Circular badge echoes the logo mark, and anchors the
-                  centred card better than a bare floating icon. */}
-              <span className="inline-flex h-20 w-20 items-center justify-center rounded-full border border-gold/30 bg-gold/[0.07] text-gold">
-                <ServiceIcon name={benefit.icon} width={38} height={38} />
-              </span>
-              <h3 className="mt-6 font-display text-xl font-bold leading-snug">
-                {benefit.title}
-              </h3>
-              <div className="gold-line mt-4 w-28" />
+              <div className="flex items-center gap-4">
+                <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-gold/25 bg-gold/[0.08] text-gold">
+                  <ServiceIcon name={benefit.icon} width={28} height={28} />
+                </span>
+                <h3 className="font-display text-xl font-bold leading-snug text-ink">
+                  {benefit.title}
+                </h3>
+              </div>
+              <div className="gold-line mt-5" />
               <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
                 {benefit.text}
               </p>
