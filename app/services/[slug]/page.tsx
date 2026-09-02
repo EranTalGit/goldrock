@@ -140,14 +140,16 @@ export default async function ServicePage({
               ))}
             </div>
 
-            <a
-              href={wa}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold-metal arrow-link mt-8 inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[1rem]"
-            >
-              להצעת מחיר מהירה בוואטסאפ <span className="arrow">←</span>
-            </a>
+            <div className="mt-8 text-center">
+              <a
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold-metal arrow-link inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-[1rem]"
+              >
+                להצעת מחיר מהירה בוואטסאפ <span className="arrow">←</span>
+              </a>
+            </div>
           </div>
 
           <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_16px_38px_rgba(0,0,0,0.1)] lg:max-w-none">
