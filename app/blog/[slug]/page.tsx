@@ -182,19 +182,19 @@ export default async function BlogPostPage({
           </h2>
           <div className="gold-rule mx-auto mt-4 w-full max-w-xs" />
 
-          <div className="mt-8 space-y-5">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {related.map((item) => (
               <Link
                 key={item.slug}
                 href={`/blog/${item.slug}`}
                 className="group flex items-center gap-5 rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)] sm:p-5"
               >
-                <span className="relative aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-xl bg-sand sm:w-40">
+                <span className="relative aspect-[4/3] w-24 shrink-0 overflow-hidden rounded-xl bg-sand sm:w-32">
                   <Image
                     src={item.image}
                     alt={item.imageAlt}
                     fill
-                    sizes="160px"
+                    sizes="128px"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.06] motion-reduce:transform-none"
                   />
                 </span>
