@@ -198,7 +198,7 @@ export default async function ServicePage({
         label="שלב אחרי שלב"
         title={`איך מתבצעת העבודה ב${service.title}`}
         description="ארבעה שלבים, בסדר הזה, בכל עבודה. אתם יודעים מראש מה קורה בכל שלב וכמה זמן הוא לוקח."
-        cta={{ label: "לקבלת הצעת מחיר בוואטסאפ", href: wa, external: true }}
+        cta={{ label: "לקבלת הצעת מחיר", href: "#quote" }}
       />
 
       {/* 4. What it suits, as pills. */}
@@ -262,7 +262,7 @@ export default async function ServicePage({
 
       {/* 6. The enquiry form, at the foot of the page rather than beside the
              opening, so the reading finishes before the asking starts. */}
-      <section className="bg-sand text-ink">
+      <section id="quote" className="scroll-mt-24 bg-sand text-ink">
         <div className="mx-auto max-w-2xl px-4 py-[50px] sm:px-6">
           <div className="rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.07)] sm:p-8">
             <h2 className="text-center font-display text-[1.5rem] font-bold text-[#1A1A1A]">
