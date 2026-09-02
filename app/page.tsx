@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Hero from "./components/Hero";
 import WhyUs from "./components/WhyUs";
 import Process from "./components/Process";
@@ -13,18 +14,18 @@ import { HOME_FAQ, type ServiceIconName } from "@/lib/site";
 const highlights: { icon: ServiceIconName; strong: string; rest: string }[] = [
   {
     icon: "shield",
-    strong: "אחריות מלאה",
-    rest: "על כל תהליך הליטוש והחידוש",
+    strong: "אחריות מלאה בכתב:",
+    rest: "על כל תהליך הליטוש והציפוי.",
   },
   {
     icon: "sparkle",
-    strong: "חומרי ציפוי וקריסטל",
-    rest: "מהמובילים בעולם (עמידות לשנים)",
+    strong: "טכנולוגיית ליטוש יהלום וקריסטל:",
+    rest: "חומרי איטום מאירופה לעמידות לשנים.",
   },
   {
     icon: "broom",
-    strong: "עבודה נקייה ומדויקת",
-    rest: "ללא אבק וללא נזק לפנלים ולריהוט",
+    strong: "עבודה נקייה וסטרילית:",
+    rest: "ללא אבק וללא נזק לפנלים ולריהוט.",
   },
 ];
 
@@ -50,8 +51,14 @@ export default function Home() {
               עד שהיא מחזירה אור
             </h2>
             <div className="gold-rule mt-7 w-full max-w-sm" />
-            <p className="mt-7 text-base leading-relaxed text-ink-soft sm:text-lg">
-              חברת Goldrock מתמחה באומנות הטיפול, הליטוש והחידוש של משטחי אבן טבעית, שיש ופורצלן מהיוקרתיים בישראל. אנו משלבים טכנולוגיה מתקדמת של ליטוש יהלום וקריסטליזציה לצד עבודת יד קפדנית, תוך שמירה מלאה על תכניות העבודה, ניקיון הסביבה ודיוק ללא פשרות. עבורנו, כל רצפה ומשטח הם יצירת אמנות שראויה לקבל את הברק, העומק וההגנה המקסימליים.
+
+            {/* The owner's line, set apart so it reads as someone speaking. */}
+            <blockquote className="mt-7 border-e-2 border-gold pe-5 text-[17px] font-medium leading-relaxed text-ink sm:text-[19px]">
+              אנחנו לא רק &quot;מנקים&quot; או &quot;מבריקים&quot; רצפות - אנחנו מתייחסים לכל אבן ושיש כאל יצירת אומנות טבעית.
+            </blockquote>
+
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
+              חברת Goldrock מתמחה בפתרונות ליטוש, קריסטליזציה ושחזור משטחי שיש, אבן טבעית וגרניט פורצלן ברמת פרימיום. אנו משלבים טכנולוגיית ליטוש יהלום חדשנית לצד עבודה קפדנית ללא אבק, תוך שמירה מוחלטת על הנכס והציוד שלכם.
             </p>
             <ul className="mt-9 space-y-7">
               {highlights.map((item) => (
@@ -69,6 +76,14 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+
+            {/* The full story lives on its own page; this stays the summary. */}
+            <Link
+              href="/about"
+              className="arrow-link mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold transition-colors hover:text-gold-soft"
+            >
+              קראו עוד על הסיפור שלנו <span className="arrow">←</span>
+            </Link>
           </div>
           <div className="form-card p-7 sm:p-9">
             <h3 className="font-display text-2xl font-bold text-white">
