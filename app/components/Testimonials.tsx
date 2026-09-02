@@ -150,16 +150,33 @@ export default function Testimonials() {
                 <figure className="flex w-full flex-col rounded-[18px] border border-[rgba(212,175,55,0.3)] bg-white/90 p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-[10px]">
                   <Stars />
 
-                  <span className="mt-3 self-start rounded-[20px] bg-[#FAF6F0] px-2.5 py-1 text-[13px] font-semibold text-[#B8860B]">
-                    {item.city} • {item.service}
+                  <span
+                    aria-hidden
+                    className="mt-2 font-display text-[2.6rem] leading-[0.6] text-[#DDD6C9]"
+                  >
+                    &rdquo;
                   </span>
 
-                  <blockquote className="mt-4 flex-1 text-[15px] leading-[1.75] text-[#333333]">
+                  <blockquote className="mt-3 flex-1 text-[15px] leading-[1.75] text-[#333333]">
                     {item.quote}
                   </blockquote>
 
-                  <figcaption className="mt-5 border-t border-[rgba(212,175,55,0.2)] pt-4 font-display text-[1rem] font-bold text-[#1A1A1A]">
-                    {item.name}
+                  <figcaption className="mt-5 flex items-center gap-3 border-t border-[rgba(212,175,55,0.2)] pt-4">
+                    {/* The customer's initial, in place of a photograph. */}
+                    <span
+                      aria-hidden
+                      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(145deg,#CBA55C,#A37F34)] font-display text-[1.15rem] font-bold text-white shadow-[0_6px_16px_-8px_rgba(163,127,52,0.9)]"
+                    >
+                      {item.name.trim().charAt(0)}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-display text-[1rem] font-bold text-[#1A1A1A]">
+                        {item.name}
+                      </span>
+                      <span className="mt-0.5 block text-[13px] leading-snug text-[#7A736A]">
+                        {item.service}, {item.city}
+                      </span>
+                    </span>
                   </figcaption>
                 </figure>
               </li>
