@@ -52,7 +52,7 @@ export default function AreasPage() {
           />
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-5 px-4 pb-[50px] pt-14 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="mx-auto grid max-w-[1400px] gap-5 px-4 pb-[50px] pt-14 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {CITIES.map((city) => (
             <article
               key={city.slug}

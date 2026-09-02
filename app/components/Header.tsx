@@ -40,7 +40,7 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 sm:px-5">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-3 py-3 sm:px-8">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <LogoMark size={46} />
           <Image
