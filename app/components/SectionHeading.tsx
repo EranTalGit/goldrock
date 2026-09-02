@@ -9,17 +9,25 @@ export default function SectionHeading({
   title,
   description,
   dark = false,
+  labelAs = "p",
 }: {
   label: string;
   title: string;
   description?: React.ReactNode;
   dark?: boolean;
+  /**
+   * Rises to the page's h1 where this block opens the content itself, such
+   * as a service page whose hero names the section rather than the piece.
+   */
+  labelAs?: "p" | "h1";
 }) {
+  const Label = labelAs;
+
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
+      <Label className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
         {label}
-      </p>
+      </Label>
       <h2
         className={`mt-4 font-display text-xl font-semibold leading-snug sm:text-3xl ${
           dark ? "text-white/90" : "text-ink"
