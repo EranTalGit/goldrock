@@ -56,12 +56,18 @@ export default function AreasPage() {
           {CITIES.map((city) => (
             <article
               key={city.slug}
-              className="group relative flex flex-col rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.09)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(212,175,55,0.35)] bg-white/85 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-[12px] transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(212,175,55,0.6)] hover:shadow-[0_15px_35px_rgba(212,175,55,0.15)]"
             >
-              <div className="flex items-start gap-3">
+              {/* Light catching the upper corner, the way it would on glass. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(255,249,236,0.4)_24%,transparent_48%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              />
+
+              <div className="relative flex items-center gap-2.5">
                 <span
                   aria-hidden
-                  className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
                 >
                   <ServiceIcon name="pin" width={17} height={17} />
                 </span>
@@ -76,12 +82,21 @@ export default function AreasPage() {
                 </h2>
               </div>
 
-              <p className="mt-3.5 flex-1 text-[14px] leading-relaxed text-[#4A4A4A]">
+              <p className="relative mt-3.5 text-[14px] leading-relaxed text-[#4A4A4A]">
                 {city.intro}
               </p>
 
-              <span className="arrow-link mt-4 self-start text-[14px] font-semibold text-gold">
-                לפירוט {city.inName} <span className="arrow">←</span>
+              {/* mt-auto lines every button up along one edge of the row. */}
+              <span className="relative mt-auto pt-5">
+                <span className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(212,175,55,0.4)] bg-[#FAF6F0] px-[18px] py-2.5 text-[15px] font-semibold text-[#B8860B] transition-colors duration-300 group-hover:border-gold group-hover:bg-[#F3E7CE]">
+                  לפירוט {city.inName}
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-300 group-hover:-translate-x-1 motion-reduce:transform-none"
+                  >
+                    ←
+                  </span>
+                </span>
               </span>
             </article>
           ))}
