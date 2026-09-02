@@ -41,7 +41,8 @@ export default function ContactPage() {
             <h2 className="gold-metal font-display text-[2rem] font-bold leading-tight sm:text-[2.4rem]">
               דברו איתנו
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-[1.12rem] leading-relaxed text-[#666059]">
+            {/* Wide enough to hold the sentence on one line on a desktop. */}
+            <p className="mx-auto mt-5 max-w-4xl text-[1.12rem] leading-relaxed text-[#666059]">
               הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות.
             </p>
           </div>
