@@ -45,7 +45,7 @@ export default function ContactPage() {
             description="הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות"
           />
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="text-center">
               <h3 className="font-display text-[1.65rem] font-bold text-[#1A1A1A]">
                 דרכים מהירות
