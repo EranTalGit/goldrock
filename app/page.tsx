@@ -39,7 +39,7 @@ export default function Home() {
       <Gallery />
       <Areas />
       <section className="bg-sand text-ink">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-8 pb-20 sm:px-6 sm:py-10 sm:pb-24 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-5 pb-16 sm:px-6 sm:py-7 sm:pb-20 lg:grid-cols-2">
           <div className="text-center">
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
