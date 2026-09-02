@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BUSINESS_NAME, BUSINESS_NAME_HE, REGION_LABEL, SITE_URL } from "@/lib/site";
 import InnerHero from "../components/InnerHero";
 import CtaBand from "../components/CtaBand";
+import SectionHeading from "../components/SectionHeading";
 import { ServiceIcon } from "../components/icons";
 import type { ServiceIconName } from "@/lib/site";
 
@@ -48,32 +49,37 @@ const STATS = [
 export default function AboutPage() {
   return (
     <>
+      {/* No eyebrow here - the section below already leads with it. */}
       <InnerHero
-        eyebrow={BUSINESS_NAME}
         title="האומנות שמאחורי האבן"
         tagline="מחזירים לשיש ולאבן הטבעית את הברק, העומק והאופי המקורי שלהם"
         note={`חברת ${BUSINESS_NAME} נולדה מתוך תשוקה לעבודה עם אבן - בלי הרס, בלי אבק, ובדיוק של עבודת יד`}
       />
 
-      {/* The story, beside a photograph of the work itself. */}
+      {/* The story: the section opener, then the photograph, then the text. */}
       <section className="bg-paper text-ink">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-[60px] sm:px-6 lg:grid-cols-2 lg:gap-14">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+        <div className="mx-auto max-w-6xl px-4 py-[45px] sm:px-6">
+          <SectionHeading
+            label="אודות"
+            title="מי אנחנו, ולמה זה משנה לרצפה שלכם"
+            description="Goldrock עוסקת בדבר אחד בלבד - חידוש משטחי אבן ושיש. אותה יד מגיעה לכל עבודה, כל רצפה נבדקת לפני שנוקבים במחיר, ומה שלא ניתן לעשות נאמר מראש."
+          />
+
+          <figure className="relative mx-auto mt-12 aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gold/30 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
             <Image
               src="/assets/services/marble-polish.webp"
               alt="ליטוש רצפת שיש בעבודת אומן"
               fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 448px"
               className="object-cover"
             />
-          </div>
+          </figure>
 
-          <div>
-            <h2 className="font-display text-2xl font-bold leading-snug text-[#1A1A1A] sm:text-3xl">
+          <div className="mx-auto mt-11 max-w-3xl">
+            <h3 className="text-center font-display text-2xl font-bold leading-snug text-[#1A1A1A] sm:text-3xl">
               לא עוד פוליש גנרי - אומנות הטיפול באבן
-            </h2>
-            <div className="gold-rule mt-5 w-full max-w-sm" />
-            <div className="mt-6 space-y-4 text-[1.02rem] leading-relaxed text-ink-soft">
+            </h3>
+            <div className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-ink-soft">
               <p>
                 רצפת שיש אינה סתם עוד משטח בבית; היא אלמנט אדריכלי חי, נושם ויוקרתי. לאורך השנים, חומרי ניקוי חריפים, שחיקה יומיומית וטיפולים לא נכונים פוגעים בשכבה העליונה של האבן ומכבים את הברק הטבעי שלה.
               </p>
@@ -124,9 +130,18 @@ export default function AboutPage() {
 
       {/* Numbers bar. */}
       <section className="border-y border-[rgba(212,175,55,0.25)] bg-white">
-        <div className="mx-auto grid max-w-6xl gap-y-8 px-4 py-12 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-x-reverse lg:divide-[rgba(212,175,55,0.35)]">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="px-4 text-center">
+        {/* The divide-x utilities put their border on a physical edge, which
+            in RTL left a stray line outside and dropped the last divider. A
+            logical inline-start border on every item but the first is correct
+            in both directions. */}
+        <div className="mx-auto grid max-w-6xl gap-y-8 px-4 py-12 sm:px-6 sm:grid-cols-2 lg:grid-cols-4">
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`px-4 text-center ${
+                i > 0 ? "lg:border-s lg:border-[rgba(212,175,55,0.35)]" : ""
+              }`}
+            >
               <p className="gold-metal font-display text-2xl font-bold leading-tight sm:text-[1.7rem]">
                 {stat.value}
               </p>
