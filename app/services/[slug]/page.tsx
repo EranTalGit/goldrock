@@ -64,6 +64,12 @@ export default async function ServicePage({
   const service = getService(slug);
   if (!service) notFound();
 
+  // "קריסטליזציה (הברקה קריסטלית)" and the like only lengthen the city
+  // links, which already carry the city name too.
+  // "קריסטליזציה (הברקה קריסטלית)" only lengthens the city links, which
+  // already carry a city name too. The heading below keeps the full title.
+  const shortTitle = service.title.replace(/\s*\([^)]*\)/g, "").trim();
+
   const wa = whatsappLink(
     `היי, אשמח להצעת מחיר ל${service.title}. אצרף תמונה של הרצפה.`,
   );
@@ -217,7 +223,7 @@ export default async function ServicePage({
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                className="pill-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]"
+                className="pill-mirror flex w-full items-center justify-center px-5 py-3 text-center text-[15px] font-medium sm:w-[calc(50%-0.375rem)]"
               >
                 {item}
               </li>
@@ -305,7 +311,7 @@ export default async function ServicePage({
                   href={`/areas/${city.slug}`}
                   className="city-mirror flex flex-1 items-center justify-center px-4 py-3 text-center text-[14px] font-medium"
                 >
-                  {service.title} {city.inName}
+                  {shortTitle} {city.inName}
                 </Link>
               </li>
             ))}

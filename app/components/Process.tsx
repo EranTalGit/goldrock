@@ -131,7 +131,10 @@ export default function Process({
                     {step.title}
                   </h3>
                   <p
-                    className="seq seq-step mt-3 text-pretty text-[15px] leading-relaxed text-ink-soft"
+                    // A step's text may carry its own newline, where the
+                    // break belongs on a particular phrase rather than
+                    // wherever the column happens to run out.
+                    className="seq seq-step mt-3 whitespace-pre-line text-pretty text-[15px] leading-relaxed text-ink-soft"
                     style={{ animationDelay: `${stepDelay + 180}ms` }}
                   >
                     {step.text}
