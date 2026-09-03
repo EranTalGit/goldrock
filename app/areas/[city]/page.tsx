@@ -170,11 +170,14 @@ export default async function CityPage({
                     >
                       <ServiceIcon name={service.icon} width={18} height={18} />
                     </span>
-                    <span className="font-display text-[18px] font-bold leading-snug text-[#B8860B]">
+                    <span className="flex-1 text-balance text-center font-display text-[16px] font-bold leading-snug text-[#B8860B]">
                       {service.title} {city.inName}
                     </span>
+                    {/* Balances the badge, so the title centres on the card
+                        rather than on what is left of it. */}
+                    <span aria-hidden className="h-9 w-9 shrink-0" />
                   </span>
-                  <span className="mt-3 text-[14px] leading-[1.6] text-[#555555]">
+                  <span className="mt-3 text-center text-[14px] leading-[1.6] text-[#555555]">
                     {service.description}
                   </span>
                 </Link>

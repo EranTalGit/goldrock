@@ -69,7 +69,15 @@ export default function CtaBand({
               </svg>
             </span>
           </span>
-          <h2 className="font-display text-[2.2rem] font-bold leading-tight text-[#1A1A1A]">
+          {/* A long title - a city page's, which carries the city's name -
+              cannot hold one line on a phone at display size, so it steps
+              down there and comes back at the wide measure. The short ones
+              every other page passes are left alone. */}
+          <h2
+            className={`font-display font-bold leading-tight text-[#1A1A1A] ${
+              title.length > 26 ? "text-[1.3rem] sm:text-[2.2rem]" : "text-[2.2rem]"
+            }`}
+          >
             {head}
           </h2>
           <p className="mt-4 max-w-xl text-[1.05rem] font-normal leading-relaxed text-[#55504A]">
