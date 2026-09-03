@@ -10,6 +10,7 @@ export default function SectionHeading({
   description,
   dark = false,
   labelAs = "p",
+  ruleOnPhone = true,
 }: {
   label: string;
   title: string;
@@ -20,6 +21,8 @@ export default function SectionHeading({
    * as a service page whose hero names the section rather than the piece.
    */
   labelAs?: "p" | "h1";
+  /** Drops the rule on a phone, where the block runs long enough already. */
+  ruleOnPhone?: boolean;
 }) {
   const Label = labelAs;
 
@@ -37,7 +40,11 @@ export default function SectionHeading({
       </h2>
       {/* Fades to nothing at both ends, so it separates without boxing
           the heading in - and gives every block the same anchor. */}
-      <div className="gold-rule mx-auto mt-6 w-full max-w-sm" />
+      <div
+        className={`gold-rule mx-auto mt-6 w-full max-w-sm ${
+          ruleOnPhone ? "" : "hidden sm:block"
+        }`}
+      />
 
       {description ? (
         <p

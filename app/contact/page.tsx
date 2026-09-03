@@ -31,7 +31,7 @@ export default function ContactPage() {
       {/* No eyebrow here - "צור קשר" leads the section below instead. */}
       <InnerHero
         title="דברו איתנו"
-        tagline={"נשמח לשמוע מכם, ולחזור אליכם\nעם תשובה ברורה"}
+        tagline="נשמח לשמוע מכם, ולחזור אליכם עם תשובה ברורה"
         note="זמינים בכל גוש דן, בטלפון ובוואטסאפ, גם בשעות הערב"
       />
 
@@ -42,6 +42,7 @@ export default function ContactPage() {
           <SectionHeading
             label="צור קשר"
             title="בוחרים את הדרך שנוחה לכם"
+            ruleOnPhone={false}
             description="הכניסו שם וטלפון בטופס, או שלחו הודעה בוואטסאפ ישירות, ונחזור אליכם עם הצעת מחיר ללא התחייבות"
           />
 
