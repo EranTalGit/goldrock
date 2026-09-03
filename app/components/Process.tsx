@@ -112,13 +112,25 @@ export default function Process({
                     </span>
                   </div>
 
-                  {/* Rail running down to the next marker. */}
+                  {/* Rail running down to the next marker, with the same
+                      arrowhead the desktop connector carries - here pointing
+                      down, on its own patch so the dashes break around it. */}
                   {!last ? (
                     <span
                       aria-hidden
-                      className="seq seq-fade my-2 w-0 flex-1 border-r-2 border-dashed border-gold-soft/70 md:hidden"
-                      style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
-                    />
+                      className="relative my-2 flex w-4 flex-1 justify-center md:hidden"
+                    >
+                      <span
+                        className="seq seq-fade h-full w-0 border-r-2 border-dashed border-gold-soft/70"
+                        style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
+                      />
+                      <span
+                        className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper py-1.5"
+                        style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
+                      >
+                        <span className="h-0 w-0 border-x-[6px] border-t-[9px] border-x-transparent border-t-gold" />
+                      </span>
+                    </span>
                   ) : null}
                 </div>
 

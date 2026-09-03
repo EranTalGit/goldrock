@@ -23,7 +23,9 @@ export default function Services() {
           description={
             <>
               מפוליש לשיש ועד חידוש מדרגות וניקיון אחרי שיפוץ. לכל שירות תהליך עבודה ברור, מחיר שקוף
-              <br />
+              {/* The break is for the desktop measure only; on a phone the
+                  text already wraps and the break left a short orphan line. */}
+              <br className="hidden sm:inline" />{" "}
               והצעת מחיר מהירה בוואטסאפ.
             </>
           }

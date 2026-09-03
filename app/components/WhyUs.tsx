@@ -13,10 +13,10 @@ export default function WhyUs() {
         <SectionHeading
           label="למה לבחור בנו?"
           title="למה Goldrock היא הבחירה הבטוחה לרצפה שלך?"
-          description="כחברה המובילה בתחום הפוליש וחידוש המרצפות במרכז, אנו משלבים טכנולוגיה מתקדמת, חומרי ליטוש מהשורה הראשונה וסטנדרט עבודה בלתי מתפשר. הנה הסיבות שבגללן הלקוחות שלנו בוחרים בנו פעם אחר פעם:"
+          description="כחברה המובילה בתחום הפוליש וחידוש המרצפות במרכז, אנו משלבים טכנולוגיה מתקדמת, חומרי ליטוש מהשורה הראשונה וסטנדרט עבודה בלתי מתפשר. הנה הסיבות שבגללן הלקוחות שלנו בוחרים בנו פעם אחר פעם:"
         />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {BENEFITS.map((benefit) => (
             <article key={benefit.title} className="card-mirror p-6">
               <span className="mirror-tile relative inline-flex h-14 w-14 items-center justify-center rounded-2xl text-gold">
