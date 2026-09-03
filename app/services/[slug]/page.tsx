@@ -81,6 +81,12 @@ export default async function ServicePage({
     service.suitedFor.length > 4
       ? `calc(3 * ${suitedWidth} + 1.5rem)`
       : undefined;
+  // A phone has no room for a name-width pill, so every pill takes an equal
+  // share of the row instead: three across where a service lists more than
+  // four, two where it lists four or fewer. The wrap then centres the short
+  // last row, the way the neighbourhood rows do.
+  const suitedPerRow = service.suitedFor.length > 4 ? 3 : 2;
+  const suitedPhoneWidth = `calc((100% - ${(suitedPerRow - 1) * 12}px) / ${suitedPerRow})`;
 
   const wa = whatsappLink(
     `היי, אשמח להצעת מחיר ל${service.title}. אצרף תמונה של הרצפה.`,
@@ -142,6 +148,7 @@ export default async function ServicePage({
         <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
           <SectionHeading
             labelAs="h1"
+            tightLabel
             label={service.h1}
             title={service.tagline}
             description={service.description}
@@ -197,7 +204,7 @@ export default async function ServicePage({
 
           {/* Two columns of three, the mark leading each line on the right
               and the promise beside it. */}
-          <ul className="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-6 sm:grid-cols-2">
+          <ul className="mx-auto mt-10 grid max-w-xl gap-x-6 gap-y-6 sm:grid-cols-2">
             {service.benefits.map((benefit) => (
               <li key={benefit} className="flex items-center gap-4">
                 <span
@@ -238,8 +245,13 @@ export default async function ServicePage({
             {service.suitedFor.map((item) => (
               <li
                 key={item}
-                style={{ width: suitedWidth }}
-                className="pill-mirror flex max-w-full items-center justify-center px-4 py-3 text-center text-[15px] font-medium"
+                style={
+                  {
+                    "--suit": suitedWidth,
+                    "--suit-phone": suitedPhoneWidth,
+                  } as React.CSSProperties
+                }
+                className="pill-mirror flex w-[var(--suit-phone)] items-center justify-center px-2 py-2.5 text-center text-[13.5px] font-medium leading-tight sm:w-[var(--suit)] sm:px-4 sm:py-3 sm:text-[15px] sm:leading-normal"
               >
                 {item}
               </li>

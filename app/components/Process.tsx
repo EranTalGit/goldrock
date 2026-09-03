@@ -83,9 +83,9 @@ export default function Process({
             return (
               <li
                 key={step.title}
-                className="group relative flex items-center gap-5 pb-10 md:block md:items-stretch md:pb-0"
+                className="group relative flex items-center pb-10 md:block md:items-stretch md:pb-0"
               >
-                <div className="relative flex shrink-0 justify-center">
+                <div className="relative ms-5 me-5 flex shrink-0 justify-center md:mx-0">
                   {/* Connector toward the next step (leftward in RTL). */}
                   {!last ? (
                     <span
@@ -124,7 +124,7 @@ export default function Process({
                 {steps.length > 1 ? (
                   <span
                     aria-hidden
-                    className={`absolute start-6 flex w-4 justify-center md:hidden ${
+                    className={`absolute start-11 flex w-4 justify-center md:hidden ${
                       i === 0
                         ? "bottom-0 top-1/2"
                         : last

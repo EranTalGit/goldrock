@@ -158,6 +158,7 @@ export default async function CityPage({
         <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
           <SectionHeading
             labelAs="h1"
+            tightLabel
             label={`פוליש לשיש ${city.inName}`}
             title={`ליטוש, הברקה וחידוש מדרגות ${city.inName}`}
             description={`מגיעים לכל השכונות ${city.inName} ולסביבה. שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום`}

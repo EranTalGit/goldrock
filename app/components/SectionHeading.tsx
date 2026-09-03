@@ -11,6 +11,7 @@ export default function SectionHeading({
   dark = false,
   labelAs = "p",
   ruleOnPhone = true,
+  tightLabel = false,
 }: {
   label: string;
   title: string;
@@ -23,18 +24,27 @@ export default function SectionHeading({
   labelAs?: "p" | "h1";
   /** Drops the rule on a phone, where the block runs long enough already. */
   ruleOnPhone?: boolean;
+  /**
+   * Steps the label down on a phone for the pages whose label is a long
+   * name - a service or a city - so it holds one line there.
+   */
+  tightLabel?: boolean;
 }) {
   const Label = labelAs;
 
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <Label className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
+      <Label
+        className={`gold-metal font-display font-bold leading-tight sm:text-6xl ${
+          tightLabel ? "text-[1.75rem]" : "text-4xl"
+        }`}
+      >
         {label}
       </Label>
       <h2
-        className={`mt-4 font-display text-xl font-semibold leading-snug sm:text-3xl ${
-          dark ? "text-white/90" : "text-ink"
-        }`}
+        className={`mt-4 whitespace-pre-line font-display font-semibold leading-snug sm:whitespace-normal sm:text-3xl ${
+          tightLabel ? "text-[19px]" : "text-xl"
+        } ${dark ? "text-white/90" : "text-ink"}`}
       >
         {title}
       </h2>
