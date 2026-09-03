@@ -36,6 +36,36 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Breaks the neighbourhoods into rows that balance: up to three stay on one
+ * line, four splits two and two, five goes three then two, seven goes four
+ * then three. Anything longer falls back to the evenest pair of rows, the
+ * larger one first.
+ */
+function splitRows<T>(items: T[]): T[][] {
+  const shapes: Record<number, number[]> = {
+    4: [2, 2],
+    5: [3, 2],
+    6: [3, 3],
+    7: [4, 3],
+  };
+  const shape =
+    items.length <= 3
+      ? [items.length]
+      : (shapes[items.length] ?? [
+          Math.ceil(items.length / 2),
+          Math.floor(items.length / 2),
+        ]);
+
+  const rows: T[][] = [];
+  let at = 0;
+  for (const size of shape) {
+    rows.push(items.slice(at, at + size));
+    at += size;
+  }
+  return rows;
+}
+
 /** One heading treatment for every band, as on the service pages. */
 function BandHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -62,6 +92,12 @@ export default async function CityPage({
   const neighbourhoodWidth = `${
     Math.max(...city.neighborhoods.map((n) => n.length)) + 5
   }ch`;
+
+  // Cities carry three to seven neighbourhoods, and a run of pills left to
+  // wrap on its own leaves a lonely one at the end. Each count gets the
+  // shape that balances: three on one line, four as two and two, five as
+  // three and two, seven as four and three.
+  const neighbourhoodRows = splitRows(city.neighborhoods);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -134,16 +170,23 @@ export default async function CityPage({
       <section className="bg-sand text-ink">
         <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
           <BandHeading>שכונות {city.inName}</BandHeading>
-          {/* Wraps on a small screen, and holds one row from lg where the
-              pills share the width between them. */}
-          <ul className="mt-8 flex flex-wrap justify-center gap-3 lg:flex-nowrap">
-            {city.neighborhoods.map((n) => (
-              <li
-                key={n}
-                style={{ width: neighbourhoodWidth }}
-                className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium lg:w-auto lg:min-w-0 lg:flex-1"
-              >
-                {n}
+          {/* One list, laid out row by row. A row still wraps inside itself
+              on a narrow screen, so four pills become two and two there
+              without a breakpoint of its own. */}
+          <ul className="mt-8 space-y-3">
+            {neighbourhoodRows.map((row) => (
+              <li key={row.join("|")}>
+                <ul className="flex flex-wrap justify-center gap-3">
+                  {row.map((n) => (
+                    <li
+                      key={n}
+                      style={{ width: neighbourhoodWidth }}
+                      className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium"
+                    >
+                      {n}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
