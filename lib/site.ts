@@ -448,7 +448,7 @@ export const SERVICES: Service[] = [
         a: "כן. ניקוי מקצועי לעומק מסיר לכלוך שניקוי ביתי לא מצליח להוריד.",
       },
     ],
-    image: "/assets/services/porcelain.webp",
+    image: "/assets/services/porcelain-balcony.webp",
     keywords: [
       "גרניט פורצלן",
       "ניקוי גרניט פורצלן",
@@ -989,8 +989,8 @@ export const GALLERY: GalleryItem[] = [
     caption: "שיש כהה",
   },
   {
-    src: "/assets/gallery/porcelain-floor.webp",
-    alt: "רצפת גרניט פורצלן נקייה ואחידה אחרי טיפול מקצועי",
+    src: "/assets/gallery/porcelain-balcony.webp",
+    alt: "רצפת גרניט פורצלן בהירה ואחידה בסלון עם יציאה למרפסת",
     caption: "גרניט פורצלן",
   },
   {
@@ -1002,6 +1002,31 @@ export const GALLERY: GalleryItem[] = [
     src: "/assets/gallery/polished-hall.jpg",
     alt: "מבואה עם רצפת שיש מוברקת ואור טבעי",
     caption: "מבואה",
+  },
+  {
+    src: "/assets/gallery/lobby-atrium.webp",
+    alt: "רצפת שיש ירוק ולבן משובצת בלובי משרדים אחרי ליטוש והברקה",
+    caption: "לובי משרדים",
+  },
+  {
+    src: "/assets/gallery/lobby-reception.webp",
+    alt: "רצפת שיש ואבן מוברקת במבואת קבלה של בניין",
+    caption: "מבואת קבלה",
+  },
+  {
+    src: "/assets/gallery/stairwell-tiles.webp",
+    alt: "חדר מדרגות בבניין ותיק עם מדרגות אבן ומרצפות מעוטרות אחרי חידוש",
+    caption: "חדר מדרגות",
+  },
+  {
+    src: "/assets/gallery/stone-patio.webp",
+    alt: "ריצוף אבן טבעית בחצר בית פרטי אחרי ניקוי וטיפול",
+    caption: "אבן בחצר",
+  },
+  {
+    src: "/assets/gallery/marble-balcony.webp",
+    alt: "רצפת שיש בז' מוברקת בסלון עם יציאה למרפסת",
+    caption: "שיש בסלון",
   },
 ];
 

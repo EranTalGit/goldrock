@@ -44,7 +44,7 @@ export const POSTS: BlogPost[] = [
       "לפני שמדברים על מחיר צריך לדעת מה יש לכם ברצפה. מדריך מלא לסוגי הריצוף הנפוצים בישראל, מה כל אחד מהם מאפשר ומה פשוט לא עובד עליו.",
     tag: "מדריך מלא",
     date: "2026-09-01",
-    image: "/assets/gallery/porcelain-floor.webp",
+    image: "/assets/gallery/porcelain-balcony.webp",
     imageAlt: "רצפת אריחים גדולים מוארת באור טבעי",
     keywords: [
       "סוגי ריצוף",
