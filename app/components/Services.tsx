@@ -136,66 +136,72 @@ export default function Services() {
                   type="button"
                   onClick={() => setActive(on ? -1 : i)}
                   aria-expanded={on}
-                  className="flex w-full items-center gap-3 py-4 text-right"
+                  className="block w-full py-4 text-right"
                 >
-                  <span
-                    className={`h-7 w-[3px] shrink-0 rounded-full transition-all duration-300 ${
-                      on ? "bg-gold shadow-[0_0_10px_rgba(197,160,89,0.8)]" : "bg-transparent"
-                    }`}
-                  />
-                  <span
-                    className={`font-display text-[13px] font-bold transition-colors ${
-                      on ? "text-gold" : "text-ink/35"
-                    }`}
-                  >
-                    0{i + 1}
-                  </span>
-                  <span
-                    className={`flex-1 font-display text-[17px] font-bold leading-snug transition-colors duration-300 ${
-                      on ? "text-[#C5A059]" : "text-ink/85"
-                    }`}
-                  >
-                    {service.title}
-                  </span>
-                  <span
-                    aria-hidden
-                    className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300 ${
-                      on ? "rotate-45" : ""
-                    }`}
-                  >
-                    +
-                  </span>
+                  {on ? (
+                    <>
+                      {/* The picture takes the starting edge and the copy
+                          runs beside it. A float rather than a column, so a
+                          description longer than the picture is tall carries
+                          on underneath it instead of leaving a hole. */}
+                      <span className="relative float-start mb-2 me-4 block aspect-[4/3] w-[42%] overflow-hidden rounded-xl border border-gold/30 shadow-[0_10px_24px_rgba(0,0,0,0.1)]">
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          fill
+                          sizes="42vw"
+                          className="object-cover"
+                        />
+                      </span>
+
+                      <span className="flex items-start gap-2">
+                        <span className="mt-1 h-6 w-[3px] shrink-0 rounded-full bg-gold shadow-[0_0_10px_rgba(197,160,89,0.8)]" />
+                        <span className="mt-0.5 font-display text-[13px] font-bold text-gold">
+                          0{i + 1}
+                        </span>
+                        <span className="flex-1 font-display text-[17px] font-bold leading-snug text-[#C5A059]">
+                          {service.title}
+                        </span>
+                        <span
+                          aria-hidden
+                          className="inline-flex h-7 w-7 shrink-0 rotate-45 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300"
+                        >
+                          +
+                        </span>
+                      </span>
+
+                      <span className="mt-2.5 block text-[14px] leading-relaxed text-ink-soft">
+                        {service.detail}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="flex items-center gap-3">
+                      <span className="h-7 w-[3px] shrink-0 rounded-full bg-transparent" />
+                      <span className="font-display text-[13px] font-bold text-ink/35">
+                        0{i + 1}
+                      </span>
+                      <span className="flex-1 font-display text-[17px] font-bold leading-snug text-ink/85">
+                        {service.title}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300"
+                      >
+                        +
+                      </span>
+                    </span>
+                  )}
                 </button>
 
-                <div
-                  className={`grid transition-all duration-400 ${
-                    on ? "grid-rows-[1fr] pb-5 opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="relative aspect-[7/3] overflow-hidden rounded-xl border border-gold/30 shadow-[0_12px_28px_rgba(0,0,0,0.1)]">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        sizes="100vw"
-                        className="object-cover"
-                      />
-                      <span className="absolute right-3 top-3 rounded-full border border-gold/50 bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
-                        {service.tag}
-                      </span>
-                    </div>
-                    <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                      {service.detail}
-                    </p>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="arrow-link mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
-                    >
-                      לפרטים והצעת מחיר <span className="arrow">←</span>
-                    </Link>
-                  </div>
-                </div>
+                {/* Outside the button: a link cannot live inside one. */}
+                {on ? (
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="arrow-link mb-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
+                  >
+                    לפרטים והצעת מחיר <span className="arrow">←</span>
+                  </Link>
+                ) : null}
               </li>
             );
           })}
