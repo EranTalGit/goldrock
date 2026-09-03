@@ -40,9 +40,30 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-3 py-3 sm:px-8">
-        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <LogoMark size={46} />
+      {/* Three groups on a phone - menu, name, actions - which the grid
+          places right, centre and left. From lg it goes back to a row with
+          the navigation between the name and the actions. */}
+      <div className="mx-auto grid max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 py-3 sm:px-8 lg:flex lg:justify-between lg:gap-6">
+        <button
+          type="button"
+          className={`${onDark ? "text-white" : "text-ink"} lg:hidden`}
+          aria-expanded={open}
+          aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="block h-0.5 w-6 bg-current" />
+          <span className="mt-1.5 block h-0.5 w-6 bg-current" />
+          <span className="mt-1.5 block h-0.5 w-6 bg-current" />
+        </button>
+
+        <Link
+          href="/"
+          className="flex items-center gap-2 justify-self-center lg:order-first lg:gap-3 lg:justify-self-auto"
+          onClick={() => setOpen(false)}
+        >
+          {/* One mark. LogoMark sets its own display, so a `hidden` passed
+              into it loses to that and a second copy showed on the phone. */}
+          <LogoMark size={34} className="lg:!h-[46px] lg:!w-[46px]" />
           <Image
             src="/assets/logo-wordmark-v5.png"
             alt={`${BUSINESS_NAME} - ליטוש והברקת אבן`}
@@ -51,7 +72,7 @@ export default function Header() {
             priority
             // The wordmark's pale gold highlights wash out against anything
             // light, so deepen and saturate it unless it sits on the dark hero.
-            className={`h-9 w-auto transition-[filter] duration-300 sm:h-11 ${
+            className={`h-7 w-auto transition-[filter] duration-300 sm:h-11 ${
               onDark
                 ? "drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
                 : "[filter:brightness(0.95)]"
@@ -79,37 +100,28 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="flex items-center gap-2 justify-self-end lg:gap-3">
           <a
             href={PHONE_HREF}
             aria-label={`חיוג ל-${PHONE_DISPLAY}`}
             title={PHONE_DISPLAY}
             // A bare outline vanished against the hero photograph, so give it
             // a filled ground to sit on.
-            className={`inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border-2 shadow-[0_2px_10px_rgba(0,0,0,0.15)] transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-white ${
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-full border-2 shadow-[0_2px_10px_rgba(0,0,0,0.15)] transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-white lg:h-[52px] lg:w-[52px] ${
               onDark
                 ? "border-gold bg-black/45 text-gold-soft backdrop-blur-sm"
                 : "border-gold bg-gold/10 text-gold"
             }`}
           >
-            <PhoneIcon width={23} height={23} />
+            <PhoneIcon width={17} height={17} />
           </a>
-          <Link href="/contact" className="btn-gold rounded-xl px-6 py-3 text-[15px]">
+          <Link
+            href="/contact"
+            className="btn-gold whitespace-nowrap rounded-xl px-2.5 py-1.5 text-[12px] lg:px-6 lg:py-3 lg:text-[15px]"
+          >
             הזמנת שירות
           </Link>
         </div>
-
-        <button
-          type="button"
-          className={onDark ? "text-white lg:hidden" : "text-ink lg:hidden"}
-          aria-expanded={open}
-          aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="block h-0.5 w-6 bg-current" />
-          <span className="mt-1.5 block h-0.5 w-6 bg-current" />
-          <span className="mt-1.5 block h-0.5 w-6 bg-current" />
-        </button>
       </div>
 
       {open ? (
