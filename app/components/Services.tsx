@@ -139,12 +139,12 @@ export default function Services() {
                   className="block w-full py-4 text-right"
                 >
                   {on ? (
-                    <>
-                      {/* The picture takes the starting edge and the copy
-                          runs beside it. A float rather than a column, so a
-                          description longer than the picture is tall carries
-                          on underneath it instead of leaving a hole. */}
-                      <span className="relative float-start mb-2 me-4 block aspect-[4/3] w-[42%] overflow-hidden rounded-xl border border-gold/30 shadow-[0_10px_24px_rgba(0,0,0,0.1)]">
+                    // The picture takes the starting edge and grows to
+                    // whatever height the copy beside it needs, so the two
+                    // columns end on the same line. It is a crop, not a
+                    // letterbox: a long description makes a tall picture.
+                    <span className="flex items-stretch gap-4">
+                      <span className="relative w-[42%] shrink-0 overflow-hidden rounded-xl border border-gold/30 shadow-[0_10px_24px_rgba(0,0,0,0.1)]">
                         <Image
                           src={service.image}
                           alt={service.title}
@@ -154,26 +154,28 @@ export default function Services() {
                         />
                       </span>
 
-                      <span className="flex items-start gap-2">
-                        <span className="mt-1 h-6 w-[3px] shrink-0 rounded-full bg-gold shadow-[0_0_10px_rgba(197,160,89,0.8)]" />
-                        <span className="mt-0.5 font-display text-[13px] font-bold text-gold">
-                          0{i + 1}
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-start gap-2">
+                          <span className="mt-1 h-6 w-[3px] shrink-0 rounded-full bg-gold shadow-[0_0_10px_rgba(197,160,89,0.8)]" />
+                          <span className="mt-0.5 font-display text-[13px] font-bold text-gold">
+                            0{i + 1}
+                          </span>
+                          <span className="flex-1 font-display text-[17px] font-bold leading-snug text-[#C5A059]">
+                            {service.title}
+                          </span>
+                          <span
+                            aria-hidden
+                            className="inline-flex h-7 w-7 shrink-0 rotate-45 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300"
+                          >
+                            +
+                          </span>
                         </span>
-                        <span className="flex-1 font-display text-[17px] font-bold leading-snug text-[#C5A059]">
-                          {service.title}
-                        </span>
-                        <span
-                          aria-hidden
-                          className="inline-flex h-7 w-7 shrink-0 rotate-45 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300"
-                        >
-                          +
-                        </span>
-                      </span>
 
-                      <span className="mt-2.5 block text-[14px] leading-relaxed text-ink-soft">
-                        {service.detail}
+                        <span className="mt-2.5 block text-[14px] leading-relaxed text-ink-soft">
+                          {service.detail}
+                        </span>
                       </span>
-                    </>
+                    </span>
                   ) : (
                     <span className="flex items-center gap-3">
                       <span className="h-7 w-[3px] shrink-0 rounded-full bg-transparent" />
@@ -193,14 +195,17 @@ export default function Services() {
                   )}
                 </button>
 
-                {/* Outside the button: a link cannot live inside one. */}
+                {/* Outside the button: a link cannot live inside one. It
+                    runs under both columns, centred on the row. */}
                 {on ? (
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="arrow-link mb-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
-                  >
-                    לפרטים והצעת מחיר <span className="arrow">←</span>
-                  </Link>
+                  <div className="pb-5 text-center">
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="arrow-link inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
+                    >
+                      לפרטים והצעת מחיר <span className="arrow">←</span>
+                    </Link>
+                  </div>
                 ) : null}
               </li>
             );
