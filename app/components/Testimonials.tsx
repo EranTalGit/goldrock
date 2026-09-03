@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import SectionHeading from "./SectionHeading";
+import { CarouselControls, RAIL_CLASS, useCarousel } from "./carousel";
 
 /** Five gold stars, drawn once and repeated. */
 function Stars() {
@@ -21,91 +21,13 @@ function Stars() {
   );
 }
 
+const SIDE_ARROW =
+  "absolute top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-white text-lg leading-none text-gold shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition-all hover:border-gold hover:bg-gold hover:text-white lg:flex";
+
 export default function Testimonials() {
-  const rail = useRef<HTMLUListElement>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-  const [page, setPage] = useState(0);
-  const [pages, setPages] = useState(1);
-
-  // scrollLeft runs negative in a right-to-left container, so every read of
-  // it goes through Math.abs and every comparison works off that distance.
-  const measure = useCallback(() => {
-    const el = rail.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const at = Math.abs(el.scrollLeft);
-    setAtStart(at < 8);
-    setAtEnd(at > max - 8);
-    const per = Math.max(1, Math.round(el.clientWidth / (el.firstElementChild?.clientWidth || 1)));
-    const total = Math.max(1, Math.ceil(TESTIMONIALS.length / per));
-    setPages(total);
-    setPage(max > 0 ? Math.round((at / max) * (total - 1)) : 0);
-  }, []);
-
-  useEffect(() => {
-    const el = rail.current;
-    if (!el) return;
-    measure();
-    el.addEventListener("scroll", measure, { passive: true });
-
-    // How many fit across changes with the layout, not only with the window,
-    // so watch the rail itself rather than waiting for a resize event.
-    const observer =
-      typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
-    observer?.observe(el);
-    window.addEventListener("resize", measure);
-
-    return () => {
-      el.removeEventListener("scroll", measure);
-      observer?.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, [measure]);
-
-  // Smooth scrolling fights mandatory snapping and does not always finish,
-  // so the position is animated by hand with the snapping lifted, the same
-  // way the gallery does it. A hidden document has no frames to animate on,
-  // and a reduced-motion preference asks for none, so both jump instead.
-  const step = (dir: 1 | -1) => {
-    const el = rail.current;
-    if (!el) return;
-
-    const rtl = getComputedStyle(el).direction === "rtl";
-    const max = el.scrollWidth - el.clientWidth;
-    // Distance travelled from the start edge, whichever edge that is.
-    const at = Math.abs(el.scrollLeft);
-    const travel = dir === -1 ? el.clientWidth : -el.clientWidth;
-    const next = Math.min(max, Math.max(0, at + travel));
-    const target = rtl ? -next : next;
-
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || document.hidden) {
-      el.scrollLeft = target;
-      measure();
-      return;
-    }
-
-    const start = el.scrollLeft;
-    const change = target - start;
-    if (Math.abs(change) < 1) return;
-
-    const snap = el.style.scrollSnapType;
-    el.style.scrollSnapType = "none";
-    const t0 = performance.now();
-
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - t0) / 420);
-      el.scrollLeft = start + change * (1 - Math.pow(1 - p, 3));
-      if (p < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        el.style.scrollSnapType = snap;
-        measure();
-      }
-    };
-    requestAnimationFrame(tick);
-  };
+  const { rail, atStart, atEnd, page, pages, step } = useCarousel(
+    TESTIMONIALS.length,
+  );
 
   return (
     <section className="bg-paper text-ink">
@@ -117,10 +39,7 @@ export default function Testimonials() {
         />
 
         <div className="relative mt-12">
-          <ul
-            ref={rail}
-            className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
+          <ul ref={rail} className={RAIL_CLASS}>
             {TESTIMONIALS.map((item) => (
               <li
                 key={item.name + item.city}
@@ -167,68 +86,37 @@ export default function Testimonials() {
             type="button"
             onClick={() => step(1)}
             aria-label="ביקורות קודמות"
-            className={`absolute -right-2 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-white text-gold shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition-all hover:border-gold hover:bg-gold hover:text-white lg:flex ${
+            className={`${SIDE_ARROW} -right-2 ${
               atStart ? "pointer-events-none opacity-0" : "opacity-100"
             }`}
           >
-            <span aria-hidden className="text-lg leading-none">&rarr;</span>
+            <span aria-hidden>&rarr;</span>
           </button>
           <button
             type="button"
             onClick={() => step(-1)}
             aria-label="ביקורות נוספות"
-            className={`absolute -left-2 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-white text-gold shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition-all hover:border-gold hover:bg-gold hover:text-white lg:flex ${
+            className={`${SIDE_ARROW} -left-2 ${
               atEnd ? "pointer-events-none opacity-0" : "opacity-100"
             }`}
           >
-            <span aria-hidden className="text-lg leading-none">&larr;</span>
+            <span aria-hidden>&larr;</span>
           </button>
         </div>
 
-        {/* On a phone the side arrows have nowhere to sit, so the controls
-            move below. A bar rather than dots: one card to a view means
-            sixteen of them, which is more clutter than information. */}
-        <div className="mt-7 flex items-center justify-center gap-4 lg:hidden">
-          <button
-            type="button"
-            onClick={() => step(1)}
-            aria-label="ביקורות קודמות"
-            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-white text-gold transition-all hover:bg-gold hover:text-white ${
-              atStart ? "pointer-events-none opacity-30" : "opacity-100"
-            }`}
-          >
-            <span aria-hidden className="text-lg leading-none">&rarr;</span>
-          </button>
-
-          <div
-            className="h-1.5 w-28 overflow-hidden rounded-full bg-ink/15"
-            role="progressbar"
-            aria-valuemin={1}
-            aria-valuemax={pages}
-            aria-valuenow={page + 1}
-            aria-label="התקדמות בביקורות"
-          >
-            <div
-              className="h-full rounded-full bg-gold transition-[width] duration-300"
-              style={{ width: `${((page + 1) / pages) * 100}%` }}
-            />
-          </div>
-
-          <span className="shrink-0 text-[13px] font-semibold tabular-nums text-ink-soft">
-            {page + 1}/{pages}
-          </span>
-
-          <button
-            type="button"
-            onClick={() => step(-1)}
-            aria-label="ביקורות נוספות"
-            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-white text-gold transition-all hover:bg-gold hover:text-white ${
-              atEnd ? "pointer-events-none opacity-30" : "opacity-100"
-            }`}
-          >
-            <span aria-hidden className="text-lg leading-none">&larr;</span>
-          </button>
-        </div>
+        <CarouselControls
+          className="mt-7 lg:hidden"
+          atStart={atStart}
+          atEnd={atEnd}
+          page={page}
+          pages={pages}
+          step={step}
+          labels={{
+            back: "ביקורות קודמות",
+            on: "ביקורות נוספות",
+            progress: "התקדמות בביקורות",
+          }}
+        />
       </div>
     </section>
   );
