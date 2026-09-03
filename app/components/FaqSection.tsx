@@ -37,7 +37,7 @@ export default function FaqSection({
               <details
                 key={item.q}
                 open={isOpen}
-                className={`group rounded-xl border bg-cream px-5 transition-all duration-300 ${
+                className={`group rounded-xl border bg-cream px-4 transition-all sm:px-5 duration-300 ${
                   isOpen
                     ? "border-gold shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
                     : "border-[#EAE5D9] shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:-translate-y-0.5 hover:border-gold/60"
@@ -48,7 +48,7 @@ export default function FaqSection({
                     e.preventDefault();
                     setOpen(isOpen ? null : i);
                   }}
-                  className="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-[16px] font-bold text-ink marker:content-none"
+                  className="flex cursor-pointer list-none items-center justify-between gap-3 py-3.5 text-balance text-[15px] font-bold text-ink marker:content-none sm:gap-4"
                 >
                   {item.q}
                   <span

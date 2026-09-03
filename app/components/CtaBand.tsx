@@ -60,7 +60,7 @@ export default function CtaBand({
             </span>
             {/* A third, smaller and offset, so the cluster reads as scattered
                 light rather than a pair. */}
-            <span className="crystal-a mt-3 inline-flex text-gold/70">
+            <span className="crystal-a -ms-1.5 mt-2 inline-flex text-gold/70">
               <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M12 2l1.9 6.6L20 12l-6.1 3.4L12 22l-1.9-6.6L4 12l6.1-3.4L12 2z" />
               </svg>

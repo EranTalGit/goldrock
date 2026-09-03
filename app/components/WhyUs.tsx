@@ -18,7 +18,7 @@ export default function WhyUs() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {BENEFITS.map((benefit) => (
-            <article key={benefit.title} className="card-mirror p-6">
+            <article key={benefit.title} className="card-mirror flex flex-col items-center p-6 text-center">
               <span className="mirror-tile relative inline-flex h-14 w-14 items-center justify-center rounded-2xl text-gold">
                 <ServiceIcon name={benefit.icon} width={28} height={28} />
               </span>

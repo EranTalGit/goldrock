@@ -152,10 +152,6 @@ export function CarouselControls({
         />
       </div>
 
-      <span className="shrink-0 text-[13px] font-semibold tabular-nums text-ink-soft">
-        {page + 1}/{pages}
-      </span>
-
       <button
         type="button"
         onClick={() => step(-1)}

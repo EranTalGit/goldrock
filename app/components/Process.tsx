@@ -48,17 +48,16 @@ export default function Process({
       observer.observe(el);
     }
 
-    // The steps are hidden until this runs, so never let a missed
-    // observation leave them invisible. Without the API to observe with,
-    // the same timer is what reveals them, so it fires immediately.
-    const failsafe = window.setTimeout(
-      () => setStarted(true),
-      supported ? 2500 : 0
-    );
+    // The steps are hidden until something reveals them, so a browser with
+    // no observer to watch with gets them straight away. Where there is an
+    // observer, waiting is the whole point: a timer running alongside it
+    // fired while the section was still far below, and the reveal was over
+    // before anyone scrolled to it.
+    const failsafe = supported ? 0 : window.setTimeout(() => setStarted(true), 0);
 
     return () => {
       observer?.disconnect();
-      window.clearTimeout(failsafe);
+      if (failsafe) window.clearTimeout(failsafe);
     };
   }, []);
 
@@ -78,64 +77,80 @@ export default function Process({
           {steps.map((step, i) => {
             const last = i === steps.length - 1;
             const stepDelay = 120 + i * STEP_MS;
+            // On a phone the marker sits on the centre line of its own heading
+            // and text, and the connector is drawn from the marker's foot down
+            // to the next one.
             return (
-              <li key={step.title} className="group flex items-stretch gap-5 md:block">
-                {/* Marker rail. */}
-                <div className="flex flex-col items-center md:block">
-                  <div className="relative flex justify-center">
-                    {/* Connector toward the next step (leftward in RTL). */}
-                    {!last ? (
-                      <span
-                        aria-hidden
-                        className="pointer-events-none absolute top-1/2 right-1/2 hidden w-[calc(100%+1.75rem)] -translate-y-1/2 md:block"
-                      >
-                        <span
-                          className="seq seq-line block border-t-2 border-dashed border-gold-soft/70"
-                          style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
-                        />
-                        {/* Arrowhead at the midpoint, on its own patch of
-                            background so the dashes break cleanly around it. */}
-                        <span
-                          className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper px-1.5"
-                          style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
-                        >
-                          <span className="h-0 w-0 border-y-[6px] border-r-[9px] border-y-transparent border-r-gold" />
-                        </span>
-                      </span>
-                    ) : null}
-
-                    <span
-                      className="seq seq-step relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white/85 text-xl font-bold text-gold shadow-[0_8px_20px_rgba(0,0,0,0.06)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-1 group-hover:border-gold-soft group-hover:bg-white group-hover:text-gold-soft group-hover:shadow-[0_12px_28px_rgba(197,160,89,0.45)] md:h-20 md:w-20 md:text-2xl"
-                      style={{ animationDelay: `${stepDelay}ms` }}
-                    >
-                      0{i + 1}
-                    </span>
-                  </div>
-
-                  {/* Rail running down to the next marker, with the same
-                      arrowhead the desktop connector carries - here pointing
-                      down, on its own patch so the dashes break around it. */}
+              <li
+                key={step.title}
+                className="group relative flex items-center gap-5 pb-10 md:block md:items-stretch md:pb-0"
+              >
+                <div className="relative flex shrink-0 justify-center">
+                  {/* Connector toward the next step (leftward in RTL). */}
                   {!last ? (
                     <span
                       aria-hidden
-                      className="relative my-2 flex w-4 flex-1 justify-center md:hidden"
+                      className="pointer-events-none absolute top-1/2 right-1/2 hidden w-[calc(100%+1.75rem)] -translate-y-1/2 md:block"
                     >
                       <span
-                        className="seq seq-fade h-full w-0 border-r-2 border-dashed border-gold-soft/70"
+                        className="seq seq-line block border-t-2 border-dashed border-gold-soft/70"
                         style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
                       />
+                      {/* Arrowhead at the midpoint, on its own patch of
+                          background so the dashes break cleanly around it. */}
                       <span
-                        className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper py-1.5"
+                        className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper px-1.5"
+                        style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
+                      >
+                        <span className="h-0 w-0 border-y-[6px] border-r-[9px] border-y-transparent border-r-gold" />
+                      </span>
+                    </span>
+                  ) : null}
+
+                  <span
+                    className="seq seq-step relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white text-xl font-bold text-gold shadow-[0_8px_20px_rgba(0,0,0,0.06)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-1 group-hover:border-gold-soft group-hover:bg-white group-hover:text-gold-soft group-hover:shadow-[0_12px_28px_rgba(197,160,89,0.45)] md:h-20 md:bg-white/85 md:w-20 md:text-2xl"
+                    style={{ animationDelay: `${stepDelay}ms` }}
+                  >
+                    0{i + 1}
+                  </span>
+                </div>
+
+                {/* The phone rail. Rows are of unequal height and each marker
+                    now sits on the middle of its own copy, so the gap between
+                    two markers is never the same twice. Rather than measure
+                    it, every row draws its own segment edge to edge and the
+                    opaque marker covers the piece behind it - which makes one
+                    continuous line down the column whatever the heights. */}
+                {steps.length > 1 ? (
+                  <span
+                    aria-hidden
+                    className={`absolute start-6 flex w-4 justify-center md:hidden ${
+                      i === 0
+                        ? "bottom-0 top-1/2"
+                        : last
+                          ? "bottom-1/2 top-0"
+                          : "inset-y-0"
+                    }`}
+                  >
+                    <span
+                      className="seq seq-fade h-full w-0 border-r-2 border-dashed border-gold-soft/70"
+                      style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
+                    />
+                    {/* Arrowhead low in the row, on its own patch of ground so
+                        the dashes break cleanly around it. */}
+                    {!last ? (
+                      <span
+                        className="seq seq-fade absolute bottom-1 left-1/2 flex -translate-x-1/2 items-center justify-center bg-paper py-1.5"
                         style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
                       >
                         <span className="h-0 w-0 border-x-[6px] border-t-[9px] border-x-transparent border-t-gold" />
                       </span>
-                    </span>
-                  ) : null}
-                </div>
+                    ) : null}
+                  </span>
+                ) : null}
 
                 {/* Copy sits beside the marker on a phone, beneath it above. */}
-                <div className="flex-1 pb-10 text-right md:pb-0 md:text-center">
+                <div className="flex-1 text-right md:text-center">
                   <h3
                     className="seq seq-step text-pretty text-lg font-bold text-ink md:mt-6"
                     style={{ animationDelay: `${stepDelay + 120}ms` }}

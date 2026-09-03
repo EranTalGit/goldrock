@@ -22,12 +22,12 @@ export default function Areas() {
           description="צוותי המומחים של Goldrock מעניקים שירותי פוליש, ליטוש שיש, חידוש מדרגות וקריסטליזציה בפריסה רחבה. בחרו את העיר שלכם לקבלת פרטים, מענה מהיר והצעת מחיר במקום."
         />
 
-        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-4 gap-2 sm:gap-3">
           {CITIES.map((city) => (
             <Link
               key={city.slug}
               href={`/areas/${city.slug}`}
-              className="city-mirror flex items-center justify-center px-4 py-2.5 text-center text-sm font-medium"
+              className="city-mirror flex items-center justify-center px-1.5 py-2.5 text-center text-[11px] font-medium leading-tight sm:px-4 sm:text-sm"
             >
               {city.name}
             </Link>

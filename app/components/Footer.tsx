@@ -84,57 +84,60 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="text-center">
-          <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">ניווט</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
-                  className={linkFor(link.href)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            {LEGAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
-                  className={linkFor(link.href)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* The two link lists stay side by side at every width, so the footer
+            is two short columns rather than one long one. */}
+        <div className="grid grid-cols-2 gap-8 md:col-span-2">
+          <div className="text-center">
+            <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">ניווט</h2>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
+                    className={linkFor(link.href)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={isCurrent(link.href, pathname) ? "page" : undefined}
+                    className={linkFor(link.href)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+  
+          <div className="text-center">
+            <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">שירותים</h2>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className={linkFor(`/services/${service.slug}`)}
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        <div className="text-center">
-          <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">שירותים</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {SERVICES.map((service) => (
-              <li key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className={linkFor(`/services/${service.slug}`)}
-                >
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-10 text-center sm:px-6">
         <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">
           אזורים
         </h2>
-        <ul className="mx-auto mt-4 grid w-fit grid-cols-2 gap-x-8 gap-y-2.5 text-sm sm:grid-cols-3">
+        <ul className="mx-auto mt-4 grid w-fit grid-cols-3 gap-x-10 gap-y-2.5 text-sm sm:gap-x-14">
           {CITIES.map((city) => (
             <li key={city.slug}>
               <Link

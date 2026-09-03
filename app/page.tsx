@@ -65,7 +65,7 @@ export default function Home() {
               <br className="hidden sm:inline" />{" "}
               הנכס והציוד שלכם.
             </p>
-            <ul className="mx-auto mt-6 w-fit max-w-full space-y-4 text-right">
+            <ul className="me-auto mt-6 w-fit max-w-full space-y-4 text-right">
               {highlights.map((item) => (
                 <li key={item.strong} className="flex items-center gap-4">
                   <span
