@@ -7,7 +7,7 @@ import { PhoneIcon, ServiceIcon, WhatsAppIcon } from "./icons";
  */
 export default function CtaBand({
   title = "רוצים רצפה שמחזירה ברק?",
-  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות",
+  text = "שולחים תמונה בוואטסאפ ומקבלים הצעת מחיר מיידית ללא התחייבות",
   /** Word to gild in the heading. Ignored when the title lacks it. */
   highlight = "ברק?",
   /** Lets a page whose last band is already dark close on the light one. */
@@ -55,6 +55,13 @@ export default function CtaBand({
             </span>
             <span className="crystal-b inline-flex text-gold-soft">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M12 2l1.9 6.6L20 12l-6.1 3.4L12 22l-1.9-6.6L4 12l6.1-3.4L12 2z" />
+              </svg>
+            </span>
+            {/* A third, smaller and offset, so the cluster reads as scattered
+                light rather than a pair. */}
+            <span className="crystal-a mt-3 inline-flex text-gold/70">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M12 2l1.9 6.6L20 12l-6.1 3.4L12 22l-1.9-6.6L4 12l6.1-3.4L12 2z" />
               </svg>
             </span>

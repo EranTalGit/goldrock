@@ -46,10 +46,11 @@ export default function Home() {
             <p className="gold-metal font-display text-4xl font-bold leading-tight sm:text-6xl">
               אודות
             </p>
-            {/* Break held at "עד" so the name sits on its own line. */}
-            <h2 className="mt-3 font-display text-xl font-semibold leading-snug text-ink sm:text-3xl">
+            {/* One line on a phone; the break at "עד" is for the wider
+                measure, where the name earns a line of its own. */}
+            <h2 className="mt-3 font-display text-[15px] font-semibold leading-snug text-ink sm:text-3xl">
               גולדרוק - מטפלים באבן
-              <br />
+              <br className="hidden sm:inline" />{" "}
               עד שהיא מחזירה אור
             </h2>
             <div className="gold-rule mx-auto mt-5 w-full max-w-sm" />
@@ -61,7 +62,7 @@ export default function Home() {
 
             <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
               חברת Goldrock מתמחה בפתרונות ליטוש, קריסטליזציה ושחזור משטחי שיש, אבן טבעית וגרניט פורצלן ברמת פרימיום. אנו משלבים טכנולוגיית ליטוש יהלום חדשנית לצד עבודה קפדנית ללא אבק, תוך שמירה מוחלטת על
-              <br />
+              <br className="hidden sm:inline" />{" "}
               הנכס והציוד שלכם.
             </p>
             <ul className="mx-auto mt-6 w-fit max-w-full space-y-4 text-right">
@@ -73,9 +74,13 @@ export default function Home() {
                   >
                     <ServiceIcon name={item.icon} width={24} height={24} />
                   </span>
+                  {/* Title on its own line, the sentence beneath it starting
+                      on the same edge. */}
                   <span className="text-[16px] leading-relaxed text-ink-soft">
-                    <strong className="font-bold text-gold">{item.strong}</strong>{" "}
-                    {item.rest}
+                    <strong className="block font-bold text-gold">
+                      {item.strong}
+                    </strong>
+                    <span className="block">{item.rest}</span>
                   </span>
                 </li>
               ))}

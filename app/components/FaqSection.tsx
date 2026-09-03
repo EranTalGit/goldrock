@@ -48,7 +48,7 @@ export default function FaqSection({
                     e.preventDefault();
                     setOpen(isOpen ? null : i);
                   }}
-                  className="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-[17px] font-bold text-ink marker:content-none"
+                  className="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-[16px] font-bold text-ink marker:content-none"
                 >
                   {item.q}
                   <span

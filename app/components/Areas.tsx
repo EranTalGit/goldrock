@@ -3,26 +3,11 @@ import { CITIES, REGION_LABEL } from "@/lib/site";
 import SectionHeading from "./SectionHeading";
 
 /**
- * Twenty cities split 7 / 7 / 6 rather than left to wrap, so the block
- * reads as a deliberate shape with the short row centred beneath.
+ * Twenty cities in a four-column grid: every pill the same width, five
+ * even rows, and no short row left hanging.
  */
-const ROW_SIZES = [7, 7, 6];
-
-function splitRows<T>(items: T[], sizes: number[]): T[][] {
-  const rows: T[][] = [];
-  let cursor = 0;
-  for (const size of sizes) {
-    rows.push(items.slice(cursor, cursor + size));
-    cursor += size;
-  }
-  // Anything left over rides along on the last row.
-  if (cursor < items.length) rows.push(items.slice(cursor));
-  return rows.filter((row) => row.length > 0);
-}
 
 export default function Areas() {
-  const rows = splitRows(CITIES, ROW_SIZES);
-
   return (
     <section id="areas" className="relative overflow-hidden bg-paper text-ink">
       <div
@@ -37,19 +22,15 @@ export default function Areas() {
           description="צוותי המומחים של Goldrock מעניקים שירותי פוליש, ליטוש שיש, חידוש מדרגות וקריסטליזציה בפריסה רחבה. בחרו את העיר שלכם לקבלת פרטים, מענה מהיר והצעת מחיר במקום."
         />
 
-        <div className="mx-auto mt-10 flex max-w-4xl flex-col items-center gap-3">
-          {rows.map((row, i) => (
-            <div key={i} className="flex flex-wrap justify-center gap-3">
-              {row.map((city) => (
-                <Link
-                  key={city.slug}
-                  href={`/areas/${city.slug}`}
-                  className="city-mirror inline-flex items-center px-5 py-2.5 text-sm font-medium"
-                >
-                  {city.name}
-                </Link>
-              ))}
-            </div>
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {CITIES.map((city) => (
+            <Link
+              key={city.slug}
+              href={`/areas/${city.slug}`}
+              className="city-mirror flex items-center justify-center px-4 py-2.5 text-center text-sm font-medium"
+            >
+              {city.name}
+            </Link>
           ))}
         </div>
 

@@ -41,7 +41,9 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gold/20 bg-footer">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-6 pt-12 sm:px-6 md:grid-cols-4">
+      {/* The brand, then navigation beside services; the areas take a band of
+          their own below, three columns wide. */}
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 pt-12 sm:px-6 md:grid-cols-3">
         <div className="text-center md:col-span-1">
           <div className="flex items-center justify-center gap-3">
             <LogoMark size={62} />
@@ -83,7 +85,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center">
-          <h2 className="text-sm font-bold tracking-wide text-gold">ניווט</h2>
+          <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">ניווט</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -111,7 +113,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center">
-          <h2 className="text-sm font-bold tracking-wide text-gold">שירותים</h2>
+          <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">שירותים</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {SERVICES.map((service) => (
               <li key={service.slug}>
@@ -126,21 +128,24 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="text-center">
-          <h2 className="text-sm font-bold tracking-wide text-gold">אזורים</h2>
-          <ul className="mx-auto mt-4 grid w-fit grid-cols-2 gap-x-5 gap-y-2.5 text-sm sm:grid-cols-3">
-            {CITIES.map((city) => (
-              <li key={city.slug}>
-                <Link
-                  href={`/areas/${city.slug}`}
-                  className={linkFor(`/areas/${city.slug}`)}
-                >
-                  {city.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 pb-6 pt-10 text-center sm:px-6">
+        <h2 className="text-sm font-bold tracking-wide text-gold after:mx-auto after:mt-2 after:block after:h-px after:w-10 after:bg-gold/45">
+          אזורים
+        </h2>
+        <ul className="mx-auto mt-4 grid w-fit grid-cols-2 gap-x-8 gap-y-2.5 text-sm sm:grid-cols-3">
+          {CITIES.map((city) => (
+            <li key={city.slug}>
+              <Link
+                href={`/areas/${city.slug}`}
+                className={linkFor(`/areas/${city.slug}`)}
+              >
+                {city.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="border-t border-white/[0.07]">
