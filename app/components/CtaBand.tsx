@@ -45,23 +45,26 @@ export default function CtaBand({
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-9 px-4 py-[60px] text-center sm:px-6 min-[900px]:flex-row min-[900px]:items-center min-[900px]:justify-between min-[900px]:gap-12 min-[900px]:text-right">
         <div>
-          {/* A turning crystal with a smaller one keeping it company. */}
+          {/* A turning crystal with two glints. They sit off its corners
+              rather than in a row beside it - three stars on one line read
+              as a rating, three set around a point read as light. */}
           <span
             aria-hidden
-            className="mb-3 inline-flex items-start gap-1 text-gold min-[900px]:mb-2"
+            className="relative mb-3 inline-flex text-gold min-[900px]:mb-2"
           >
             <span className="crystal-a inline-flex">
               <ServiceIcon name="sparkle" width={28} height={28} />
             </span>
-            <span className="crystal-b inline-flex text-gold-soft">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <span className="crystal-b absolute -end-2 -top-1.5 inline-flex text-gold-soft">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M12 2l1.9 6.6L20 12l-6.1 3.4L12 22l-1.9-6.6L4 12l6.1-3.4L12 2z" />
               </svg>
             </span>
-            {/* A third, smaller and offset, so the cluster reads as scattered
-                light rather than a pair. */}
-            <span className="crystal-a -ms-1.5 mt-2 inline-flex text-gold/70">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <span
+              className="crystal-b absolute -bottom-1 -start-1.5 inline-flex text-gold/80"
+              style={{ animationDelay: "-3.2s" }}
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M12 2l1.9 6.6L20 12l-6.1 3.4L12 22l-1.9-6.6L4 12l6.1-3.4L12 2z" />
               </svg>
             </span>

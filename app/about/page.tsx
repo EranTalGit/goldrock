@@ -112,19 +112,19 @@ export default function AboutPage() {
             <div className="gold-rule mx-auto mt-6 w-full max-w-sm" />
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
             {VALUES.map((value) => (
               <article
                 key={value.title}
-                className="flex flex-col items-center rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-6 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)]"
+                className="flex flex-col items-center rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white p-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_16px_38px_rgba(212,175,55,0.18)] sm:p-6"
               >
-                <span className="trust-badge inline-flex h-14 w-14 items-center justify-center rounded-full text-gold">
-                  <ServiceIcon name={value.icon} width={26} height={26} />
+                <span className="trust-badge inline-flex h-11 w-11 items-center justify-center rounded-full text-gold sm:h-14 sm:w-14">
+                  <ServiceIcon name={value.icon} width={22} height={22} />
                 </span>
-                <h3 className="mt-5 font-display text-lg font-bold leading-snug text-[#1A1A1A]">
+                <h3 className="mt-4 text-balance font-display text-[15px] font-bold leading-snug text-[#1A1A1A] sm:mt-5 sm:text-lg">
                   {value.title}
                 </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                <p className="mt-2.5 text-[13px] leading-relaxed text-ink-soft sm:mt-3 sm:text-[15px]">
                   {value.text}
                 </p>
               </article>
@@ -139,18 +139,18 @@ export default function AboutPage() {
             in RTL left a stray line outside and dropped the last divider. A
             logical inline-start border on every item but the first is correct
             in both directions. */}
-        <div className="mx-auto grid max-w-6xl gap-y-8 px-4 py-12 sm:px-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-4 px-2 py-9 sm:px-6 sm:py-12">
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
-              className={`px-4 text-center ${
-                i > 0 ? "lg:border-s lg:border-[rgba(212,175,55,0.35)]" : ""
+              className={`px-1.5 text-center sm:px-4 ${
+                i > 0 ? "border-s border-[rgba(212,175,55,0.35)]" : ""
               }`}
             >
-              <p className="gold-metal font-display text-2xl font-bold leading-tight sm:text-[1.7rem]">
+              <p className="gold-metal flex min-h-[2.5em] items-center justify-center text-balance font-display text-[13px] font-bold leading-tight sm:min-h-0 sm:text-2xl lg:text-[1.7rem]">
                 {stat.value}
               </p>
-              <p className="mt-2 text-[1.05rem] font-medium leading-relaxed text-[#2C2C2C]">
+              <p className="mt-1.5 text-balance text-[11px] font-medium leading-snug text-[#2C2C2C] sm:mt-2 sm:text-[1.05rem] sm:leading-relaxed">
                 {stat.label}
               </p>
             </div>
