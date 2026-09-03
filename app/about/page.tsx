@@ -25,7 +25,7 @@ const VALUES: { icon: ServiceIconName; title: string; text: string }[] = [
   {
     icon: "diamond",
     title: "טכנולוגיית ליטוש יהלום",
-    text: "דיסקיות יהלום במגוון דרגות, שמסירות שריטות וכתמים ומשאירות משטח חלק ואחיד - בלי בליטות ובלי סימני מעבר בין אזורים.",
+    text: "דיסקיות יהלום במגוון דרגות, שמסירות שריטות וכתמים ומשאירות משטח חלק ואחיד - בלי בליטות ובלי סימני מעבר\nבין אזורים.",
   },
   {
     icon: "broom",
@@ -40,10 +40,10 @@ const VALUES: { icon: ServiceIconName; title: string; text: string }[] = [
 ];
 
 const STATS = [
-  { value: "100%", label: "עבודה נקייה וללא אבק" },
-  { value: "יהלום וקריסטל", label: "טכנולוגיה מתקדמת" },
-  { value: "שקוף ומדויק", label: "הצעת מחיר ללא התחייבות" },
-  { value: "אחריות מלאה", label: "על כל סוגי העבודות" },
+  { value: "100%", label: "עבודה נקייה\nוללא אבק" },
+  { value: "יהלום\nוקריסטל", label: "טכנולוגיה\nמתקדמת" },
+  { value: "שקוף\nומדויק", label: "הצעת מחיר\nללא התחייבות" },
+  { value: "אחריות\nמלאה", label: "על כל סוגי\nהעבודות" },
 ];
 
 export default function AboutPage() {
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 <h3 className="mt-4 text-balance font-display text-[15px] font-bold leading-snug text-[#1A1A1A] sm:mt-5 sm:text-lg">
                   {value.title}
                 </h3>
-                <p className="mt-2.5 text-[13px] leading-relaxed text-ink-soft sm:mt-3 sm:text-[15px]">
+                <p className="mt-2.5 whitespace-pre-line text-[13px] leading-relaxed text-ink-soft sm:mt-3 sm:whitespace-normal sm:text-[15px]">
                   {value.text}
                 </p>
               </article>
@@ -139,18 +139,18 @@ export default function AboutPage() {
             in RTL left a stray line outside and dropped the last divider. A
             logical inline-start border on every item but the first is correct
             in both directions. */}
-        <div className="mx-auto grid max-w-6xl grid-cols-4 px-2 py-9 sm:px-6 sm:py-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-4 px-1 py-9 sm:px-6 sm:py-12">
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
-              className={`px-1.5 text-center sm:px-4 ${
+              className={`px-1 text-center sm:px-4 ${
                 i > 0 ? "border-s border-[rgba(212,175,55,0.35)]" : ""
               }`}
             >
-              <p className="gold-metal flex min-h-[2.5em] items-center justify-center text-balance font-display text-[13px] font-bold leading-tight sm:min-h-0 sm:text-2xl lg:text-[1.7rem]">
+              <p className="gold-metal flex min-h-[2.4em] items-center justify-center whitespace-pre-line font-display text-[20px] font-bold leading-tight sm:min-h-0 sm:whitespace-normal sm:text-2xl lg:text-[1.7rem]">
                 {stat.value}
               </p>
-              <p className="mt-1.5 text-balance text-[11px] font-medium leading-snug text-[#2C2C2C] sm:mt-2 sm:text-[1.05rem] sm:leading-relaxed">
+              <p className="mt-1.5 whitespace-pre-line text-[14px] font-medium leading-snug text-[#2C2C2C] sm:mt-2 sm:whitespace-normal sm:text-[1.05rem] sm:leading-relaxed">
                 {stat.label}
               </p>
             </div>

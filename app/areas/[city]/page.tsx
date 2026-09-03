@@ -170,18 +170,19 @@ export default async function CityPage({
       <section className="bg-sand text-ink">
         <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
           <BandHeading>שכונות {city.inName}</BandHeading>
-          {/* One list, laid out row by row. A row still wraps inside itself
-              on a narrow screen, so four pills become two and two there
-              without a breakpoint of its own. */}
-          <ul className="mt-8 space-y-3">
+          {/* One list, laid out row by row. A row keeps its count at every
+              width: on a phone its pills share the width equally and the
+              longer names wrap inside their own pill, rather than the row
+              folding and turning three into two and one. */}
+          <ul className="mt-8 space-y-2.5 sm:space-y-3">
             {neighbourhoodRows.map((row) => (
               <li key={row.join("|")}>
-                <ul className="flex flex-wrap justify-center gap-3">
+                <ul className="flex justify-center gap-2 sm:gap-3">
                   {row.map((n) => (
                     <li
                       key={n}
-                      style={{ width: neighbourhoodWidth }}
-                      className="pill-mirror flex max-w-full items-center justify-center px-4 py-2.5 text-center text-[15px] font-medium"
+                      style={{ "--pill": neighbourhoodWidth } as React.CSSProperties}
+                      className="pill-mirror flex min-w-0 flex-1 basis-0 items-center justify-center px-2 py-2 text-center text-[12.5px] font-medium leading-tight sm:w-[var(--pill)] sm:flex-none sm:basis-auto sm:px-4 sm:py-2.5 sm:text-[15px] sm:leading-normal"
                     >
                       {n}
                     </li>
@@ -206,19 +207,23 @@ export default async function CityPage({
                   href={`/services/${service.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-[rgba(212,175,55,0.25)] bg-white/85 px-6 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.04)] backdrop-blur-[10px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(212,175,55,0.55)] hover:shadow-[0_15px_35px_rgba(212,175,55,0.18)]"
                 >
-                  <span className="flex items-center gap-3">
+                  <span className="flex items-center gap-2 sm:gap-3">
                     <span
                       aria-hidden
-                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold"
+                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(212,175,55,0.35)] bg-gold/[0.08] text-gold sm:h-9 sm:w-9"
                     >
                       <ServiceIcon name={service.icon} width={18} height={18} />
                     </span>
-                    <span className="flex-1 text-balance text-center font-display text-[16px] font-bold leading-snug text-[#B8860B]">
-                      {service.title} {city.inName}
+                    {/* The parenthetical a service carries in its own name
+                        is what pushed this heading onto a second line in
+                        every city. The full name is on the page this links
+                        to; here the plain one holds a single line. */}
+                    <span className="flex-1 text-center font-display text-[15px] font-bold leading-snug text-[#B8860B] sm:text-[16px]">
+                      {service.title.replace(/\s*\([^)]*\)/, "")} {city.inName}
                     </span>
                     {/* Balances the badge, so the title centres on the card
                         rather than on what is left of it. */}
-                    <span aria-hidden className="h-9 w-9 shrink-0" />
+                    <span aria-hidden className="h-8 w-8 shrink-0 sm:h-9 sm:w-9" />
                   </span>
                   <span className="mt-3 text-center text-[14px] leading-[1.6] text-[#555555]">
                     {service.description}
