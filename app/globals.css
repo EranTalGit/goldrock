@@ -657,6 +657,27 @@ select.field-dark option:checked {
   }
 }
 
+/* Registered so the browser knows it is a length. Without this the
+   transition below has nothing well-defined to interpolate and the
+   offset sticks at its last value when the notice goes. */
+@property --cookie-h {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+/* Anything pinned to the bottom of the window rides above the cookie
+   notice while it is up, and settles back when it goes. */
+.above-cookie {
+  bottom: calc(5.5rem + var(--cookie-h, 0px));
+}
+
+@media (min-width: 768px) {
+  .above-cookie {
+    bottom: calc(1.5rem + var(--cookie-h, 0px));
+  }
+}
+
 .pill-mirror {
   position: relative;
   overflow: hidden;

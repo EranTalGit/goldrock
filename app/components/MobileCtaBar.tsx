@@ -3,7 +3,7 @@ import { PhoneIcon, WhatsAppIcon } from "./icons";
 
 export default function MobileCtaBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 gap-2 border-t border-gold/20 bg-obsidian/95 p-2 backdrop-blur md:hidden">
+    <div className="fixed inset-x-0 bottom-[var(--cookie-h,0px)] z-30 grid grid-cols-2 gap-2 border-t border-gold/20 bg-obsidian/95 p-2 backdrop-blur md:hidden">
       <a
         href={PHONE_HREF}
         className="btn-ghost flex items-center justify-center gap-2 rounded-full py-3 text-sm font-semibold"

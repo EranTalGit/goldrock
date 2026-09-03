@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const KEY = "goldrock_consent";
 
@@ -10,6 +10,33 @@ export const CONSENT_KEY = KEY;
 
 export default function CookieNotice() {
   const [shown, setShown] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+
+  // Everything else pinned to the bottom of the window - the floating
+  // buttons and the mobile bar - reads its own offset from this, so they
+  // ride above the notice while it is up and settle back when it goes.
+  useEffect(() => {
+    const root = document.documentElement;
+    const el = box.current;
+
+    if (!shown || !el) {
+      root.style.setProperty("--cookie-h", "0px");
+      return;
+    }
+
+    const publish = () =>
+      root.style.setProperty("--cookie-h", `${el.offsetHeight}px`);
+    publish();
+
+    const observer =
+      typeof ResizeObserver !== "undefined" ? new ResizeObserver(publish) : null;
+    observer?.observe(el);
+
+    return () => {
+      observer?.disconnect();
+      root.style.setProperty("--cookie-h", "0px");
+    };
+  }, [shown]);
 
   // Same exception: the answer lives in storage, and the banner must not
   // render on the server or it would mismatch for anyone who already
@@ -43,6 +70,7 @@ export default function CookieNotice() {
       role="dialog"
       aria-live="polite"
       aria-label="הודעה על שימוש בעוגיות"
+      ref={box}
       className="fixed inset-x-0 bottom-0 z-[120] border-t border-gold/25 bg-[#111111]/97 px-4 py-4 backdrop-blur-md sm:px-6"
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center min-[760px]:flex-row min-[760px]:justify-between min-[760px]:text-right">

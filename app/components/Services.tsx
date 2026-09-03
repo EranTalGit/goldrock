@@ -79,7 +79,7 @@ export default function Services() {
                     >
                       <span className="overflow-hidden ps-7">
                         <span className="block text-[17px] leading-relaxed text-ink-soft">
-                          {service.description}
+                          {service.detail}
                         </span>
                         <Link
                           href={`/services/${service.slug}`}
