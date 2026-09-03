@@ -99,6 +99,13 @@ export default async function CityPage({
   // three and two, seven as four and three.
   const neighbourhoodRows = splitRows(city.neighborhoods);
 
+  // On a phone the pills cannot take their name's width, so they take a
+  // share of the row instead - and every pill takes the share the *fullest*
+  // row gives, not its own row's. A row of two under a row of three is then
+  // two pills of the same size, centred, rather than two wide ones.
+  const widestRow = Math.max(...neighbourhoodRows.map((row) => row.length));
+  const phonePillWidth = `calc((100% - ${(widestRow - 1) * 8}px) / ${widestRow})`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -181,8 +188,13 @@ export default async function CityPage({
                   {row.map((n) => (
                     <li
                       key={n}
-                      style={{ "--pill": neighbourhoodWidth } as React.CSSProperties}
-                      className="pill-mirror flex min-w-0 flex-1 basis-0 items-center justify-center px-2 py-2 text-center text-[12.5px] font-medium leading-tight sm:w-[var(--pill)] sm:flex-none sm:basis-auto sm:px-4 sm:py-2.5 sm:text-[15px] sm:leading-normal"
+                      style={
+                        {
+                          "--pill": neighbourhoodWidth,
+                          "--pill-phone": phonePillWidth,
+                        } as React.CSSProperties
+                      }
+                      className="pill-mirror flex w-[var(--pill-phone)] min-w-0 shrink-0 items-center justify-center px-2 py-2 text-center text-[12.5px] font-medium leading-tight sm:w-[var(--pill)] sm:px-4 sm:py-2.5 sm:text-[15px] sm:leading-normal"
                     >
                       {n}
                     </li>
