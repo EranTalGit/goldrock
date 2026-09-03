@@ -197,7 +197,7 @@ export default async function ServicePage({
 
           {/* Two columns of three, the mark leading each line on the right
               and the promise beside it. */}
-          <ul className="mx-auto mt-10 grid max-w-4xl gap-x-12 gap-y-6 sm:grid-cols-2">
+          <ul className="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-6 sm:grid-cols-2">
             {service.benefits.map((benefit) => (
               <li key={benefit} className="flex items-center gap-4">
                 <span
@@ -294,8 +294,10 @@ export default async function ServicePage({
       <section id="quote" className="scroll-mt-24 bg-sand text-ink">
         <div className="mx-auto max-w-2xl px-4 py-[50px] sm:px-6">
           <div className="rounded-2xl border border-[rgba(212,175,55,0.3)] bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.07)] sm:p-8">
-            <h2 className="text-center font-display text-[1.5rem] font-bold text-[#1A1A1A]">
-              הצעת מחיר ל{service.title}
+            <h2 className="text-center font-display text-[1.5rem] font-bold leading-snug text-[#1A1A1A]">
+              הצעת מחיר
+              <br />
+              ל{service.title}
             </h2>
             <div className="gold-rule mx-auto mt-4 w-full max-w-[220px]" />
             <p className="mx-auto mt-4 max-w-md text-center text-[15px] leading-relaxed text-[#666059]">
@@ -320,12 +322,12 @@ export default async function ServicePage({
           <h2 className="text-center font-display text-[1.3rem] font-bold text-[#1A1A1A]">
             {service.title} לפי אזור
           </h2>
-          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {CITIES.slice(0, 12).map((city) => (
               <li key={city.slug} className="flex">
                 <Link
                   href={`/areas/${city.slug}`}
-                  className="city-mirror flex flex-1 items-center justify-center px-4 py-3 text-center text-[14px] font-medium"
+                  className="city-mirror flex flex-1 items-center justify-center px-2 py-2.5 text-center text-[13px] font-medium leading-tight sm:px-4 sm:py-3 sm:text-[14px]"
                 >
                   {shortTitle} {city.inName}
                 </Link>

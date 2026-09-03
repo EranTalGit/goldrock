@@ -150,7 +150,7 @@ export default function Process({
                 ) : null}
 
                 {/* Copy sits beside the marker on a phone, beneath it above. */}
-                <div className="flex-1 text-right md:text-center">
+                <div className="flex-1 text-center">
                   <h3
                     className="seq seq-step text-pretty text-lg font-bold text-ink md:mt-6"
                     style={{ animationDelay: `${stepDelay + 120}ms` }}
