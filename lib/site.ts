@@ -994,11 +994,6 @@ export const GALLERY: GalleryItem[] = [
     caption: "גרניט פורצלן",
   },
   {
-    src: "/assets/gallery/luxury-interior.jpg",
-    alt: "חלל פנים יוקרתי עם רצפת אבן מוברקת",
-    caption: "חלל מחודש",
-  },
-  {
     src: "/assets/gallery/marble-closeup.webp",
     alt: "משטח אבן טבעית אחרי ליטוש והברקה",
     caption: "אבן טבעית",

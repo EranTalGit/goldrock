@@ -18,6 +18,17 @@ export default function CtaBand({
   highlight?: string;
   light?: boolean;
 }) {
+  // Measured at 375px: 27 characters still hold a line at 28px, 32 at 25px,
+  // and the longest - a service name with a parenthetical - needs 19px.
+  const phoneSize =
+    title === "רוצים רצפה שמחזירה ברק?"
+      ? "text-[2.2rem]"
+      : title.length >= 33
+        ? "text-[19px]"
+        : title.length >= 28
+          ? "text-[25px]"
+          : "text-[28px]";
+
   // Callers pass their own titles, so only split when the word is there.
   const at = highlight ? title.indexOf(highlight) : -1;
   const head =
@@ -69,14 +80,13 @@ export default function CtaBand({
               </svg>
             </span>
           </span>
-          {/* A long title - a city page's, which carries the city's name -
-              cannot hold one line on a phone at display size, so it steps
-              down there and comes back at the wide measure. The short ones
-              every other page passes are left alone. */}
+          {/* A page that passes its own title - a service's or a city's,
+              which carries a long name - gets it sized to hold one line on a
+              phone, in three steps by how long it is. The default title the
+              other pages use keeps display size. Every one of them comes
+              back to 2.2rem at the wide measure. */}
           <h2
-            className={`font-display font-bold leading-tight text-[#1A1A1A] ${
-              title.length > 26 ? "text-[1.3rem] sm:text-[2.2rem]" : "text-[2.2rem]"
-            }`}
+            className={`font-display font-bold leading-tight text-[#1A1A1A] ${phoneSize} sm:text-[2.2rem]`}
           >
             {head}
           </h2>

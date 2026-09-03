@@ -204,12 +204,12 @@ export default async function ServicePage({
 
           {/* Two columns of three, the mark leading each line on the right
               and the promise beside it. */}
-          <ul className="mx-auto mt-10 grid max-w-xl gap-x-6 gap-y-6 sm:grid-cols-2">
+          <ul className="mx-auto mt-10 grid max-w-xl gap-x-6 gap-y-6 ps-3 sm:ps-0 sm:grid-cols-2">
             {service.benefits.map((benefit) => (
               <li key={benefit} className="flex items-center gap-4">
                 <span
                   aria-hidden
-                  className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(197,160,89,0.4)] bg-white text-[1.15rem] font-bold text-gold shadow-[0_4px_14px_rgba(0,0,0,0.05)]"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(197,160,89,0.4)] bg-white text-[1.15rem] font-bold text-gold shadow-[0_4px_14px_rgba(0,0,0,0.05)] sm:h-12 sm:w-12"
                 >
                   ✓
                 </span>
@@ -251,7 +251,7 @@ export default async function ServicePage({
                     "--suit-phone": suitedPhoneWidth,
                   } as React.CSSProperties
                 }
-                className="pill-mirror flex w-[var(--suit-phone)] items-center justify-center px-2 py-2.5 text-center text-[13.5px] font-medium leading-tight sm:w-[var(--suit)] sm:px-4 sm:py-3 sm:text-[15px] sm:leading-normal"
+                className="pill-mirror flex min-h-[56px] w-[var(--suit-phone)] items-center justify-center px-2 py-2.5 text-center text-[13.5px] font-medium leading-tight sm:min-h-[52px] sm:w-[var(--suit)] sm:px-4 sm:py-3 sm:text-[15px] sm:leading-normal"
               >
                 {item}
               </li>
