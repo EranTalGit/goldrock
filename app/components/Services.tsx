@@ -173,7 +173,7 @@ export default function Services() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-gold/30 shadow-[0_12px_28px_rgba(0,0,0,0.1)]">
+                    <div className="relative aspect-[7/3] overflow-hidden rounded-xl border border-gold/30 shadow-[0_12px_28px_rgba(0,0,0,0.1)]">
                       <Image
                         src={service.image}
                         alt={service.title}
