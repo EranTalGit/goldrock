@@ -14,6 +14,10 @@ import SectionHeading from "./SectionHeading";
 export default function Services() {
   const [active, setActive] = useState(0);
 
+  // A phone can close every row, and the desktop preview still needs
+  // something to caption; it falls back to the first service.
+  const preview = SERVICES[active] ?? SERVICES[0];
+
   return (
     <section id="services" className="bg-sand text-ink">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -111,7 +115,7 @@ export default function Services() {
               />
             ))}
             <span className="absolute right-5 top-5 rounded-full border border-gold/50 bg-black/55 px-4 py-1.5 text-[11px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
-              {SERVICES[active].tag}
+              {preview.tag}
             </span>
             {/* No caption naming the service: the highlighted row already
                 says which one is showing, and a light glass badge was
@@ -119,41 +123,83 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Mobile: swipe through instead of scrolling six cards. */}
-        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:hidden">
-          {SERVICES.map((service, i) => (
-            <article
-              key={service.slug}
-              className="card-mirror w-[78vw] shrink-0 snap-center overflow-hidden"
-            >
-              <div className="relative aspect-video">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="78vw"
-                  className="object-cover"
-                />
-                <span className="absolute right-3 top-3 rounded-full border border-gold/50 bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
-                  {service.tag}
-                </span>
-              </div>
-              <div className="relative p-5">
-                <span className="font-display text-xs font-bold text-gold">0{i + 1}</span>
-                <h3 className="mt-1 font-display text-lg font-bold">{service.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-                  {service.description}
-                </p>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="arrow-link mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold"
+        {/* Phone: the same list, read down instead of across. There is no
+            room for a preview beside it, so the open row carries its own
+            photograph - one service at a time, the way the split view
+            shows one. */}
+        <ul className="mt-8 lg:hidden">
+          {SERVICES.map((service, i) => {
+            const on = i === active;
+            return (
+              <li key={service.slug} className="border-b border-gold/15 last:border-0">
+                <button
+                  type="button"
+                  onClick={() => setActive(on ? -1 : i)}
+                  aria-expanded={on}
+                  className="flex w-full items-center gap-3 py-4 text-right"
                 >
-                  לפרטים והצעת מחיר <span className="arrow">←</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+                  <span
+                    className={`h-7 w-[3px] shrink-0 rounded-full transition-all duration-300 ${
+                      on ? "bg-gold shadow-[0_0_10px_rgba(197,160,89,0.8)]" : "bg-transparent"
+                    }`}
+                  />
+                  <span
+                    className={`font-display text-[13px] font-bold transition-colors ${
+                      on ? "text-gold" : "text-ink/35"
+                    }`}
+                  >
+                    0{i + 1}
+                  </span>
+                  <span
+                    className={`flex-1 font-display text-[17px] font-bold leading-snug transition-colors duration-300 ${
+                      on ? "text-[#C5A059]" : "text-ink/85"
+                    }`}
+                  >
+                    {service.title}
+                  </span>
+                  <span
+                    aria-hidden
+                    className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-base leading-none text-gold transition-transform duration-300 ${
+                      on ? "rotate-45" : ""
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+
+                <div
+                  className={`grid transition-all duration-400 ${
+                    on ? "grid-rows-[1fr] pb-5 opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden rounded-xl border border-gold/30 shadow-[0_12px_28px_rgba(0,0,0,0.1)]">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+                      <span className="absolute right-3 top-3 rounded-full border border-gold/50 bg-black/55 px-3 py-1 text-[10px] font-medium tracking-[0.14em] text-gold-soft backdrop-blur-md">
+                        {service.tag}
+                      </span>
+                    </div>
+                    <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+                      {service.detail}
+                    </p>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="arrow-link mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold"
+                    >
+                      לפרטים והצעת מחיר <span className="arrow">←</span>
+                    </Link>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
