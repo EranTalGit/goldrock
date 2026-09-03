@@ -115,9 +115,11 @@ export default function Header() {
           >
             <PhoneIcon width={17} height={17} />
           </a>
+          {/* Only the dial button rides in the bar on a phone - the enquiry
+              button is one of the two in the fixed bar at the foot. */}
           <Link
             href="/contact"
-            className="btn-gold whitespace-nowrap rounded-xl px-2.5 py-1.5 text-[12px] lg:px-6 lg:py-3 lg:text-[15px]"
+            className="btn-gold hidden whitespace-nowrap rounded-xl px-6 py-3 text-[15px] lg:inline-flex"
           >
             הזמנת שירות
           </Link>

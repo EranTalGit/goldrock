@@ -1,6 +1,12 @@
-import { DEFAULT_WA_MESSAGE, PHONE_HREF, whatsappLink } from "@/lib/site";
-import { PhoneIcon, WhatsAppIcon } from "./icons";
+import Link from "next/link";
+import { PHONE_HREF } from "@/lib/site";
+import { PhoneIcon } from "./icons";
 
+/**
+ * The two routes that are not already on screen. WhatsApp is not one of
+ * them: it floats above this bar on every page, and putting it here too
+ * spent half the bar on a button the visitor already has.
+ */
 export default function MobileCtaBar() {
   return (
     <div className="fixed inset-x-0 bottom-[var(--cookie-h,0px)] z-30 grid grid-cols-2 gap-2 border-t border-gold/20 bg-obsidian/95 p-2 backdrop-blur md:hidden">
@@ -11,15 +17,12 @@ export default function MobileCtaBar() {
         <PhoneIcon />
         התקשרו עכשיו
       </a>
-      <a
-        href={whatsappLink(DEFAULT_WA_MESSAGE)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 text-sm font-semibold text-white"
+      <Link
+        href="/contact"
+        className="btn-gold flex items-center justify-center rounded-full py-3 text-sm font-semibold"
       >
-        <WhatsAppIcon width={18} height={18} />
-        וואטסאפ
-      </a>
+        הזמנת שירות
+      </Link>
     </div>
   );
 }
