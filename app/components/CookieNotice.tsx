@@ -21,8 +21,11 @@ export default function CookieNotice() {
 
     if (!shown || !el) {
       root.style.setProperty("--cookie-h", "0px");
+      root.removeAttribute("data-cookie");
       return;
     }
+
+    root.setAttribute("data-cookie", "open");
 
     const publish = () =>
       root.style.setProperty("--cookie-h", `${el.offsetHeight}px`);
@@ -35,6 +38,7 @@ export default function CookieNotice() {
     return () => {
       observer?.disconnect();
       root.style.setProperty("--cookie-h", "0px");
+      root.removeAttribute("data-cookie");
     };
   }, [shown]);
 

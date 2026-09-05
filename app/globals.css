@@ -678,6 +678,16 @@ select.field-dark option:checked {
   }
 }
 
+/* A phone shows the cookie notice across the whole foot of the window.
+   Stacking the call bar on top of it is two bars asking at once, so the
+   bar waits until the notice has been answered. The floating WhatsApp
+   and back-to-top buttons are small enough to ride above it. */
+@media (max-width: 767px) {
+  html[data-cookie="open"] .mobile-cta-bar {
+    display: none;
+  }
+}
+
 .pill-mirror {
   position: relative;
   overflow: hidden;
