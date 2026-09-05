@@ -16,7 +16,38 @@ export default function WhyUs() {
           description="כחברה המובילה בתחום הפוליש וחידוש המרצפות במרכז, אנו משלבים טכנולוגיה מתקדמת, חומרי ליטוש מהשורה הראשונה וסטנדרט עבודה בלתי מתפשר. הנה הסיבות שבגללן הלקוחות שלנו בוחרים בנו פעם אחר פעם:"
         />
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        {/* A phone reads them as a list rather than as cards. Four boxes two
+            by two on a 375px screen made every line short and the section
+            tall, and the page already runs on cards; here the numeral does
+            the work the box was doing. */}
+        <ul className="mt-8 sm:hidden">
+          {BENEFITS.map((benefit, i) => (
+            <li
+              key={benefit.title}
+              className="relative border-b border-gold/20 py-6 last:border-0"
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -top-2 left-0 font-display text-[4.5rem] font-black leading-none text-gold/10"
+              >
+                0{i + 1}
+              </span>
+              <div className="relative flex items-center gap-3">
+                <span className="shrink-0 text-gold">
+                  <ServiceIcon name={benefit.icon} width={26} height={26} />
+                </span>
+                <h3 className="font-display text-[19px] font-bold leading-snug text-ink">
+                  {benefit.title}
+                </h3>
+              </div>
+              <p className="relative mt-2.5 text-[15px] leading-relaxed text-ink-soft">
+                {benefit.text}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 hidden grid-cols-2 gap-3 sm:grid sm:gap-5 lg:grid-cols-4">
           {BENEFITS.map((benefit) => (
             <article key={benefit.title} className="card-mirror flex flex-col items-center p-6 text-center">
               <span className="mirror-tile relative inline-flex h-14 w-14 items-center justify-center rounded-2xl text-gold">
