@@ -78,7 +78,7 @@ export async function submitLead(
     return {
       ok: true,
       tone: "success",
-      message: "קיבלנו. נחזור אליכם בהקדם, או המשיכו עכשיו בוואטסאפ.",
+      message: "קיבלנו. נתקשר אליכם באותו יום עסקים כדי להבין את גודל השטח ומצב הרצפה.",
     };
   }
 

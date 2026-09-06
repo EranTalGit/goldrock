@@ -40,7 +40,7 @@ export default function Hero() {
           className="rise mt-4 font-display text-4xl font-semibold tracking-wide text-white sm:text-6xl"
           style={{ animationDelay: "140ms" }}
         >
-          אומנות השחזור והליטוש
+          לא מחליפים רצפה. מחזירים אותה
         </p>
 
         <h1
@@ -79,6 +79,22 @@ export default function Hero() {
             חייגו עכשיו
           </a>
         </div>
+
+        {/* Three answers to the three things people worry about, before
+            they have scrolled far enough to find them. */}
+        <ul
+          className="rise mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[13px] text-white/70 sm:text-sm"
+          style={{ animationDelay: "380ms" }}
+        >
+          {["אחריות מלאה בכתב", "עבודה ללא אבק", "מחיר עוד היום"].map((item) => (
+            <li key={item} className="inline-flex items-center gap-1.5">
+              <span aria-hidden className="text-gold-soft">
+                ✓
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
