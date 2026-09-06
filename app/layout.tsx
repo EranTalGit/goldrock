@@ -3,6 +3,7 @@ import { Assistant, Cormorant_Garamond, Heebo } from "next/font/google";
 import "./globals.css";
 import ThemeScript from "./components/ThemeScript";
 import SiteChrome from "./components/SiteChrome";
+import GoogleTag from "./components/GoogleTag";
 import {
   BUSINESS_NAME,
   BUSINESS_NAME_HE,
@@ -75,6 +76,9 @@ export const metadata: Metadata = {
     images: ["/assets/og.webp"],
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "VxcREc4mjU898uEcJ3SM5ZjTyfmqKh3beOAHS_UNdmk",
+  },
 };
 
 const jsonLd = {
@@ -153,6 +157,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <SiteChrome>{children}</SiteChrome>
+        <GoogleTag />
       </body>
     </html>
   );

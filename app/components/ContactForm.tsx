@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { submitLead, type LeadState } from "@/app/actions/leads";
+import { reportConversion } from "@/lib/gtag";
 import { CITIES, DEFAULT_WA_MESSAGE, SERVICES, whatsappLink } from "@/lib/site";
 
 const initial: LeadState = { ok: false, message: "" };
@@ -56,6 +57,10 @@ export default function ContactForm({
   const label = `block text-right text-[16px] tracking-wide ${
     light ? "font-semibold text-[#2C2C2C]" : "font-medium text-[#E8E2D4]"
   }`;
+
+  useEffect(() => {
+    if (state.ok) reportConversion("leadForm", { source });
+  }, [state.ok, source]);
 
   return (
     <form action={action} className={`${light ? "" : "form-dark"} space-y-3`}>
