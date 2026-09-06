@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/25" />
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/12 via-white/5 to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-4 py-28 text-center sm:px-6">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-4 pb-28 pt-20 text-center sm:px-6 sm:pt-28">
         <p className="rise inline-flex items-center gap-2 rounded-full border border-gold/40 bg-black/40 px-5 py-2 text-[13px] font-medium text-white/90 backdrop-blur-sm sm:text-sm">
           <span className="text-gold-soft">★</span>
           שירות פוליש וליטוש פרימיום בגוש דן והמרכז
@@ -47,7 +47,7 @@ export default function Hero() {
           className="rise mt-8 font-display text-2xl font-bold leading-[1.3] text-white sm:whitespace-nowrap sm:text-4xl"
           style={{ animationDelay: "200ms" }}
         >
-          מחזירים לרצפה את הברק, היוקרה והחיים
+          הברק, היוקרה והחיים חוזרים לרצפה
         </h1>
 
         <p
@@ -57,9 +57,28 @@ export default function Hero() {
           חברת הפוליש והליטוש המובילה במרכז. מתמחים בהברקת רצפות, ליטוש שיש, חידוש אבן טבעית וטיפול בגרניט פורצלן. עבודה נקייה ללא אבק, בסטנדרט בלתי מתפשר ובאחריות מלאה.
         </p>
 
+        {/* Three answers to the three things people worry about, put where
+            they are worried - just before the button, not after it. */}
+        <ul
+          className="rise mt-6 flex flex-nowrap items-center justify-center gap-2 text-[12px] font-medium text-white sm:gap-x-4 sm:text-[15px]"
+          style={{ animationDelay: "300ms" }}
+        >
+          {["אחריות בכתב", "ללא אבק", "מחיר עוד היום"].map((item) => (
+            <li
+              key={item}
+              className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-gold/35 bg-black/45 px-2.5 py-1.5 backdrop-blur-sm sm:gap-1.5 sm:px-3"
+            >
+              <span aria-hidden className="font-bold text-gold-soft">
+                ✓
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
         <div
-          className="rise mt-7 flex flex-wrap items-center justify-center gap-3"
-          style={{ animationDelay: "320ms" }}
+          className="rise mt-6 flex flex-wrap items-center justify-center gap-3"
+          style={{ animationDelay: "360ms" }}
         >
           <a
             href={whatsappLink(DEFAULT_WA_MESSAGE)}
@@ -79,22 +98,6 @@ export default function Hero() {
             חייגו עכשיו
           </a>
         </div>
-
-        {/* Three answers to the three things people worry about, before
-            they have scrolled far enough to find them. */}
-        <ul
-          className="rise mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[13px] text-white/70 sm:text-sm"
-          style={{ animationDelay: "380ms" }}
-        >
-          {["אחריות מלאה בכתב", "עבודה ללא אבק", "מחיר עוד היום"].map((item) => (
-            <li key={item} className="inline-flex items-center gap-1.5">
-              <span aria-hidden className="text-gold-soft">
-                ✓
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
