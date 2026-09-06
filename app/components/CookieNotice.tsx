@@ -8,6 +8,9 @@ const KEY = "goldrock_consent";
 /** Lets the privacy page reopen the choice. */
 export const CONSENT_KEY = KEY;
 
+/** Fired on window whenever the visitor answers, so measurement can follow. */
+export const CONSENT_EVENT = "goldrock:consent-change";
+
 export default function CookieNotice() {
   const [shown, setShown] = useState(false);
   const box = useRef<HTMLDivElement>(null);
@@ -64,6 +67,7 @@ export default function CookieNotice() {
     } catch {
       /* the banner still closes either way */
     }
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setShown(false);
   }
 
