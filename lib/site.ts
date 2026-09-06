@@ -1,5 +1,10 @@
+// The Vercel preview/production hostname must never become the canonical URL,
+// even if NEXT_PUBLIC_SITE_URL still points at it from before the custom domain.
+const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://gold-rock.co.il";
+  envSiteUrl && !envSiteUrl.includes("vercel.app")
+    ? envSiteUrl
+    : "https://gold-rock.co.il";
 
 export const BUSINESS_NAME = "Goldrock";
 export const BUSINESS_NAME_HE = "גולדרוק";
