@@ -67,7 +67,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="btn-gold arrow-link rounded-2xl px-6 py-3.5 text-[15px] sm:px-8 sm:py-4 sm:text-base"
           >
-            לקבלת הצעת מחיר בוואטסאפ <span className="arrow">←</span>
+            שלחו תמונה, קבלו מחיר עוד היום <span className="arrow">←</span>
           </a>
           {/* Secondary to the gold CTA, but still has to read as a control
               over a busy photograph - hence the dark backing. */}

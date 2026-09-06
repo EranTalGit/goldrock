@@ -12,7 +12,7 @@ export default function WhyUs() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <SectionHeading
           label="למה לבחור בנו?"
-          title="למה Goldrock היא הבחירה הבטוחה לרצפה שלך?"
+          title="מה אתם מקבלים בסוף העבודה"
           description="כחברה המובילה בתחום הפוליש וחידוש המרצפות במרכז, אנו משלבים טכנולוגיה מתקדמת, חומרי ליטוש מהשורה הראשונה וסטנדרט עבודה בלתי מתפשר. הנה הסיבות שבגללן הלקוחות שלנו בוחרים בנו פעם אחר פעם:"
         />
 
@@ -77,7 +77,7 @@ export default function WhyUs() {
             className="arrow-link inline-flex items-center gap-2.5 rounded-xl bg-[#D4AF37] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_4px_18px_rgba(212,175,55,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#e0bd4a] hover:shadow-[0_8px_26px_rgba(212,175,55,0.42)]"
           >
             <WhatsAppIcon width={19} height={19} />
-            לקבלת הצעת מחיר בוואטסאפ <span className="arrow">←</span>
+            שלחו תמונה, קבלו מחיר עוד היום <span className="arrow">←</span>
           </a>
         </div>
       </div>

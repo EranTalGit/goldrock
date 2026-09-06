@@ -107,7 +107,7 @@ export default function Home() {
             </h3>
             <div className="gold-line mx-auto mt-4 w-40" />
             <p className="mt-3 text-center text-[13px] text-[#6B655C]">
-              שם וטלפון מספיקים. אפשר להוסיף עיר וסוג שירות.
+              שם וטלפון מספיקים. מענה באותו יום עסקים, ללא התחייבות.
             </p>
             <div className="mt-5">
               <ContactForm source="home" tone="light" />
