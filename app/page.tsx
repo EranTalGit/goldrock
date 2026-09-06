@@ -31,9 +31,28 @@ const highlights: { icon: ServiceIconName; strong: string; rest: string }[] = [
   },
 ];
 
+/**
+ * The five questions are on the page for a reader; this says the same
+ * thing to a machine, so a search engine or an assistant can lift the
+ * question and its answer as a pair rather than guessing at the markup.
+ */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOME_FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Hero />
       <WhyUs />
       <Services />
