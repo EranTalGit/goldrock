@@ -96,10 +96,26 @@ const jsonLd = {
       logo: `${SITE_URL}/assets/logo-gr-v2.png`,
       slogan: TAGLINE,
       priceRange: "₪₪",
-      areaServed: SERVICE_AREAS.map((name) => ({
-        "@type": "AdministrativeArea",
-        name,
-      })),
+      // The work happens at the customer's home, so there is no premises to
+      // give an address for. A service-area business names the places it
+      // covers instead: the twenty cities by name, and a circle around Tel
+      // Aviv wide enough to hold all of them, for anything asking "near me".
+      // Inventing a street here would be both untrue and penalised.
+      areaServed: [
+        ...SERVICE_AREAS.map((name) => ({
+          "@type": "AdministrativeArea",
+          name,
+        })),
+        {
+          "@type": "GeoCircle",
+          geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: 32.0853,
+            longitude: 34.7818,
+          },
+          geoRadius: "30000",
+        },
+      ],
       address: {
         "@type": "PostalAddress",
         addressRegion: "תל אביב",
