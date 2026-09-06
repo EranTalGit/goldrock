@@ -686,6 +686,13 @@ select.field-dark option:checked {
   html[data-cookie="open"] .mobile-cta-bar {
     display: none;
   }
+
+  /* The 5.5rem above clears the call bar. While the notice is up that bar
+     is not there, so the floating buttons only need the notice's height
+     and a thumb's gap - otherwise they hang a bar's height into nothing. */
+  html[data-cookie="open"] .above-cookie {
+    bottom: calc(0.75rem + var(--cookie-h, 0px));
+  }
 }
 
 .pill-mirror {
