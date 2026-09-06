@@ -1,6 +1,7 @@
 "use server";
 
 import { getDb } from "@/lib/db";
+import { sendLeadNotification } from "@/lib/email";
 import { SERVICES } from "@/lib/site";
 
 export type LeadState = {
@@ -46,35 +47,44 @@ export async function submitLead(
 
   const allowed = new Set(SERVICES.map((s) => s.title));
   const safeService = allowed.has(service) ? service : service || "לא צוין";
+  const leadId = crypto.randomUUID();
 
+  const emailed = await sendLeadNotification({
+    id: leadId,
+    name,
+    phone: normalisedPhone,
+    city,
+    service: safeService,
+    message,
+    source,
+  });
+
+  let saved = false;
   const db = getDb();
-  if (!db) {
-    // Nothing is stored without a database, so do not claim the enquiry
-    // was received - send them somewhere that actually reaches us.
-    return {
-      ok: true,
-      tone: "warning",
-      message: "הטופס אינו מחובר עדיין, והפנייה לא נשמרה. שלחו לנו הודעה בוואטסאפ ונחזור אליכם מיד.",
-    };
+  if (db) {
+    try {
+      await db.query(
+        `insert into leads (name, phone, city, service, message, source, status)
+         values ($1, $2, $3, $4, $5, $6, 'new')`,
+        [name, normalisedPhone, city, safeService, message, source],
+      );
+      saved = true;
+    } catch {
+      saved = false;
+    }
   }
 
-  try {
-    await db.query(
-      `insert into leads (name, phone, city, service, message, source, status)
-       values ($1, $2, $3, $4, $5, $6, 'new')`,
-      [name, normalisedPhone, city, safeService, message, source],
-    );
-  } catch {
+  if (emailed || saved) {
     return {
-      ok: false,
-      tone: "error",
-      message: "לא הצלחנו לשמור את הפנייה. נסו שוב או פנו אלינו בוואטסאפ.",
+      ok: true,
+      tone: "success",
+      message: "קיבלנו. נחזור אליכם בהקדם, או המשיכו עכשיו בוואטסאפ.",
     };
   }
 
   return {
-    ok: true,
-    tone: "success",
-    message: "קיבלנו. נחזור אליכם בהקדם, או המשיכו עכשיו בוואטסאפ.",
+    ok: false,
+    tone: "error",
+    message: "לא הצלחנו לשלוח את הפנייה. נסו שוב או פנו אלינו בוואטסאפ.",
   };
 }
