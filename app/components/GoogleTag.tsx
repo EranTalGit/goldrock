@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect } from "react";
-import { GOOGLE_ADS_ID, reportConversion } from "@/lib/gtag";
+import { GA4_ID, GOOGLE_ADS_ID, reportConversion } from "@/lib/gtag";
 import { CONSENT_EVENT, CONSENT_KEY } from "./CookieNotice";
 
 function applyConsent() {
@@ -35,7 +35,10 @@ export default function GoogleTag() {
       const isPhone = href.startsWith("tel:");
       const isWhatsApp = /wa\.me|api\.whatsapp\.com|whatsapp:\/\//.test(href);
       if (!isPhone && !isWhatsApp) return;
-      reportConversion("contactClick", { contact_type: isPhone ? "phone" : "whatsapp" });
+      reportConversion(isPhone ? "phoneClick" : "whatsappClick", {
+        contact_type: isPhone ? "phone" : "whatsapp",
+        link_url: href,
+      });
     };
     document.addEventListener("click", onClick, { capture: true });
     window.addEventListener(CONSENT_EVENT, applyConsent);
@@ -68,7 +71,7 @@ try {
   }
 } catch (e) {}
 gtag('js', new Date());
-gtag('config', '${GOOGLE_ADS_ID}');`}
+gtag('config', '${GOOGLE_ADS_ID}');${GA4_ID ? `\ngtag('config', '${GA4_ID}');` : ""}`}
       </Script>
       <Script
         id="google-tag-src"
