@@ -973,6 +973,28 @@ export type GalleryItem = {
 };
 
 export const GALLERY: GalleryItem[] = [
+  // Real work first: four photographs from one job, a private home with
+  // salmon-veined marble, polished and crystallised.
+  {
+    src: "/assets/gallery/work-room-marble.webp",
+    alt: "רצפת שיש בגוון סלמון מבריקה כמו מראה, עם השתקפות החלון, אחרי פוליש בבית פרטי",
+    caption: "ברק כמו מראה",
+  },
+  {
+    src: "/assets/gallery/work-kitchen-marble.webp",
+    alt: "רצפת שיש מלוטשת ומבריקה במטבח של בית פרטי, אחרי פוליש והברקה",
+    caption: "שיש במטבח",
+  },
+  {
+    src: "/assets/gallery/work-room-wide.webp",
+    alt: "חדר עם רצפת שיש מבריקה אחרי ליטוש, החלונות משתקפים על האבן",
+    caption: "חדר אחרי ליטוש",
+  },
+  {
+    src: "/assets/gallery/work-corner-marble.webp",
+    alt: "רצפת שיש מבריקה בפינת חדר עם וילונות, אחרי חידוש והברקה",
+    caption: "פינת החדר",
+  },
   {
     src: "/assets/gallery/marble-living.webp",
     alt: "רצפת שיש קרם מבריקה בסלון יוקרתי אחרי פוליש והברקה",
