@@ -15,6 +15,7 @@ export default function Process({
   title = "מחזירים את הברק לרצפה - התהליך שלנו",
   description = "מהשיחה הראשונה ועד לקבלת משטח מבריק ומושלם - הפכנו את תהליך חידוש הרצפה לפשוט, שקוף וללא כאבי ראש. הנה איך זה עובד ב-4 צעדים קלים:",
   cta,
+  video,
 }: {
   /** Defaults to the company's own process; a service passes its own steps. */
   steps?: { title: string; text: string }[];
@@ -23,9 +24,20 @@ export default function Process({
   description?: string;
   /** An optional prompt below the steps, for pages with a long middle. */
   cta?: { label: string; href: string; external?: boolean };
+  /**
+   * A clip of the work itself, set beside the steps. With one, the steps
+   * keep the phone's vertical rail at every width: a row of four has no
+   * room left beside it for anything.
+   */
+  video?: { src: string; poster: string; label: string };
 } = {}) {
   const ref = useRef<HTMLOListElement>(null);
+  const clip = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
+
+  // The md: classes are what turn the phone's rail into a row of four.
+  // Beside a clip the rail stays, so they only apply without one.
+  const row = (cls: string) => (video ? "" : cls);
 
   useEffect(() => {
     const el = ref.current;
@@ -61,116 +73,166 @@ export default function Process({
     };
   }, []);
 
+  // The clip plays, muted, only while it is on screen, and nothing of it
+  // downloads until then. Anyone who has asked for less motion gets the
+  // still and the controls instead.
+  useEffect(() => {
+    const el = clip.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.play().catch(() => {});
+        else el.pause();
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="bg-paper text-ink">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <SectionHeading label={label} title={title} description={description} />
 
-        {/* A row of four on desktop; a rail of markers down the right with
-            the copy beside them on a phone. */}
-        <ol
-          ref={ref}
-          className={`mt-12 grid gap-0 md:grid-cols-4 md:gap-7 ${
-            started ? "seq-run" : ""
-          }`}
+        {/* With a clip: the steps on the right, where reading starts, and
+            the clip on the left - side by side from the large breakpoint,
+            the clip after the steps below it. */}
+        <div
+          className={
+            video
+              ? "mt-12 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center lg:gap-14"
+              : undefined
+          }
         >
-          {steps.map((step, i) => {
-            const last = i === steps.length - 1;
-            const stepDelay = 120 + i * STEP_MS;
-            // On a phone the marker sits on the centre line of its own heading
-            // and text, and the connector is drawn from the marker's foot down
-            // to the next one.
-            return (
-              <li
-                key={step.title}
-                className="group relative flex items-center pb-10 md:block md:items-stretch md:pb-0"
-              >
-                <div className="relative ms-8 me-2 flex shrink-0 justify-center md:mx-0">
-                  {/* Connector toward the next step (leftward in RTL). */}
-                  {!last ? (
+          {/* A row of four on desktop; a rail of markers down the right with
+              the copy beside them on a phone. */}
+          <ol
+            ref={ref}
+            className={`grid gap-0 ${video ? "" : "mt-12"} ${row("md:grid-cols-4 md:gap-7")} ${
+              started ? "seq-run" : ""
+            }`}
+          >
+            {steps.map((step, i) => {
+              const last = i === steps.length - 1;
+              const stepDelay = 120 + i * STEP_MS;
+              // On a phone the marker sits on the centre line of its own
+              // heading and text, and the connector is drawn from the
+              // marker's foot down to the next one.
+              return (
+                <li
+                  key={step.title}
+                  className={`group relative flex items-center pb-10 ${row("md:block md:items-stretch md:pb-0")}`}
+                >
+                  <div className={`relative ms-8 me-2 flex shrink-0 justify-center ${row("md:mx-0")}`}>
+                    {/* Connector toward the next step (leftward in RTL). */}
+                    {!last && !video ? (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute top-1/2 right-1/2 hidden w-[calc(100%+1.75rem)] -translate-y-1/2 md:block"
+                      >
+                        <span
+                          className="seq seq-line block border-t-2 border-dashed border-gold-soft/70"
+                          style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
+                        />
+                        {/* Arrowhead at the midpoint, on its own patch of
+                            background so the dashes break cleanly around it. */}
+                        <span
+                          className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper px-1.5"
+                          style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
+                        >
+                          <span className="h-0 w-0 border-y-[6px] border-r-[9px] border-y-transparent border-r-gold" />
+                        </span>
+                      </span>
+                    ) : null}
+
+                    <span
+                      className={`seq seq-step relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white text-xl font-bold text-gold shadow-[0_8px_20px_rgba(0,0,0,0.06)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-1 group-hover:border-gold-soft group-hover:bg-white group-hover:text-gold-soft group-hover:shadow-[0_12px_28px_rgba(197,160,89,0.45)] ${row("md:h-20 md:w-20 md:bg-white/85 md:text-2xl")}`}
+                      style={{ animationDelay: `${stepDelay}ms` }}
+                    >
+                      0{i + 1}
+                    </span>
+                  </div>
+
+                  {/* The phone rail. Rows are of unequal height and each marker
+                      now sits on the middle of its own copy, so the gap between
+                      two markers is never the same twice. Rather than measure
+                      it, every row draws its own segment edge to edge and the
+                      opaque marker covers the piece behind it - which makes one
+                      continuous line down the column whatever the heights. */}
+                  {steps.length > 1 ? (
                     <span
                       aria-hidden
-                      className="pointer-events-none absolute top-1/2 right-1/2 hidden w-[calc(100%+1.75rem)] -translate-y-1/2 md:block"
+                      className={`absolute start-14 flex w-4 justify-center ${row("md:hidden")} ${
+                        i === 0
+                          ? "bottom-0 top-1/2"
+                          : last
+                            ? "bottom-1/2 top-0"
+                            : "inset-y-0"
+                      }`}
                     >
                       <span
-                        className="seq seq-line block border-t-2 border-dashed border-gold-soft/70"
+                        className="seq seq-fade h-full w-0 border-r-2 border-dashed border-gold-soft/70"
                         style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
                       />
-                      {/* Arrowhead at the midpoint, on its own patch of
-                          background so the dashes break cleanly around it. */}
-                      <span
-                        className="seq seq-fade absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-paper px-1.5"
-                        style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
-                      >
-                        <span className="h-0 w-0 border-y-[6px] border-r-[9px] border-y-transparent border-r-gold" />
-                      </span>
+                      {/* Arrowhead low in the row, on its own patch of ground so
+                          the dashes break cleanly around it. */}
+                      {!last ? (
+                        <span
+                          className="seq seq-fade absolute bottom-1 left-1/2 flex -translate-x-1/2 items-center justify-center bg-paper py-1.5"
+                          style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
+                        >
+                          <span className="h-0 w-0 border-x-[6px] border-t-[9px] border-x-transparent border-t-gold" />
+                        </span>
+                      ) : null}
                     </span>
                   ) : null}
 
-                  <span
-                    className="seq seq-step relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white text-xl font-bold text-gold shadow-[0_8px_20px_rgba(0,0,0,0.06)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-1 group-hover:border-gold-soft group-hover:bg-white group-hover:text-gold-soft group-hover:shadow-[0_12px_28px_rgba(197,160,89,0.45)] md:h-20 md:bg-white/85 md:w-20 md:text-2xl"
-                    style={{ animationDelay: `${stepDelay}ms` }}
-                  >
-                    0{i + 1}
-                  </span>
-                </div>
+                  {/* Copy sits beside the marker on a phone, beneath it above. */}
+                  <div className="flex-1 text-center">
+                    <h3
+                      className={`seq seq-step text-pretty text-lg font-bold text-ink ${row("md:mt-6")}`}
+                      style={{ animationDelay: `${stepDelay + 120}ms` }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      // A step's text may carry its own newline, where the
+                      // break belongs on a particular phrase rather than
+                      // wherever the column happens to run out.
+                      className="seq seq-step mt-3 whitespace-pre-line text-pretty text-[15px] leading-relaxed text-ink-soft"
+                      style={{ animationDelay: `${stepDelay + 180}ms` }}
+                    >
+                      {step.text}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
 
-                {/* The phone rail. Rows are of unequal height and each marker
-                    now sits on the middle of its own copy, so the gap between
-                    two markers is never the same twice. Rather than measure
-                    it, every row draws its own segment edge to edge and the
-                    opaque marker covers the piece behind it - which makes one
-                    continuous line down the column whatever the heights. */}
-                {steps.length > 1 ? (
-                  <span
-                    aria-hidden
-                    className={`absolute start-14 flex w-4 justify-center md:hidden ${
-                      i === 0
-                        ? "bottom-0 top-1/2"
-                        : last
-                          ? "bottom-1/2 top-0"
-                          : "inset-y-0"
-                    }`}
-                  >
-                    <span
-                      className="seq seq-fade h-full w-0 border-r-2 border-dashed border-gold-soft/70"
-                      style={{ animationDelay: `${stepDelay + LINE_OFFSET_MS}ms` }}
-                    />
-                    {/* Arrowhead low in the row, on its own patch of ground so
-                        the dashes break cleanly around it. */}
-                    {!last ? (
-                      <span
-                        className="seq seq-fade absolute bottom-1 left-1/2 flex -translate-x-1/2 items-center justify-center bg-paper py-1.5"
-                        style={{ animationDelay: `${stepDelay + ARROW_OFFSET_MS}ms` }}
-                      >
-                        <span className="h-0 w-0 border-x-[6px] border-t-[9px] border-x-transparent border-t-gold" />
-                      </span>
-                    ) : null}
-                  </span>
-                ) : null}
-
-                {/* Copy sits beside the marker on a phone, beneath it above. */}
-                <div className="flex-1 text-center">
-                  <h3
-                    className="seq seq-step text-pretty text-lg font-bold text-ink md:mt-6"
-                    style={{ animationDelay: `${stepDelay + 120}ms` }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    // A step's text may carry its own newline, where the
-                    // break belongs on a particular phrase rather than
-                    // wherever the column happens to run out.
-                    className="seq seq-step mt-3 whitespace-pre-line text-pretty text-[15px] leading-relaxed text-ink-soft"
-                    style={{ animationDelay: `${stepDelay + 180}ms` }}
-                  >
-                    {step.text}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+          {video ? (
+            <figure className="mx-auto mt-2 w-full max-w-[280px] lg:mt-0 lg:max-w-none">
+              <video
+                ref={clip}
+                src={video.src}
+                poster={video.poster}
+                muted
+                loop
+                playsInline
+                controls
+                preload="none"
+                aria-label={video.label}
+                className="block aspect-[9/16] w-full rounded-2xl border border-gold/30 bg-black object-cover shadow-[0_18px_40px_rgba(0,0,0,0.12)]"
+              />
+              <figcaption className="mt-3 text-center text-[13px] text-ink-soft">
+                {video.label}
+              </figcaption>
+            </figure>
+          ) : null}
+        </div>
 
         {/* Keeps a way to act in the middle of a long page, not only at
             its two ends. */}

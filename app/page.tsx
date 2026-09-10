@@ -56,7 +56,13 @@ export default function Home() {
       <Hero />
       <WhyUs />
       <Services />
-      <Process />
+      <Process
+        video={{
+          src: "/assets/work-video.mp4",
+          poster: "/assets/work-video-poster.webp",
+          label: "פוליש שיש בבית פרטי - מתוך עבודה שלנו",
+        }}
+      />
       <Gallery />
       <Areas />
       <section id="quote" className="bg-sand text-ink">
