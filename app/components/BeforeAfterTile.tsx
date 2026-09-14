@@ -157,21 +157,22 @@ export default function BeforeAfterTile({
             than clips. */}
         <span
           aria-hidden
-          className={`pointer-events-none absolute bottom-0 right-0 z-[2] py-2 text-center text-[13px] font-semibold tracking-wide text-white backdrop-blur-[4px] transition-opacity duration-150 ${
-            split < 14 ? "opacity-0" : "opacity-100"
-          }`}
-          style={{ width: `calc(100% - var(--split))`, background: "rgba(20,18,14,0.55)" }}
+          className="pointer-events-none absolute bottom-0 right-0 z-[2] py-2 text-center text-[13px] font-semibold tracking-wide text-white backdrop-blur-[4px] transition-opacity duration-150"
+          style={{
+            width: `calc(100% - var(--split))`,
+            background: "rgba(20,18,14,0.55)",
+            opacity: split > 86 ? 0 : 1,
+          }}
         >
           לפני
         </span>
         <span
           aria-hidden
-          className={`pointer-events-none absolute bottom-0 left-0 z-[2] py-2 text-center text-[13px] font-semibold tracking-wide text-white transition-opacity duration-150 ${
-            split > 86 ? "opacity-0" : "opacity-100"
-          }`}
+          className="pointer-events-none absolute bottom-0 left-0 z-[2] py-2 text-center text-[13px] font-semibold tracking-wide text-white transition-opacity duration-150"
           style={{
             width: "var(--split)",
             background: "linear-gradient(180deg,#CBA55C,#A37F34)",
+            opacity: split < 14 ? 0 : 1,
           }}
         >
           אחרי
