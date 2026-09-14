@@ -972,6 +972,46 @@ export type GalleryItem = {
   caption: string;
 };
 
+export type BeforeAfterItem = {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  caption: string;
+};
+
+/** Four real jobs, the same floor a drag apart. */
+export const BEFORE_AFTER: BeforeAfterItem[] = [
+  {
+    before: "/assets/gallery/ba-room-before.webp",
+    after: "/assets/gallery/work-room-marble.webp",
+    beforeAlt: "רצפת שיש עמומה עם עקבות ואבק לפני פוליש בבית פרטי",
+    afterAlt: "אותו חדר עם רצפת שיש מבריקה כמו מראה אחרי פוליש",
+    caption: "החדר עם הוילונות",
+  },
+  {
+    before: "/assets/gallery/ba-kitchen-before.webp",
+    after: "/assets/gallery/work-kitchen-marble.webp",
+    beforeAlt: "רצפת שיש עמומה במטבח לפני פוליש",
+    afterAlt: "אותו מטבח עם רצפת שיש מבריקה אחרי פוליש",
+    caption: "המטבח",
+  },
+  {
+    before: "/assets/gallery/ba-marble-before.webp",
+    after: "/assets/gallery/marble-closeup.webp",
+    beforeAlt: "משטח שיש עם ורידים זהובים לפני ליטוש והברקה",
+    afterAlt: "אותו משטח שיש מבריק כמו מראה אחרי ליטוש",
+    caption: "השיש עם הורידים הזהובים",
+  },
+  {
+    before: "/assets/gallery/ba-balcony-before.webp",
+    after: "/assets/gallery/porcelain-balcony.webp",
+    beforeAlt: "רצפת גרניט פורצלן לפני טיפול, ליד יציאה למרפסת",
+    afterAlt: "אותה רצפת גרניט פורצלן מבריקה אחרי טיפול",
+    caption: "היציאה למרפסת",
+  },
+];
+
 export const GALLERY: GalleryItem[] = [
   // Real work first: four photographs from one job, a private home with
   // salmon-veined marble, polished and crystallised.

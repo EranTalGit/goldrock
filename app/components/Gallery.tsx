@@ -2,10 +2,61 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { DEFAULT_WA_MESSAGE, GALLERY, whatsappLink } from "@/lib/site";
+import { BEFORE_AFTER, DEFAULT_WA_MESSAGE, GALLERY, whatsappLink } from "@/lib/site";
+import BeforeAfterTile from "./BeforeAfterTile";
+import { CarouselControls, RAIL_CLASS, useCarousel } from "./carousel";
 import SectionHeading from "./SectionHeading";
 
 const GAP = 16;
+
+/** A small centred label, for a sub-block that shares its section's ground
+    with another rather than carrying a heading of its own. */
+function SubLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-center font-display text-lg font-bold text-gold sm:text-xl">
+      {children}
+    </p>
+  );
+}
+
+/** The before/after rail: real jobs, the same floor a drag apart. Kept to
+    its own carousel rather than the work carousel below it, since a
+    comparison card and a photograph card want different widths on a
+    phone - one wide enough to drag across, the other narrower so the cut
+    next card shows there is more. */
+function BeforeAfterRail() {
+  const { rail, atStart, atEnd, page, pages, step } = useCarousel(BEFORE_AFTER.length);
+
+  return (
+    <div className="mt-10">
+      <SubLabel>לפני ואחרי</SubLabel>
+      <p className="mx-auto mt-2 max-w-md text-center text-[14px] leading-relaxed text-ink-soft">
+        גררו את הסמן על כל תמונה ותראו איך נראתה הרצפה לפני הטיפול ואיך היא נראית אחריו
+      </p>
+
+      <ul ref={rail} className={`${RAIL_CLASS} mt-6`}>
+        {BEFORE_AFTER.map((item) => (
+          <li
+            key={item.caption}
+            className="w-[86%] flex-none snap-start sm:w-[47%] lg:w-[31%]"
+          >
+            <BeforeAfterTile {...item} />
+          </li>
+        ))}
+      </ul>
+
+      <CarouselControls
+        className="mt-6"
+        atStart={atStart}
+        atEnd={atEnd}
+        page={page}
+        pages={pages}
+        step={step}
+        labels={{ back: "העבודה הקודמת", on: "העבודה הבאה", progress: "התקדמות בלפני ואחרי" }}
+      />
+    </div>
+  );
+}
 
 export default function Gallery() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -147,10 +198,18 @@ export default function Gallery() {
           description="הנה חלק מהתוצאות שאנחנו מייצרים עבור הלקוחות שלנו במרכז"
         />
 
+        <BeforeAfterRail />
+
+        {/* Separates the comparison rail from the work carousel below,
+            fading at both ends the way every gold rule on the site does. */}
+        <div className="gold-rule mx-auto mt-12 w-full max-w-sm" />
+
+        <SubLabel>העבודות שלנו</SubLabel>
+
         {/* 3.5 cards wide, so the cut fourth shows there is more. */}
         <div
           ref={trackRef}
-          className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {GALLERY.map((item, i) => (
             <figure
