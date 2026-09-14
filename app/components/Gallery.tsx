@@ -11,9 +11,15 @@ const GAP = 16;
 
 /** A small centred label, for a sub-block that shares its section's ground
     with another rather than carrying a heading of its own. */
-function SubLabel({ children }: { children: React.ReactNode }) {
+function SubLabel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <p className="text-center font-display text-lg font-bold text-gold sm:text-xl">
+    <p className={`text-center font-display text-lg font-bold text-ink sm:text-xl ${className}`}>
       {children}
     </p>
   );
@@ -200,11 +206,7 @@ export default function Gallery() {
 
         <BeforeAfterRail />
 
-        {/* Separates the comparison rail from the work carousel below,
-            fading at both ends the way every gold rule on the site does. */}
-        <div className="gold-rule mx-auto mt-12 w-full max-w-sm" />
-
-        <SubLabel>העבודות שלנו</SubLabel>
+        <SubLabel className="mt-14">העבודות שלנו</SubLabel>
 
         {/* 3.5 cards wide, so the cut fourth shows there is more. */}
         <div
