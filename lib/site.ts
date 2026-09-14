@@ -1010,6 +1010,13 @@ export const BEFORE_AFTER: BeforeAfterItem[] = [
     afterAlt: "אותה רצפת גרניט פורצלן מבריקה אחרי טיפול",
     caption: "היציאה למרפסת",
   },
+  {
+    before: "/assets/gallery/ba-kitchen2-before.webp",
+    after: "/assets/gallery/ba-kitchen2-after.webp",
+    beforeAlt: "רצפת אבן טבעית עם אבק בנייה במטבח עץ אגוז לפני טיפול",
+    afterAlt: "אותה רצפת אבן טבעית נקייה ואחידה אחרי טיפול",
+    caption: "המטבח עם עץ האגוז",
+  },
 ];
 
 export const GALLERY: GalleryItem[] = [
