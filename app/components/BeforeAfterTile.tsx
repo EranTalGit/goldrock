@@ -66,11 +66,18 @@ export default function BeforeAfterTile({
         aria-valuemax={100}
         aria-valuenow={Math.round(split)}
         style={{ "--split": `${split}%` } as React.CSSProperties}
-        // Only sideways panning is claimed here - a vertical finger still
-        // scrolls the page natively. Capturing every gesture (touch-action:
-        // none) was trapping a visitor trying to scroll past the section:
-        // the browser handed the whole gesture to the drag instead.
-        className="group relative aspect-[4/5] w-full cursor-ew-resize overflow-hidden rounded-2xl border border-gold/25 bg-sand shadow-[0_12px_30px_rgba(0,0,0,0.08)] [touch-action:pan-y]"
+        // pan-y looked like the right compromise - let a vertical finger
+        // scroll natively, keep horizontal for the drag - but it means the
+        // browser is still watching every gesture on this element for the
+        // vertical component it is allowed to claim. The moment a drag
+        // picks up a little vertical wobble, which every real thumb-drag
+        // does, the browser takes the gesture and cancels the pointer
+        // stream mid-stroke. none keeps the whole gesture on the element,
+        // so the drag never gets interrupted; the trade is that a scroll
+        // starting exactly on the photo will not pass through - the image
+        // is a third of a phone screen in a page many screens long, so
+        // there is no shortage of elsewhere to start a scroll from.
+        className="group relative aspect-[4/5] w-full cursor-ew-resize overflow-hidden rounded-2xl border border-gold/25 bg-sand shadow-[0_12px_30px_rgba(0,0,0,0.08)] [touch-action:none]"
         onPointerDown={(e) => {
           if (e.button) return;
           const el = ref.current;
