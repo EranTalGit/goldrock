@@ -24,7 +24,7 @@ export default function BlogTeaser() {
   const { rail, atStart, atEnd, page, pages, step } = useCarousel(latest.length);
 
   return (
-    <section className="bg-paper text-ink">
+    <section className="bg-sand text-ink">
       <div className="mx-auto max-w-6xl px-4 py-[50px] sm:px-6">
         <SectionHeading
           label="בלוג"

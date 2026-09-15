@@ -2,6 +2,7 @@ import Link from "next/link";
 import Hero from "./components/Hero";
 import WhyUs from "./components/WhyUs";
 import Process from "./components/Process";
+import BeforeAfter from "./components/BeforeAfter";
 import BlogTeaser from "./components/BlogTeaser";
 import Testimonials from "./components/Testimonials";
 import Services from "./components/Services";
@@ -63,7 +64,7 @@ export default function Home() {
           label: "פוליש שיש בבית פרטי - מתוך עבודה שלנו",
         }}
       />
-      <Gallery />
+      <BeforeAfter />
       <Areas />
       <section id="quote" className="bg-sand text-ink">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-5 pb-16 sm:px-6 sm:py-7 sm:pb-20 lg:grid-cols-2">
@@ -140,10 +141,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Gallery />
       <Testimonials />
-      <FaqSection items={HOME_FAQ} moreHref="/faq" ground="sand" />
+      <FaqSection items={HOME_FAQ} moreHref="/faq" ground="paper" />
       <BlogTeaser />
-      <CtaBand />
+      <CtaBand light />
     </>
   );
 }
