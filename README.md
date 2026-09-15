@@ -12,4 +12,4 @@ cp .env.example .env.local
 npm run dev
 ```
 
-טלפון: 053-273-3999
+טלפון: 054-338-7033

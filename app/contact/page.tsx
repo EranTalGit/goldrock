@@ -13,7 +13,7 @@ import { PhoneIcon, WhatsAppIcon } from "../components/icons";
 
 const title = "צור קשר והזמנת פוליש";
 const description =
-  "הזמנת שירות פוליש לשיש בגוש דן. השאירו פרטים, התקשרו או שלחו תמונה בוואטסאפ ל-053-273-3999.";
+  "הזמנת שירות פוליש לשיש בגוש דן. השאירו פרטים, התקשרו או שלחו תמונה בוואטסאפ ל-054-338-7033.";
 
 export const metadata: Metadata = {
   title,

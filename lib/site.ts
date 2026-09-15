@@ -11,10 +11,10 @@ export const BUSINESS_NAME_HE = "גולדרוק";
 export const TAGLINE = "פוליש · ליטוש · הברקה · חידוש אבן";
 export const REGION_LABEL = "תל אביב, גוש דן והמרכז";
 
-export const PHONE_DISPLAY = "053-273-3999";
-export const PHONE_HREF = "tel:0532733999";
-export const WHATSAPP_NUMBER = "972532733999";
-export const PHONE_INTL = "+972532733999";
+export const PHONE_DISPLAY = "054-338-7033";
+export const PHONE_HREF = "tel:0543387033";
+export const WHATSAPP_NUMBER = "972543387033";
+export const PHONE_INTL = "+972543387033";
 
 export function whatsappLink(message?: string): string {
   const base = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -1127,7 +1127,7 @@ export const GENERAL_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "איך מזמינים שירות?",
-    a: "הכי מהיר: וואטסאפ ל-053-273-3999 עם תמונה. אפשר גם להתקשר או למלא טופס באתר.",
+    a: "הכי מהיר: וואטסאפ ל-054-338-7033 עם תמונה. אפשר גם להתקשר או למלא טופס באתר.",
   },
   {
     q: "פוליש חוסך החלפת ריצוף?",
