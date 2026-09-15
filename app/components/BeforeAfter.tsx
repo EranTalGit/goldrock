@@ -23,8 +23,12 @@ export default function BeforeAfter() {
           description={
             <>
               גררו את הסמן על כל תמונה ותראו איך נראתה הרצפה לפני הטיפול ואיך היא נראית אחריו
-              <br />
-              הכל מעבודות שביצענו בפועל
+              {/* The break is for the wider measure only; on a phone the
+                  clause is short enough to fall wherever the line wraps,
+                  and the last two words stay paired so neither is left
+                  alone at the end of it. */}
+              <br className="hidden sm:inline" />{" "}
+              הכל מעבודות שביצענו&nbsp;בפועל
             </>
           }
         />

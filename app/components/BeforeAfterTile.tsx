@@ -66,7 +66,11 @@ export default function BeforeAfterTile({
         aria-valuemax={100}
         aria-valuenow={Math.round(split)}
         style={{ "--split": `${split}%` } as React.CSSProperties}
-        className="group relative aspect-[4/5] w-full cursor-ew-resize overflow-hidden rounded-2xl border border-gold/25 bg-sand shadow-[0_12px_30px_rgba(0,0,0,0.08)] [touch-action:none]"
+        // Only sideways panning is claimed here - a vertical finger still
+        // scrolls the page natively. Capturing every gesture (touch-action:
+        // none) was trapping a visitor trying to scroll past the section:
+        // the browser handed the whole gesture to the drag instead.
+        className="group relative aspect-[4/5] w-full cursor-ew-resize overflow-hidden rounded-2xl border border-gold/25 bg-sand shadow-[0_12px_30px_rgba(0,0,0,0.08)] [touch-action:pan-y]"
         onPointerDown={(e) => {
           if (e.button) return;
           const el = ref.current;
@@ -140,12 +144,14 @@ export default function BeforeAfterTile({
               dragging ? "scale-95" : ""
             }`}
           >
+            {/* Pointing outward - away from the handle, not at each other -
+                so the pair reads as "drag either way" rather than a pinch. */}
             <span className="flex items-center gap-1.5">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M15 18l-6-6 6-6" />
+                <path d="M9 18l6-6-6-6" />
               </svg>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M9 18l6-6-6-6" />
+                <path d="M15 18l-6-6 6-6" />
               </svg>
             </span>
           </span>
