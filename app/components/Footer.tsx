@@ -152,9 +152,22 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/[0.07]">
-        <div className="mx-auto max-w-6xl px-4 py-4 text-center text-xs text-[#777777] sm:px-6">
+        {/* Copyright on the reading side, the builder's credit opposite it;
+            stacked and centred on a phone. */}
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-4 text-center text-xs text-[#777777] sm:flex-row sm:justify-between sm:px-6">
           <p>
             © {new Date().getFullYear()} {BUSINESS_NAME}. כל הזכויות שמורות.
+          </p>
+          <p dir="ltr">
+            Built by{" "}
+            <a
+              href="https://erantal.io/?utm_source=gold-rock.co.il&utm_medium=referral&utm_campaign=footer-credit"
+              target="_blank"
+              rel="noopener"
+              className="text-[#A0A0A0] transition-colors duration-200 hover:text-gold"
+            >
+              erantal.io
+            </a>
           </p>
         </div>
       </div>
