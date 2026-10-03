@@ -152,9 +152,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/[0.07]">
-        {/* Copyright on the reading side, the builder's credit opposite it;
-            stacked and centred on a phone. */}
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-4 text-center text-xs text-[#777777] sm:flex-row sm:justify-between sm:px-6">
+        {/* Copyright, the builder's credit under it. Centred at every width:
+            the back-to-top button owns the bottom-left corner. */}
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-4 text-center text-xs text-[#777777] sm:px-6">
           <p>
             © {new Date().getFullYear()} {BUSINESS_NAME}. כל הזכויות שמורות.
           </p>
