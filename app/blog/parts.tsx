@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import { formatDate } from "@/lib/blog";
 import { PHONE_DISPLAY, whatsappLink } from "@/lib/site";
 
@@ -59,8 +59,9 @@ export function PostMeta({
 /**
  * Renders the **bold** spans the guide text is written with. Splitting on the
  * marker keeps the source readable without pulling in a markdown parser.
- * The phone number, wherever a guide gives it, becomes a WhatsApp link, so the
- * guides stay plain strings and the number still lives in one place.
+ * WhatsApp, wherever a guide mentions it, and the phone number, wherever a
+ * guide gives it, become one link, so the guides stay plain strings and the
+ * number still lives in one place.
  */
 export function Rich({ text }: { text: string }) {
   return (
@@ -78,36 +79,65 @@ export function Rich({ text }: { text: string }) {
   );
 }
 
-function WithPhoneLink({ text }: { text: string }) {
-  const parts = text.split(PHONE_DISPLAY);
-  if (parts.length === 1) return <>{text}</>;
+const LINK_CLASS =
+  "font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold";
+
+// "בוואטסאפ ל-054-…" as one phrase, "וואטסאפ" on its own, or the bare number
+// (with a one-letter prefix such as "ל-").
+const WHATSAPP_OR_PHONE = new RegExp(
+  `([בל]?וואטסאפ)(?:( (?:[א-ת]-)?)${PHONE_DISPLAY})?|([א-ת]-)?${PHONE_DISPLAY}`,
+  "g",
+);
+
+function WaLink({ children }: { children: ReactNode }) {
   return (
-    <>
-      {parts.map((part, i) => {
-        // A one-letter prefix like "ל-" travels with the number, so the line
-        // never ends on "ל-" with the number alone on the next one.
-        const prefix = i < parts.length - 1 ? part.match(/[א-ת]-$/)?.[0] : undefined;
-        const lead = prefix ? part.slice(0, -prefix.length) : part;
-        return (
-          <Fragment key={i}>
-            {lead}
-            {i < parts.length - 1 && (
-              <span className="whitespace-nowrap">
-                {prefix}
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  dir="ltr"
-                  className="font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold"
-                >
-                  {PHONE_DISPLAY}
-                </a>
-              </span>
-            )}
-          </Fragment>
-        );
-      })}
-    </>
+    <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+      {children}
+    </a>
   );
+}
+
+/** The number never splits across lines, and keeps a "ל-" prefix with it. */
+function PhoneNumber({ prefix = "" }: { prefix?: string }) {
+  return (
+    <span className="whitespace-nowrap">
+      {prefix}
+      <span dir="ltr">{PHONE_DISPLAY}</span>
+    </span>
+  );
+}
+
+function WithPhoneLink({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  for (const m of text.matchAll(WHATSAPP_OR_PHONE)) {
+    const [whole, word, gap, barePrefix] = m;
+    nodes.push(text.slice(last, m.index));
+    last = m.index + whole.length;
+    if (word) {
+      nodes.push(
+        <WaLink key={m.index}>
+          {word}
+          {gap !== undefined && (
+            <>
+              {" "}
+              <PhoneNumber prefix={gap.trim()} />
+            </>
+          )}
+        </WaLink>,
+      );
+    } else {
+      nodes.push(
+        <span key={m.index} className="whitespace-nowrap">
+          {barePrefix}
+          <WaLink>
+            <span dir="ltr">{PHONE_DISPLAY}</span>
+          </WaLink>
+        </span>,
+      );
+    }
+  }
+  if (last === 0) return <>{text}</>;
+  nodes.push(text.slice(last));
+  return <>{nodes}</>;
 }
