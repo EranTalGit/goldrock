@@ -8,9 +8,9 @@ import CtaBand from "../components/CtaBand";
 import SectionHeading from "../components/SectionHeading";
 import { PostMeta } from "./parts";
 
-const title = "מדריך פוליש לשיש";
+const title = "בלוג פוליש לשיש וחידוש רצפות";
 const description =
-  "מדריכים על פוליש לשיש, סוגי ריצוף, חידוש חדר מדרגות, מחירים ותחזוקת ברק. בלי מילוי, מהניסיון בשטח.";
+  "מדריכים על פוליש לשיש, סוגי ריצוף, חידוש חדר מדרגות, מחיר, כתמים, ניקיון אחרי שיפוץ ותחזוקת ברק. בלי מילוי, מהניסיון בשטח.";
 
 export const metadata: Metadata = {
   title,
