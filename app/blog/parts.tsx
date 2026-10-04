@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { formatDate } from "@/lib/blog";
+import { PHONE_DISPLAY, whatsappLink } from "@/lib/site";
 
 /** The two facts every guide carries: when it was written, how long it takes. */
 export function PostMeta({
@@ -58,6 +59,8 @@ export function PostMeta({
 /**
  * Renders the **bold** spans the guide text is written with. Splitting on the
  * marker keeps the source readable without pulling in a markdown parser.
+ * The phone number, wherever a guide gives it, becomes a WhatsApp link, so the
+ * guides stay plain strings and the number still lives in one place.
  */
 export function Rich({ text }: { text: string }) {
   return (
@@ -68,9 +71,33 @@ export function Rich({ text }: { text: string }) {
             {part}
           </strong>
         ) : (
-          <Fragment key={i}>{part}</Fragment>
+          <WithPhoneLink key={i} text={part} />
         ),
       )}
+    </>
+  );
+}
+
+function WithPhoneLink({ text }: { text: string }) {
+  const [before, ...rest] = text.split(PHONE_DISPLAY);
+  if (rest.length === 0) return <>{text}</>;
+  return (
+    <>
+      {before}
+      {rest.map((after, i) => (
+        <Fragment key={i}>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            dir="ltr"
+            className="whitespace-nowrap font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold"
+          >
+            {PHONE_DISPLAY}
+          </a>
+          {after}
+        </Fragment>
+      ))}
     </>
   );
 }
