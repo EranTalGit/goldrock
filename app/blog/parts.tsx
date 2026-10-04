@@ -79,25 +79,35 @@ export function Rich({ text }: { text: string }) {
 }
 
 function WithPhoneLink({ text }: { text: string }) {
-  const [before, ...rest] = text.split(PHONE_DISPLAY);
-  if (rest.length === 0) return <>{text}</>;
+  const parts = text.split(PHONE_DISPLAY);
+  if (parts.length === 1) return <>{text}</>;
   return (
     <>
-      {before}
-      {rest.map((after, i) => (
-        <Fragment key={i}>
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            dir="ltr"
-            className="whitespace-nowrap font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold"
-          >
-            {PHONE_DISPLAY}
-          </a>
-          {after}
-        </Fragment>
-      ))}
+      {parts.map((part, i) => {
+        // A one-letter prefix like "ל-" travels with the number, so the line
+        // never ends on "ל-" with the number alone on the next one.
+        const prefix = i < parts.length - 1 ? part.match(/[א-ת]-$/)?.[0] : undefined;
+        const lead = prefix ? part.slice(0, -prefix.length) : part;
+        return (
+          <Fragment key={i}>
+            {lead}
+            {i < parts.length - 1 && (
+              <span className="whitespace-nowrap">
+                {prefix}
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  dir="ltr"
+                  className="font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold"
+                >
+                  {PHONE_DISPLAY}
+                </a>
+              </span>
+            )}
+          </Fragment>
+        );
+      })}
     </>
   );
 }
