@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  BUSINESS_NAME,
   CITIES,
   getService,
   REGION_LABEL,
@@ -34,7 +35,9 @@ export async function generateMetadata({
     keywords: service.keywords,
     alternates: { canonical: `${SITE_URL}/services/${service.slug}` },
     openGraph: {
-      title: service.metaTitle,
+      // The layout's title template does not reach openGraph, so the
+      // brand is added here instead of living in every metaTitle.
+      title: `${service.metaTitle} | ${BUSINESS_NAME}`,
       description: service.metaDescription,
       url: `${SITE_URL}/services/${service.slug}`,
       locale: "he_IL",

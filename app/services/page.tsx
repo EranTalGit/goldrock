@@ -7,7 +7,7 @@ import CtaBand from "../components/CtaBand";
 import SectionHeading from "../components/SectionHeading";
 
 const title = "שירותי פוליש, ליטוש והברקת רצפות";
-const description = `כל שירותי Goldrock: פוליש לשיש, קריסטליזציה, חידוש מדרגות, חידוש מרצפות, גרניט פורצלן וניקיון לאחר שיפוץ ב${REGION_LABEL}.`;
+const description = `כל שירותי Goldrock: פוליש לשיש, פוליש לרצפה, קריסטליזציה, חידוש מדרגות, חידוש מרצפות, גרניט פורצלן וניקיון לאחר שיפוץ ב${REGION_LABEL}.`;
 
 export const metadata: Metadata = {
   title,
