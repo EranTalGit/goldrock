@@ -32,9 +32,7 @@ export default function SectionHeading({
         {label}
       </Label>
       <h2
-        className={`mt-4 whitespace-pre-line font-display font-semibold leading-snug sm:whitespace-normal sm:text-3xl ${
-          tightLabel ? "text-[19px]" : "text-xl"
-        } ${dark ? "text-white/90" : "text-ink"}`}
+        className={`mt-4 whitespace-pre-line font-display font-semibold leading-snug text-xl sm:whitespace-normal sm:text-3xl ${dark ? "text-white/90" : "text-ink"}`}
       >
         {title}
       </h2>
