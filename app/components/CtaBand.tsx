@@ -12,20 +12,27 @@ export default function CtaBand({
   highlight = "ברק?",
   /** Lets a page whose last band is already dark close on the light one. */
   light = false,
+  breakBefore,
 }: {
   title?: string;
   text?: string;
   highlight?: string;
   light?: boolean;
+  /** A word of the title that starts its second line. */
+  breakBefore?: string;
 }) {
   // Measured at 375px: 27 characters still hold a line at 28px, 32 at 25px,
   // and the longest - a service name with a parenthetical - needs 19px.
+  // A forced break makes the longest line, not the whole title, the measure.
+  const breakAt = breakBefore ? title.indexOf(` ${breakBefore}`) : -1;
+  const measure =
+    breakAt === -1 ? title.length : Math.max(breakAt, title.length - breakAt - 1);
   const phoneSize =
     title === "רוצים רצפה שמחזירה ברק?"
       ? "text-[2.2rem]"
-      : title.length >= 33
+      : measure >= 33
         ? "text-[19px]"
-        : title.length >= 28
+        : measure >= 28
           ? "text-[25px]"
           : "text-[28px]";
 
@@ -33,7 +40,15 @@ export default function CtaBand({
   const at = highlight ? title.indexOf(highlight) : -1;
   const head =
     at === -1 ? (
-      title
+      breakAt === -1 ? (
+        title
+      ) : (
+        <>
+          {title.slice(0, breakAt)}
+          <br />
+          {title.slice(breakAt + 1)}
+        </>
+      )
     ) : (
       <>
         {title.slice(0, at)}
@@ -55,7 +70,7 @@ export default function CtaBand({
       />
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-9 px-4 py-[60px] text-center sm:px-6 min-[900px]:flex-row min-[900px]:items-center min-[900px]:justify-between min-[900px]:gap-12 min-[900px]:text-right">
-        <div>
+        <div className="min-w-0">
           {/* A turning crystal with two glints. They sit off its corners
               rather than in a row beside it - three stars on one line read
               as a rating, three set around a point read as light. */}
@@ -101,12 +116,14 @@ export default function CtaBand({
           className="hidden w-px self-stretch bg-[rgba(212,175,55,0.3)] min-[900px]:block"
         />
 
-        <div className="flex w-full flex-col gap-3 min-[900px]:w-auto min-[900px]:flex-row min-[900px]:items-center">
+        {/* The buttons never give up width: a label or number that wraps
+            reads as broken, so the heading beside them is what yields. */}
+        <div className="flex w-full shrink-0 flex-col gap-3 min-[900px]:w-auto min-[900px]:flex-row min-[900px]:items-center">
           <a
             href={whatsappLink(DEFAULT_WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            className="pulse-gold inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#D4AF37] px-7 py-4 font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#e0bd4a] hover:shadow-[0_8px_26px_rgba(212,175,55,0.5)]"
+            className="pulse-gold inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-[#D4AF37] px-7 py-4 font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#e0bd4a] hover:shadow-[0_8px_26px_rgba(212,175,55,0.5)]"
           >
             <WhatsAppIcon width={20} height={20} />
             שיחה בוואטסאפ
@@ -114,7 +131,7 @@ export default function CtaBand({
 
           <a
             href={PHONE_HREF}
-            className="inline-flex items-center justify-center gap-2.5 rounded-xl border-[1.5px] border-[#D4AF37] px-7 py-4 font-semibold text-[#2C2416] transition-all hover:-translate-y-0.5 hover:bg-[rgba(212,175,55,0.12)]"
+            className="inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-xl border-[1.5px] border-[#D4AF37] px-7 py-4 font-semibold text-[#2C2416] transition-all hover:-translate-y-0.5 hover:bg-[rgba(212,175,55,0.12)]"
           >
             <PhoneIcon width={19} height={19} />
             <span dir="ltr">{PHONE_DISPLAY}</span>

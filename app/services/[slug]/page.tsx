@@ -353,7 +353,7 @@ export default async function ServicePage({
         </div>
       </section>
 
-      <CtaBand title={`מזמינים ${service.title}`} />
+      <CtaBand title={`מזמינים ${service.title}`} breakBefore={service.h1Break} />
     </>
   );
 }
