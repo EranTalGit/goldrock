@@ -5,7 +5,6 @@ import { CITIES, getCity, SERVICES, SITE_URL } from "@/lib/site";
 import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
-import SectionHeading from "../../components/SectionHeading";
 import { ServiceIcon } from "../../components/icons";
 
 export function generateStaticParams() {
@@ -138,15 +137,13 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* The hero is the areas index hero, with the city's name as the only
-          thing marking which page you are on. The city names itself again in
-          the heading block below, which carries the h1. */}
+      {/* The hero names the city's own page and carries the h1, so it opens
+          with one heading rather than the areas index heading and a second
+          one below it. */}
       <InnerHero
-        headingAs="p"
-        eyebrow={city.name}
-        title="פוליש וליטוש בכל גוש דן"
-        tagline="כל עיר עם דף משלה: שכונות, שירותים מקומיים והזמנה מהירה"
-        note="מגיעים בתיאום מראש לבתים פרטיים, לדירות ולבנייני מגורים בכל האזור, ללא אבק"
+        title={`פוליש לשיש ${city.inName}`}
+        tagline={`ליטוש, הברקה וחידוש מדרגות ${city.inName}`}
+        note={`מגיעים לכל השכונות ${city.inName} ולסביבה. שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום`}
         crumbs={[
           { label: "דף הבית", href: "/" },
           { label: "אזורי שירות", href: "/areas" },
@@ -155,17 +152,7 @@ export default async function CityPage({
       />
 
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
-          <SectionHeading
-            labelAs="h1"
-            tightLabel
-            label={`פוליש לשיש ${city.inName}`}
-            title={`ליטוש, הברקה וחידוש מדרגות ${city.inName}`}
-            description={`מגיעים לכל השכונות ${city.inName} ולסביבה. שולחים תמונה של הרצפה ומקבלים הצעת מחיר עוד באותו יום`}
-          />
-        </div>
-
-        <div className="mx-auto max-w-[900px] px-4 pb-[50px] pt-12 text-[1.08rem] leading-[1.85] text-ink-soft sm:px-6">
+        <div className="mx-auto max-w-[900px] px-4 py-[50px] text-[1.08rem] leading-[1.85] text-ink-soft sm:px-6">
           <div className="space-y-4">
             {city.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
