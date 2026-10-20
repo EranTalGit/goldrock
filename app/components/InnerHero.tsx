@@ -23,6 +23,7 @@ export default function InnerHero({
   tagline,
   note,
   headingAs = "h1",
+  titleBreakBefore,
   children,
 }: {
   /** Omitted where the page repeats it as a heading further down. */
@@ -37,11 +38,17 @@ export default function InnerHero({
    * an article, so the document keeps exactly one h1 and it names the piece.
    */
   headingAs?: "h1" | "p";
+  /** A word in the title that starts the second line, where the default wrap lands badly. */
+  titleBreakBefore?: string;
   /** Anything that belongs below the note, such as an article's byline. */
   children?: React.ReactNode;
   crumbs?: unknown;
 }) {
   const Heading = headingAs;
+  const heading = trim(title);
+  const breakAt = titleBreakBefore
+    ? heading.indexOf(` ${titleBreakBefore}`)
+    : -1;
 
   return (
     <section className="relative overflow-hidden border-b border-[rgba(212,175,55,0.3)] bg-[#FAF6F0]">
@@ -83,7 +90,15 @@ export default function InnerHero({
           </p>
         ) : null}
         <Heading className="shine gold-metal mt-3 font-display text-[1.7rem] font-black leading-[1.15] tracking-tight sm:text-[3.2rem]">
-          {trim(title)}
+          {breakAt > -1 ? (
+            <>
+              {heading.slice(0, breakAt)}
+              <br />
+              {heading.slice(breakAt + 1)}
+            </>
+          ) : (
+            heading
+          )}
         </Heading>
         <p className="mx-auto mt-4 max-w-2xl text-balance whitespace-pre-line font-display text-[1rem] font-bold leading-snug text-[#1A1A1A] sm:mt-5 sm:whitespace-normal sm:text-[1.45rem]">
           {trim(tagline)}

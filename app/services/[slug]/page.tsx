@@ -6,7 +6,6 @@ import {
   BUSINESS_NAME,
   CITIES,
   getService,
-  REGION_LABEL,
   SERVICES,
   SITE_URL,
   whatsappLink,
@@ -15,7 +14,6 @@ import InnerHero from "../../components/InnerHero";
 import CtaBand from "../../components/CtaBand";
 import ContactForm from "../../components/ContactForm";
 import Process from "../../components/Process";
-import SectionHeading from "../../components/SectionHeading";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -137,31 +135,20 @@ export default async function ServicePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* The hero names the section, exactly as on the services index. The
-          service names itself below, in the block that carries the h1. */}
+      {/* The hero names the service itself and carries the h1, so a visitor
+          arriving from a search or an ad sees what they looked for first,
+          and the page opens with one heading rather than two. */}
       <InnerHero
-        headingAs="p"
-        title="פוליש, ליטוש וחידוש אבן"
-        tagline={`טיפול מקצועי לכל סוגי הרצפות והמדרגות ב${REGION_LABEL}`}
-        note="כל שירות מותאם לסוג האבן ולמצב שלה, אחרי בדיקה ולא לפי הערכה בטלפון"
+        title={service.h1}
+        titleBreakBefore={service.h1Break}
+        tagline={service.tagline}
+        note={service.description}
       />
 
-      {/* The same opener every page carries, holding the page's h1. */}
       <section className="bg-paper text-ink">
-        <div className="mx-auto max-w-6xl px-4 pt-[45px] sm:px-6">
-          <SectionHeading
-            labelAs="h1"
-            tightLabel
-            label={service.h1}
-            labelBreakBefore={service.h1Break}
-            title={service.tagline}
-            description={service.description}
-          />
-        </div>
-
         {/* 1. The service in detail: words on the right, picture on the left
                and held to a smaller share of the row so the reading leads. */}
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-[50px] pt-14 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch lg:gap-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-[50px] sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch lg:gap-12">
           <div>
             <div className="space-y-5 text-[1.1rem] leading-[1.85] text-[#4A453F]">
               {service.intro.map((paragraph) => (
