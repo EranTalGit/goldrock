@@ -700,7 +700,7 @@ export const SERVICES: Service[] = [
         a: "שולחים תמונה של החדר בוואטסאפ, ומקבלים הצעה אחרי שרואים מה הסוג והמצב של האריחים והרובה.",
       },
     ],
-    image: "/assets/gallery/marble-closeup.webp",
+    image: "/assets/services/bathroom.webp",
     keywords: [
       "ניקיון חדר אמבטיה",
       "חידוש חדר אמבטיה",
