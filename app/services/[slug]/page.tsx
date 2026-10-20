@@ -153,6 +153,7 @@ export default async function ServicePage({
             labelAs="h1"
             tightLabel
             label={service.h1}
+            labelBreakBefore={service.h1Break}
             title={service.tagline}
             description={service.description}
           />

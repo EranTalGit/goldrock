@@ -12,6 +12,7 @@ export default function SectionHeading({
   labelAs = "p",
   ruleOnPhone = true,
   tightLabel = false,
+  labelBreakBefore,
 }: {
   label: string;
   title: string;
@@ -29,6 +30,8 @@ export default function SectionHeading({
    * name - a service or a city - so it holds one line there.
    */
   tightLabel?: boolean;
+  /** A word in the label that starts the second line, where the default wrap lands badly. */
+  labelBreakBefore?: string;
 }) {
   const Label = labelAs;
 
@@ -39,7 +42,15 @@ export default function SectionHeading({
           tightLabel ? "text-[1.75rem]" : "text-4xl"
         }`}
       >
-        {label}
+        {labelBreakBefore && label.includes(` ${labelBreakBefore}`) ? (
+          <>
+            {label.slice(0, label.indexOf(` ${labelBreakBefore}`))}
+            <br />
+            {label.slice(label.indexOf(` ${labelBreakBefore}`) + 1)}
+          </>
+        ) : (
+          label
+        )}
       </Label>
       <h2
         className={`mt-4 whitespace-pre-line font-display font-semibold leading-snug sm:whitespace-normal sm:text-3xl ${
