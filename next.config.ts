@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/services/nikayon-chidush-ambatia",
+        destination: "/services/nikayon-kirtzuf-ambatia",
+        statusCode: 301,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
