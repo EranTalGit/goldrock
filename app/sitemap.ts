@@ -31,9 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // A guide changes when it is written, not on every deploy, so it carries
+    // its own date; stamping it with the build time tells crawlers nothing.
     ...POSTS.map((p) => ({
       url: `${SITE_URL}/blog/${p.slug}`,
-      lastModified: now,
+      lastModified: new Date(p.date),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
