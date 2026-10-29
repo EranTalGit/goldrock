@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import { formatDate } from "@/lib/blog";
 import { PHONE_DISPLAY, whatsappLink } from "@/lib/site";
@@ -69,10 +70,10 @@ export function Rich({ text }: { text: string }) {
       {text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
         i % 2 === 1 ? (
           <strong key={i} className="font-bold text-ink">
-            {part}
+            <WithPageLinks text={part} />
           </strong>
         ) : (
-          <WithPhoneLink key={i} text={part} />
+          <WithPageLinks key={i} text={part} />
         ),
       )}
     </>
@@ -81,6 +82,28 @@ export function Rich({ text }: { text: string }) {
 
 const LINK_CLASS =
   "font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold";
+
+// [link text](/path) - only paths on this site, so a guide cannot link out.
+const PAGE_LINK = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+
+/** Turns [text](/path) into a link to that page, and hands the rest on. */
+function WithPageLinks({ text }: { text: string }) {
+  const parts = text.split(PAGE_LINK);
+  if (parts.length === 1) return <WithPhoneLink text={text} />;
+  // split() returns [text, label, href, text, label, href, ..., text].
+  const nodes: ReactNode[] = [];
+  for (let i = 0; i < parts.length; i += 3) {
+    nodes.push(<WithPhoneLink key={i} text={parts[i]} />);
+    if (i + 2 < parts.length) {
+      nodes.push(
+        <Link key={`${i}-link`} href={parts[i + 2]} className={LINK_CLASS}>
+          {parts[i + 1]}
+        </Link>,
+      );
+    }
+  }
+  return <>{nodes}</>;
+}
 
 // "בוואטסאפ ל-054-…" as one phrase, "וואטסאפ" on its own, or the bare number
 // (with a one-letter prefix such as "ל-").
