@@ -1,3 +1,11 @@
+.design-fonts {
+  --font-ledger-display: "Suez One";
+  --font-ledger-body: "IBM Plex Sans Hebrew";
+  --font-mirror-display: "David Libre";
+  --font-rooms-display: "Karantina";
+  --font-rooms-body: "Rubik Variable", "Rubik";
+}
+
 .studio-bar {
   position: sticky;
   top: 0;

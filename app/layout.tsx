@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { Assistant, Cormorant_Garamond, Heebo } from "next/font/google";
+// Fonts ship with the site, so a build never depends on reaching Google.
+import "@fontsource-variable/heebo";
+import "@fontsource-variable/assistant";
+import "@fontsource-variable/cormorant-garamond";
 import "./globals.css";
 import ThemeScript from "./components/ThemeScript";
 import SiteChrome from "./components/SiteChrome";
@@ -14,27 +17,6 @@ import {
   SITE_URL,
   TAGLINE,
 } from "@/lib/site";
-
-const display = Heebo({
-  variable: "--font-display",
-  subsets: ["hebrew", "latin"],
-  weight: ["500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const body = Assistant({
-  variable: "--font-body",
-  subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
-
-const brand = Cormorant_Garamond({
-  variable: "--font-brand",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
 
 const description = `${BUSINESS_NAME} / ${BUSINESS_NAME_HE} - פוליש לשיש, ליטוש, הברקה וחידוש מדרגות ב${REGION_LABEL}. עבודה נקייה, אחריות מלאה, הצעת מחיר בוואטסאפ.`;
 
@@ -164,7 +146,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="he"
       dir="rtl"
-      className={`${display.variable} ${body.variable} ${brand.variable} h-full`}
+      className="font-vars h-full"
     >
       <body className="flex min-h-full flex-col pb-20 md:pb-0">
         <ThemeScript />

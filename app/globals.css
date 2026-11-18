@@ -88,6 +88,13 @@
   --font-brand: var(--font-brand);
 }
 
+/* The families the site's font variables point at, from the bundled files. */
+.font-vars {
+  --font-display: "Heebo Variable", "Heebo";
+  --font-body: "Assistant Variable", "Assistant";
+  --font-brand: "Cormorant Garamond Variable", "Cormorant Garamond";
+}
+
 html {
   scroll-behavior: smooth;
 }
